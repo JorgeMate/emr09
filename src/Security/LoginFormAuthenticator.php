@@ -28,6 +28,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
     private $csrfTokenManager;
     private $passwordEncoder;
 
+    //////////////////////////
+    private $centerSlug = null;
+
+
     public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->entityManager = $entityManager;
@@ -66,6 +70,9 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
+        //////////////////////////////////////////////////
+        $this->centerSlug = $user->getCenter()->getSlug();
+
         if (!$user) {
 
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
@@ -86,9 +93,13 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        $slug = $this->centerSlug;
+
         return new RedirectResponse(
-            $this->urlGenerator->generate('target')
+            $this->urlGenerator->generate('user_cpanel', array('slug' => $slug))
         );
+
+
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);

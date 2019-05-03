@@ -1,0 +1,48 @@
+<div class="section">
+
+    <br>
+
+    <div class="row">
+
+        <div class="col">
+            <h3>{% block pag_name %}{% endblock %}</h3>
+        </div>
+
+        <div class="col">
+            <div class="text-right">
+                <h4 class="text-info">
+
+                {% if app.user %}
+
+                    {{app.user.center.name}}
+                    
+                    {% if is_granted('ROLE_SUPER_ADMIN') %} 
+                        <i class="fas fa-key text-danger" aria-hidden="true"></i> 
+                    {% endif %} 
+
+                    {% if is_granted('ROLE_ADMIN') and not is_granted('ROLE_SUPER_ADMIN') %} 
+                        {% if app.user.centerUser == app.user.id %}    
+                            <i class="fa fa-key text-warning" aria-hidden="true"></i> 
+                        {% else %}
+                            <i class="fa fa-key text-info" aria-hidden="true"></i> 
+                        {% endif %}           
+                    {% endif %}
+                    
+                    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+                        <a href="{{ path('users_index', {slug:center.slug,'_switch_user': '_exit'}) }}" class="btn btn-danger">
+                            <i class="fas fa-user-shield"></i> Exit impersonation
+                        </a>
+                    {% endif %}
+                
+                {% endif %}
+
+                </h4>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+
+</div>
+
