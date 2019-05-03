@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="title.super_cpanel">
+                <source>title.super_cpanel</source>
+                <target>Administration système</target>
+            </trans-unit>
+
+            <trans-unit id="search_for">
+                <source>search_for</source>
+                <target>recherche d'archives</target>
+            </trans-unit>
+
+            <trans-unit id="user.search_no_results">
+                <source>search_no_results</source>
+                <target>aucun enregistrement trouvé</target>
+            </trans-unit>
+
+            <trans-unit id="label.recorded">
+                <source>label.recorded</source>
+                <target>Enregistrement</target>
+            </trans-unit>
+
+            <trans-unit id="label.last.records">
+                <source>label.last.records</source>
+                <target>Derniers enregistrements</target>
+            </trans-unit>
+
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Choisir la langue</target>
+            </trans-unit>
+            <trans-unit id="mit_license">
+                <source>mit_license</source>
+                <target>Licence MIT</target>
+            </trans-unit>
+
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Connexion sécurisée</target>
+            </trans-unit>
+            <trans-unit id="menu.super">
+                <source>menu.super</source>
+                <target>SUPER Admin</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Compte</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Mail</target>
+            </trans-unit>
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Connectez-vous</target>
+            </trans-unit>
+
+            <trans-unit id="title.patients">
+                <source>title.patients</source>
+            <target>Patients</target>
+            </trans-unit>
+
+            <trans-unit id="title.center_cpanel">
+                <source>title.center_cpanel</source>
+                <target>Admin. C Panel</target>
+            </trans-unit>
+            <trans-unit id="title.centers">
+                <source>title.centers</source>
+                <target>Centres associés</target>
+            </trans-unit>
+            <trans-unit id="title.centers_list">
+                <source>title.centers_list</source>
+                <target>Liste des centres</target>
+            </trans-unit>
+            <trans-unit id="title.center_new">
+                <source>title.center_new</source>
+                <target>Nouveau centre</target>
+            </trans-unit>
+
+
+            <trans-unit id="title.access">
+                <source>title.access</source>
+                <target>Accès au système</target>
+            </trans-unit>
+            <trans-unit id="title.sessions">
+                <source>title.sessions</source>
+                <target>Sessions actives</target>
+            </trans-unit>
+            <trans-unit id="title.logs">
+                <source>title.logs</source>
+                <target>Journaux d'accès au système</target>
+            </trans-unit>
+            <trans-unit id="title.users_list">
+                <source>title.users_list</source>
+                <target>Liste d'utilisateurs</target>
+            </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Modifier l'utilisateur</target>
+            </trans-unit>
+
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Administrer</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="action.new">
+                <source>action.new</source>
+                <target>Nouveau</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Editer</target>
+            </trans-unit>
+
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Nom</target>
+            </trans-unit>            
+            <trans-unit id="label.contact">
+                <source>label.contact</source>
+                <target>Contact</target>                
+            </trans-unit>            
+            <trans-unit id="label.contact_person">
+                <source>label.contact_person</source>
+                <target>Personne de contact</target>
+            </trans-unit>            
+
+            <trans-unit id="label.users">
+                <source>label.users</source>
+                <target>Utilisateurs du system</target>
+            </trans-unit>            
+            <trans-unit id="label.enabled">
+                <source>label.enabled</source>
+                <target>Active</target>
+            </trans-unit>
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Identifiant</target>
+            </trans-unit>
+           <trans-unit id="label.firstname">
+                <source>label.firstname</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="label.lastnamename">
+                <source>label.lastname</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="label.sex">
+                <source>label.sex</source>
+                <target>Sexe</target>
+            </trans-unit>
+            <trans-unit id="label.male">
+                <source>label.male</source>
+                <target>Homme</target>
+            </trans-unit>
+            <trans-unit id="label.female">
+                <source>label.female</source>
+                <target>Femme</target>
+            </trans-unit>
+
+
+            <trans-unit id="label.tel">
+                <source>label.tel</source>
+                <target>Téléphone</target>
+            </trans-unit>
+            <trans-unit id="label.cel">
+                <source>label.cel</source>
+                <target>Tél. portable</target>
+            </trans-unit>
+
+            <trans-unit id="label.address">
+                <source>label.address</source>
+                <target>Adresse</target>
+            </trans-unit>
+            <trans-unit id="label.house_no">
+                <source>label.house_no</source>
+                <target>Numéro</target>
+            </trans-unit>
+            <trans-unit id="label.house_txt">
+                <source>label.house_txt</source>
+                <target>Lettre</target>
+            </trans-unit>
+
+            <trans-unit id="label.postcode">
+                <source>label.postcode</source>
+                <target>Code postal</target>
+            </trans-unit>
+            <trans-unit id="label.city">
+                <source>label.city</source>
+                <target>Lieu</target>
+            </trans-unit>
+
+            <trans-unit id="label.birthdate">
+                <source>label.birthdate</source>
+                <target>Date de naissance</target>
+            </trans-unit>
+
+
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuler</target>
+            </trans-unit>
+            <trans-unit id="label.upload">
+                <source>label.upload</source>
+                <target>Télécharger</target>
+            </trans-unit>            
+
+            <trans-unit id="label.find_user">
+                <source>label.find_user</source>
+                <target>Recherche utilisateur</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="action.send">
+                <source>action.send</source>
+                <target>Envoyer</target>
+            </trans-unit>
+
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Enregistrer</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Modifier le mot de passe</target>
+            </trans-unit>
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Après avoir modifié votre mot de passe, vous serez déconnecté de l'application.</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Mot de passe actuel</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nouveau mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Confirmez le mot de passe</target>
+            </trans-unit>
+
+            <trans-unit id="record.updated_successfully">
+                <source>record.updated_successfully</source>
+                <target>L'enregistrement a été mis à jour avec succès</target>                
+            </trans-unit>
+            <trans-unit id="img.up_suc">
+                <source>img.up_suc</source>
+                <target>Image téléchargée avec succès!</target>
+            </trans-unit>
+            <trans-unit id="doc.up_suc">
+                <source>doc.up_suc</source>
+                <target>Le document a été téléchargé avec succès.</target>
+            </trans-unit>
+
+
+            <trans-unit id="user.iddle_logout">
+                <source>user.iddle_logout</source>
+                <target>Vous avez été déconnecté pour avoir dépassé le délai d'inactivité.</target>
+            </trans-unit>
+
+            <trans-unit id="title.new_user">
+                <source>title.new_user</source>
+                <target>Nouveau compte utilisateur</target>
+            </trans-unit>
+
+            <trans-unit id="label.forgot_password">
+                <source>label.forgot_password</source>
+                <target>j'ai oublié mon mot de passe</target>
+            </trans-unit>
+
+            <trans-unit id="title.resetting_request">
+                <source>title.resetting_request</source>
+                <target>Demande de réinitialisation du mot de passe</target>
+            </trans-unit>
+
+            <trans-unit id="title2.resetting_help">
+                <source>title2.resetting_help</source>
+                <target>Utilisez votre adresse email</target>
+            </trans-unit>
+
+            <trans-unit id="text.resetting_help">
+                <source>text.resetting_help</source>
+                <target>Vous recevrez un email avec les instructions pour récupérer votre mot de passe. Ce sera valable pour une période de temps.</target>
+            </trans-unit>
+
+            <trans-unit id="label.resetting_sent">
+                <source>label.resetting_sent</source>
+                <target>Un email vous a été envoyé. Suivez ses instructions.</target>
+            </trans-unit>
+
+            <trans-unit id="title.center_owner">
+                <source>title.center_owner</source>
+                <target>Propriétaire de système</target>
+            </trans-unit>
+
+            <trans-unit id="title.patient_search_info">
+                <source>title.patient_search_info</source>
+                <target>INFORMATIONS sur la recherche de patient</target>
+            </trans-unit>
+
+            <trans-unit id="title2.patient_search_info">
+                <source>title2.patient_search_info</source>
+                <target>PLUS D'informations sur la recherche de patient</target>
+            </trans-unit>
+
+            <trans-unit id="label.patient">
+                <source>label.patient</source>
+                <target>Patient</target>
+            </trans-unit>
+            <trans-unit id="label.doc">
+                <source>label.doc</source>
+                <target>Médecin de famille</target>
+            </trans-unit>
+
+
+            <trans-unit id="security.title">
+                <source>security.title</source>
+                <target>Utilisateurs et privilèges</target>
+            </trans-unit>
+            <trans-unit id="security.owner_1">
+                <source>security.owner_1</source>
+                <target>Peut créer et révoquer des administrateurs.</target>
+            </trans-unit>
+            <trans-unit id="security.admin_1">
+                <source>security.admin_1</source>
+                <target>Il a accès à la gestion des utilisateurs.</target>
+            </trans-unit>
+
+            <trans-unit id="company.data">
+                <source>company.data</source>
+                <target>Son entreprise</target>
+            </trans-unit>
+
+            <trans-unit id="entity.title">
+                <source>entity.title</source>
+                <target>Entités</target>
+            </trans-unit>
+            
+            <trans-unit id="entity.title_inss">
+                <source>entity.title_inss</source>
+                <target>Compagnies d'assurance</target>
+            </trans-unit>
+            <trans-unit id="entity.title_ins">
+                <source>entity.title_ins</source>
+                <target>Compagnie d'assurance</target>
+            </trans-unit>
+
+            <trans-unit id="entity.title_sou">
+                <source>entity.title_sou</source>
+                <target>Source de patient</target>
+            </trans-unit>
+
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Étiquettes</target>
+            </trans-unit>
+
+            <trans-unit id="title.cons">
+                <source>title.cons</source>
+                <target>Consultations de ce patient</target>
+            </trans-unit>
+
+            <trans-unit id="label.new_con">
+                <source>label.new_con</source>
+                <target>Nouvelle consultation</target>
+            </trans-unit>
+
+            <trans-unit id="label.con">
+                <source>label.con</source>
+                <target>Consultation</target>
+            </trans-unit>
+
+            <trans-unit id="label.notes">
+                <source>label.notes</source>
+                <target>Remarques</target>
+            </trans-unit>
+
+            <trans-unit id="label.age">
+                <source>label.age</source>
+                <target>Âge</target>
+            </trans-unit>
+
+            <trans-unit id="title.pat_info">
+                <source>title.pat_info</source>
+                <target>Information du patient</target>
+            </trans-unit>
+            <trans-unit id="title.med_info">
+                <source>title.med_info</source>
+                <target>Infos médicales</target>
+            </trans-unit>
+            <trans-unit id="title.eco_info">
+                <source>title.eco_info</source>
+                <target>Info économique</target>
+            </trans-unit>
+            <trans-unit id="title.pat_info_basic">
+                <source>title.pat_info_basic</source>
+                <target>De base</target>
+            </trans-unit>
+            <trans-unit id="title.pat_info_other">
+                <source>title.pat_info_other</source>
+                <target>Autre</target>
+            </trans-unit>
+
+            <trans-unit id="label.date">
+                <source>label.date</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="label.new_entry">
+                <source>label.new_entry</source>
+                <target>Nouvelle entrée</target>
+            </trans-unit>
+            <trans-unit id="label.problem">
+                <source>label.problem</source>
+                <target>Problème</target>
+            </trans-unit>
+
+            <trans-unit id="title.medHist">
+                <source>title.medHist</source>
+                <target>Antécédents médicaux</target>
+            </trans-unit>
+            <trans-unit id="title.medicat">
+                <source>title.medicat</source>
+                <target>Médicaments</target>
+            </trans-unit>
+
+            <trans-unit id="label.treatment">
+                <source>label.treatment</source>
+                <target>Traitement</target>
+            </trans-unit>
+            <trans-unit id="label.treatments">
+                <source>label.treatments</source>
+                <target>Traitement</target>
+            </trans-unit>
+
+            <trans-unit id="label.type">
+                <source>label.type</source>
+                <target>Type de traitement</target>
+            </trans-unit>
+            <trans-unit id="label.types">
+                <source>label.types</source>
+                <target>Types de traitement</target>
+            </trans-unit>
+            <trans-unit id="label.value">
+                <source>label.value</source>
+                <target>Montant</target>
+            </trans-unit>
+
+            <trans-unit id="label.places">
+                <source>label.places</source>
+                <target>Lieux de traitement</target>
+            </trans-unit>
+            <trans-unit id="label.place">
+                <source>label.place</source>
+                <target>Lieu de traitement</target>
+            </trans-unit>
+
+            <trans-unit id="label.newpic">
+                <source>label.newpic</source>
+                <target>Nouvelle photo</target>
+            </trans-unit>
+            <trans-unit id="label.newdoc">
+                <source>label.newdoc</source>
+                <target>Nouveau document</target>
+            </trans-unit>
+
+            <trans-unit id="label.medic.users">
+                <source>label.medic.users</source>
+                <target>Utilisateurs médicaux</target>
+            </trans-unit>
+            <trans-unit id="label.medic.title">
+                <source>label.medic.title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="label.medic.spec">
+                <source>label.medic.spec</source>
+                <target>Spécialité</target>
+            </trans-unit>
+
+            <trans-unit id="label.option">
+                <source>label.option</source>
+                <target>Choisis une option</target>
+            </trans-unit>
+
+
+
+
+
+        
+        </body>
+    </file>
+</xliff>

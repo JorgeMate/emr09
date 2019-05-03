@@ -1,0 +1,515 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="nl" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="title.super_cpanel">
+                <source>title.super_cpanel</source>
+                <target>Systeem beheerder</target>
+            </trans-unit>
+
+            <trans-unit id="search_for">
+                <source>search_for</source>
+                <target>Records zoeken</target>
+            </trans-unit>
+
+            <trans-unit id="search_no_results">
+                <source>search_no_results</source>
+                <target>geen records gevonden</target>
+            </trans-unit>
+
+            <trans-unit id="label.recorded">
+                <source>label.recorded</source>
+                <target>Opnemen</target>
+            </trans-unit>
+
+            <trans-unit id="label.last.records">
+                <source>label.last.records</source>
+                <target>Laatste records</target>
+            </trans-unit>
+
+            <trans-unit id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Beginpagina</target>
+            </trans-unit>
+            <trans-unit id="menu.choose_language">
+                <source>menu.choose_language</source>
+                <target>Taalkeuze</target>
+            </trans-unit>
+            <trans-unit id="mit_license">
+                <source>mit_license</source>
+                <target>MIT Licentie</target>
+            </trans-unit>
+
+            <trans-unit id="title.login">
+                <source>title.login</source>
+                <target>Veilig inloggen</target>
+            </trans-unit>
+            <trans-unit id="menu.super">
+                <source>menu.super</source>
+                <target>SUPER Admin</target>
+            </trans-unit>
+            <trans-unit id="menu.user">
+                <source>menu.user</source>
+                <target>Gebruiker</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Uitloggen</target>
+            </trans-unit>
+            <trans-unit id="label.email">
+                <source>label.email</source>
+                <target>Email</target>
+            </trans-unit>
+
+            <trans-unit id="label.password">
+                <source>label.password</source>
+                <target>Wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="action.sign_in">
+                <source>action.sign_in</source>
+                <target>Inloggen</target>
+            </trans-unit>
+
+            <trans-unit id="title.patients">
+                <source>title.patients</source>
+                <target>Patiënten</target>
+            </trans-unit>
+
+            <trans-unit id="title.center_cpanel">
+                <source>title.center_cpanel</source>
+                <target>Systeembeheer</target>
+            </trans-unit>
+            <trans-unit id="title.centers">
+                <source>title.centers</source>
+                <target>Geassocieerde centra</target>
+            </trans-unit>
+            <trans-unit id="title.centers_list">
+                <source>title.centers_list</source>
+            <target>Lijst met centra</target>
+            </trans-unit>
+            <trans-unit id="title.center_new">
+                <source>title.center_new</source>
+                <target>Nieuw centrum</target>
+            </trans-unit>
+
+
+            <trans-unit id="title.access">
+                <source>title.access</source>
+                <target>Systeem toegang</target>
+            </trans-unit>
+            <trans-unit id="title.sessions">
+                <source>title.sessions</source>
+                <target>Actieve sessies</target>
+            </trans-unit>
+            <trans-unit id="title.logs">
+                <source>title.logs</source>
+                <target>Logbestanden voor systeemtoegang</target>
+            </trans-unit>
+            <trans-unit id="title.users_list">
+                <source>title.users_list</source>
+                <target>Gebruikerslijst</target>
+            </trans-unit>
+            <trans-unit id="title.edit_user">
+                <source>title.edit_user</source>
+                <target>Wijzig gebruikersgegevens</target>
+            </trans-unit>
+
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Beheer</target>
+            </trans-unit>
+
+
+
+
+            <trans-unit id="action.new">
+                <source>action.new</source>
+                <target>Nieuw</target>
+            </trans-unit>
+            <trans-unit id="action.edit">
+                <source>action.edit</source>
+                <target>Bewerk</target>
+            </trans-unit>
+
+            <trans-unit id="label.name">
+                <source>label.name</source>
+                <target>Naam</target>
+            </trans-unit>            
+            <trans-unit id="label.contact">
+                <source>label.contact</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="label.contact_person">
+                <source>label.contact_person</source>
+                <target>Contactpersoon</target>
+            </trans-unit>            
+
+            
+            <trans-unit id="label.users">
+                <source>label.users</source>
+                <target>Systeem gebruikers</target>
+            </trans-unit>            
+            <trans-unit id="label.enabled">
+                <source>label.enabled</source>
+                <target>Actief</target>
+            </trans-unit> 
+            <trans-unit id="label.username">
+                <source>label.username</source>
+                <target>Gebruikersnaam</target>
+            </trans-unit>
+           <trans-unit id="label.firstname">
+                <source>label.firstname</source>
+                <target>Voornaam</target>
+            </trans-unit>
+            <trans-unit id="label.lastnamename">
+                <source>label.lastname</source>
+                <target>Achternaam</target>
+            </trans-unit>
+            <trans-unit id="label.sex">
+                <source>label.sex</source>
+                <target>Seks</target>
+            </trans-unit>
+            <trans-unit id="label.male">
+                <source>label.male</source>
+                <target>Man</target>
+            </trans-unit>
+            <trans-unit id="label.female">
+                <source>label.female</source>
+                <target>Vrouw</target>
+            </trans-unit>
+
+
+            <trans-unit id="label.tel">
+                <source>label.tel</source>
+                <target>Telefoon</target>
+            </trans-unit>
+            <trans-unit id="label.cel">
+                <source>label.cel</source>
+                <target>Mobiele Tel.</target>
+            </trans-unit>
+
+            <trans-unit id="label.address">
+                <source>label.address</source>
+                <target>Adres</target>
+            </trans-unit>
+            <trans-unit id="label.house_no">
+                <source>label.house_no</source>
+                <target>Nummer</target>
+            </trans-unit>
+            <trans-unit id="label.house_txt">
+                <source>label.house_txt</source>
+                <target>Letter</target>
+            </trans-unit>
+
+
+            <trans-unit id="label.postcode">
+                <source>label.postcode</source>
+                <target>Postcode</target>
+            </trans-unit>
+            <trans-unit id="label.city">
+                <source>label.city</source>
+                <target>Stad</target>
+            </trans-unit>
+
+            <trans-unit id="label.birthdate">
+                <source>label.birthdate</source>
+                <target>Geboren</target>
+            </trans-unit>
+
+
+
+            <trans-unit id="label.cancel">
+                <source>label.cancel</source>
+                <target>Annuleren</target>
+            </trans-unit>
+            <trans-unit id="label.upload">
+                <source>label.upload</source>
+                <target>Uploaden</target>
+            </trans-unit>            
+
+
+            <trans-unit id="label.find_user">
+                <source>label.find_user</source>
+                <target>Zoek gebruiker</target>
+            </trans-unit>
+
+
+            <trans-unit id="action.send">
+                <source>action.send</source>
+                <target>Sturen</target>
+            </trans-unit>
+
+            <trans-unit id="action.save">
+                <source>action.save</source>
+                <target>Opslaan</target>
+            </trans-unit>
+            <trans-unit id="action.change_password">
+                <source>action.change_password</source>
+                <target>Wachtwoord wijzigen</target>
+            </trans-unit>
+            <trans-unit id="info.change_password">
+                <source>info.change_password</source>
+                <target>Na het wijzigen van uw wachtwoord, wordt u uitgelogd van de applicatie.</target>
+            </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Huidig wachtwoord</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nieuw paswoord</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Bevestig wachtwoord</target>
+            </trans-unit>
+
+            <trans-unit id="record.updated_successfully">
+                <source>record.updated_successfully</source>
+                <target>Het record is succesvol bijgewerkt!</target>
+            </trans-unit>
+            <trans-unit id="img.up_suc">
+                <source>img.up_suc</source>
+                <target>Afbeelding succesvol geupload!</target>
+            </trans-unit>
+            <trans-unit id="doc.up_suc">
+                <source>doc.up_suc</source>
+                <target>Het document is succesvol geüpload.</target>
+            </trans-unit>
+
+            <trans-unit id="user.iddle_logout">
+                <source>user.iddle_logout</source>
+                <target>Je bent uitgelogd wegens inactiviteit.</target>
+            </trans-unit>
+
+            <trans-unit id="title.new_user">
+                <source>title.new_user</source>
+                <target>Nieuw gebruikersaccount</target>
+            </trans-unit>
+
+            <trans-unit id="label.forgot_password">
+                <source>label.forgot_password</source>
+                <target>Ik ben mijn wachtwoord vergeten</target>
+            </trans-unit>
+
+
+            <trans-unit id="title.resetting_request">
+                <source>title.resetting_request</source>
+                <target>Wachtwoord reset verzoek</target>
+            </trans-unit>
+
+
+            <trans-unit id="title2.resetting_help">
+                <source>title2.resetting_help</source>
+                <target>Gebruik uw e-mailadres</target>
+            </trans-unit>
+
+            <trans-unit id="text.resetting_help">
+                <source>text.resetting_help</source>
+                <target>U ontvangt een e-mail met instructies om uw wachtwoord te herstellen. Het is geldig voor een bepaalde periode.</target>
+            </trans-unit>
+
+            <trans-unit id="label.resetting_sent">
+                <source>label.resetting_sent</source>
+                <target>Er is een e-mail naar je verzonden. Volg de instructies.</target>
+            </trans-unit>
+
+            <trans-unit id="title.center_owner">
+                <source>title.center_owner</source>
+                <target>Systeem eigenaar</target>
+            </trans-unit>
+
+            <trans-unit id="title.patient_search_info">
+                <source>title.patient_search_info</source>
+                <target>meer INFORMATIE over het zoeken van patiënten</target>
+            </trans-unit>
+
+            <trans-unit id="title2.patient_search_info">
+                <source>title2.patient_search_info</source>
+                <target>Meer informatie over het zoeken van patiënten</target>
+            </trans-unit>
+
+            <trans-unit id="label.patient">
+                <source>label.patient</source>
+                <target>Patiënt</target>
+            </trans-unit>
+            <trans-unit id="label.doc">
+                <source>label.doc</source>
+                <target>Huisarts</target>
+            </trans-unit>
+
+            <trans-unit id="security.title">
+                <source>security.title</source>
+                <target>Bevoegdheden en privileges</target>
+            </trans-unit>
+            <trans-unit id="security.owner_1">
+                <source>security.owner_1</source>
+                <target>Kan beheerders maken en intrekken.</target>
+            </trans-unit>
+            <trans-unit id="security.admin_1">
+                <source>security.admin_1</source>
+                <target>Heeft toegang tot gebruikersbeheer.</target>
+            </trans-unit>
+
+            <trans-unit id="company.data">
+                <source>company.data</source>
+                <target>Uw Bedrijf</target>
+            </trans-unit>                        
+
+            <trans-unit id="entity.title">
+                <source>entity.title</source>
+                <target>Entiteiten</target>
+            </trans-unit>
+            
+            <trans-unit id="entity.title_inss">
+                <source>entity.title_inss</source>
+                <target>Verzekeringsmaatschappijen</target>
+            </trans-unit>
+            <trans-unit id="entity.title_ins">
+                <source>entity.title_ins</source>
+                <target>Verzekeringsmaatschappij</target>
+            </trans-unit>
+
+            <trans-unit id="entity.title_sou">
+                <source>entity.title_sou</source>
+                <target>Patiënbronn</target>
+            </trans-unit>
+
+            <trans-unit id="label.tags">
+                <source>label.tags</source>
+                <target>Tags</target>
+            </trans-unit>
+
+            <trans-unit id="title.cons">
+                <source>title.cons</source>
+                <target>Patiëntconsultaties</target>
+            </trans-unit>
+
+            <trans-unit id="label.new_con">
+                <source>label.new_con</source>
+                <target>Nieuw consultatie</target>
+            </trans-unit>
+
+            <trans-unit id="label.con">
+                <source>label.con</source>
+                <target>Consult</target>
+            </trans-unit>
+
+            <trans-unit id="label.notes">
+                <source>label.notes</source>
+                <target>Opmerkingen</target>
+            </trans-unit>
+
+            <trans-unit id="label.age">
+                <source>label.age</source>
+                <target>leeftijd</target>
+            </trans-unit>
+
+            <trans-unit id="title.pat_info">
+                <source>title.pat_info</source>
+                <target>Patiëntgegevens</target>
+            </trans-unit>
+            <trans-unit id="title.med_info">
+                <source>title.med_info</source>
+                <target>Medic info</target>
+            </trans-unit>
+            <trans-unit id="title.eco_info">
+                <source>title.eco_info</source>
+                <target>Economische info</target>
+            </trans-unit>
+            <trans-unit id="title.pat_info_basic">
+                <source>title.pat_info_basic</source>
+                <target>Basis informatie</target>
+            </trans-unit>
+            <trans-unit id="title.pat_info_other">
+                <source>title.pat_info_other</source>
+                <target>Overige</target>
+            </trans-unit>
+
+            <trans-unit id="label.date">
+                <source>label.date</source>
+                <target>Datum</target>
+            </trans-unit>
+            <trans-unit id="label.new_entry">
+                <source>label.new_entry</source>
+                <target>Nieuw item</target>
+            </trans-unit>
+            <trans-unit id="label.problem">
+                <source>label.problem</source>
+                <target>Probleem</target>
+            </trans-unit>
+
+            <trans-unit id="title.medHist">
+                <source>title.medHist</source>
+                <target>Medische geschiedenis</target>
+            </trans-unit>
+            <trans-unit id="title.medicat">
+                <source>title.medicat</source>
+                <target>Geneesmiddel</target>
+            </trans-unit>
+
+            <trans-unit id="label.treatment">
+                <source>label.treatment</source>
+                <target>Behandeling</target>
+            </trans-unit>
+            <trans-unit id="label.treatments">
+                <source>label.treatments</source>
+                <target>Behandelingen</target>
+            </trans-unit>
+
+            <trans-unit id="label.type">
+                <source>label.type</source>
+                <target>Type behandeling</target>
+            </trans-unit>
+            <trans-unit id="label.types">
+                <source>label.types</source>
+                <target>Types behandeling</target>
+            </trans-unit>
+            <trans-unit id="label.value">
+                <source>label.value</source>
+                <target>Bedrag</target>
+            </trans-unit>
+
+            <trans-unit id="label.places">
+                <source>label.places</source>
+                <target>Behandelings plaatsen</target>
+            </trans-unit>
+            <trans-unit id="label.place">
+                <source>label.place</source>
+                <target>Behandelings plaats</target>
+            </trans-unit>
+
+            <trans-unit id="label.newpic">
+                <source>label.newpic</source>
+                <target>Nieuwe foto</target>
+            </trans-unit>
+            <trans-unit id="label.newdoc">
+                <source>label.newdoc</source>
+                <target>nieuw document</target>
+            </trans-unit>
+
+            <trans-unit id="label.medic.users">
+                <source>label.medic.users</source>
+                <target>Medische gebruikers</target>
+            </trans-unit>
+            <trans-unit id="label.medic.title">
+                <source>label.medic.title</source>
+                <target>Titel</target>
+            </trans-unit>
+            <trans-unit id="label.medic.spec">
+                <source>label.medic.spec</source>
+                <target>Specialiteit</target>
+            </trans-unit>
+
+            <trans-unit id="label.option">
+                <source>label.option</source>
+                <target>Kies een optie</target>
+            </trans-unit>
+
+
+
+        
+        </body>
+    </file>
+</xliff>
