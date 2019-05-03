@@ -1,0 +1,137 @@
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ asset('assets/images/logoKS80x50.png') }}"></a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <ul class="nav navbar-nav mr-auto">
+
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            <span class="caret"></span>
+                            {{ app.request.locale }}
+                            <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+                        </a>
+                        <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
+                            {% for locale in locales() %}
+                            <li {% if app.request.locale == locale.code %}aria-checked="true" class="enabled"{% else %}aria-checked="false"{% endif %} role="menuitem">
+                                <a class="dropdown-item" href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                                    {{ locale.name|capitalize }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    {% if app.user %} 
+    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_cpanel', {slug:app.user.center.slug} ) }}">
+                                <i class="fa fa-home" aria-hidden="true"></i> {{ 'menu.homepage'|trans }}
+                            </a>
+                        </li>
+                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+
+                        {% if false %}
+                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">TechMed</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+
+                        {% endif %}
+
+                        <li class="nav-item">
+                            &nbsp;        
+                        </li>
+
+                        <li class="nav-item dropdown">
+
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="user">
+                                <i class="far fa-user" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                                <span class="sr-only">{{ app.user.email }}</span>
+                                {{app.user.firstname}} {{app.user.lastname}}
+                            </a>
+                            
+                            <ul class="dropdown-menu user" role="menu" aria-labelledby="user">
+    
+                                {% if is_granted('ROLE_SUPER_ADMIN') %} 
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('super_cpanel') }}">
+                                            <i class="fas fa-key text-danger" aria-hidden="true"></i> {{ 'menu.super'|trans }} 
+                                        </a>
+                                    </li>
+                                {% endif %} 
+
+                                {% if is_granted('ROLE_ADMIN') and not is_granted('ROLE_SUPER_ADMIN') %} 
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
+                                            {% if app.user.centerUser == app.user.id %}    
+                                                <i class="fa fa-key text-warning" aria-hidden="true"></i> 
+                                            {% else %}
+                                                <i class="fa fa-key text-info" aria-hidden="true"></i> 
+                                            {% endif %}
+                                            {{ 'menu.admin'|trans }}
+                                        </a>
+                                    </li>
+                                {% endif %} 
+                                
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('user_edit', {slug:app.user.center.slug}) }}">
+                                        <i class="fa fa-edit" aria-hidden="true"></i> {{ 'menu.user'|trans }}
+                                    </a>
+                                </li>
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <a class="dropdown-item" href="{{ path('logout') }}">
+                                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    {% endif %}
+
+                </ul>    
+
+                <ul class="nav navbar-nav navbar-right">
+                {% if app.user %}           
+
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+
+                {% endif %}
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+

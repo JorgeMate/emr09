@@ -2,35 +2,141 @@
 
 {% block title %}{{ 'title.login'|trans }}{% endblock %}
 
+{% block navbar %}
+{% endblock %} 
+
 {% block body %}
-<form method="post">
+
+    <br>
+
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <br>
+    <br>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
+    <div class="row">
 
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+        <div class="col-sm-3"></div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+        <div class="col-sm-6">
+
+                 {{ include('default/_flash_messages.html.twig') }}
+
+                 <br>
+            
+                <form action="{{ path('app_login') }}" method="post">
+
+                    <fieldset>
+
+                        <legend>
+
+                            <div class="row">
+
+                                <div class="col-8">
+                                    <i class="fa fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}
+                                </div>
+                                
+                                <div class="col-4 text-right">
+
+                                    <div class="dropdown">
+                                        <a href="#" class="dropdown-toggle text-primary" data-toggle="dropdown" role="button" aria-expanded="false" id="locales">
+                                            <i class="fa fa-globe" aria-hidden="true"></i>
+                                            <span class="caret"></span>
+                                            {{ app.request.locale }}
+                                            <span class="sr-only">{{ 'menu.choose_language'|trans }}</span>
+                                        </a>
+                                        <ul class="dropdown-menu locales" role="menu" aria-labelledby="locales">
+                                            {% for locale in locales() %}
+                                            <li {% if app.request.locale == locale.code %}aria-checked="true" class="enabled"{% else %}aria-checked="false"{% endif %} role="menuitem">
+                                                <a class="dropdown-item" href="{{ path(app.request.get('_route', 'blog_index'), app.request.get('_route_params', [])|merge({_locale: locale.code})) }}">
+                                                    {{ locale.name|capitalize }}
+                                                </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                        
+                                </div>
+
+                            </div>
+
+                        </legend>
+
+                        <div class="form-group">
+                            <label for="inputEmail" class="sr-only">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="{{ 'label.email'|trans }}" required autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword" class="sr-only">Password</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="{{ 'label.password'|trans }}" required>
+                        </div>
+                            
+                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+
+                        <input type="hidden" name="_csrf_token"
+                            value="{{ csrf_token('authenticate') }}"
+                        >
+
+                        {#
+                            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                            See https://symfony.com/doc/current/security/remember_me.html
+                        
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" name="_remember_me"> Remember me
+                                </label>
+                            </div>
+                       #}
+
+                        <div class="form-group">
+                            <br/>
+                        </div>    
+
+                        <div class="form-group">
+
+                            <div class="row">
+
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-sign-in-alt" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
+                                    </button>
+                                </div>
+
+                                <div class="col text-right">
+                                        <a href="">{{ 'label.forgot_password'|trans }}</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
         </div>
-    #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+        <div class="col-sm-3"></div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdaGaAUAAAAAKTJB_RqebG2myyYhwUBjSffCM4Q"></script>
+
+    <script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LdaGaAUAAAAAKTJB_RqebG2myyYhwUBjSffCM4Q', {action: 'homepage'}).then(function(token) {
+                
+            });
+        });
+    </script>
+
 {% endblock %}

@@ -10,7 +10,7 @@
 
         {% block stylesheets %}
 
-        {% if false %}
+        {% if true %}
 
             <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('/assets/css/all.css') }}">
@@ -32,7 +32,7 @@
     <body id="{% block body_id %}{% endblock %}">
 
         {% block navbar %}
-            
+            {{ include('default/_navbar.html.twig') }}
         {% endblock %} 
         
         <div class="container body-container">
@@ -49,15 +49,14 @@
         
         {% block javascripts %}
 
-        {% if false %}
+        {% if true %}
 
             <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>        
             <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
             
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.fr.min.js"></script>            
-
+    
              {% if app.request.locale == 'en' %}
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.en.min.js"></script>
                 <script src="{{ asset('assets/js/datepicker.en.js') }}"></script>
