@@ -1,12 +1,103 @@
 <!DOCTYPE html>
 <html>
+
     <head>
+
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        
+        <title>{% block title %}TechMed{% endblock %}</title>
+
+        {% block stylesheets %}
+
+        {% if false %}
+
+            <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('/assets/css/all.css') }}">
+            <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
+
+        {% else %}
+
+            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+            
+
+        {% endif %}
+
+        {% endblock %}
+
     </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    
+    <body id="{% block body_id %}{% endblock %}">
+
+        {% block navbar %}
+            
+        {% endblock %} 
+        
+        <div class="container body-container">
+
+            {% block header %}<br>{% endblock %}
+            {% block body %}{% endblock %}
+
+        </div> 
+        
+        {% block footer %}
+            
+        {% endblock %}
+     
+        
+        {% block javascripts %}
+
+        {% if false %}
+
+            <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>        
+            <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
+            
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.fr.min.js"></script>            
+
+             {% if app.request.locale == 'en' %}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.en.min.js"></script>
+                <script src="{{ asset('assets/js/datepicker.en.js') }}"></script>
+            {% elseif app.request.locale == 'es' %}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.es.min.js"></script>
+                <script src="{{ asset('assets/js/datepicker.es.js') }}"></script>
+            {% elseif app.request.locale == 'nl' %}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.nl.min.js"></script>
+                <script src="{{ asset('assets/js/datepicker.nl.js') }}"></script>
+            {% else %}
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.fr.min.js"></script>
+                <script src="{{ asset('assets/js/datepicker.fr.js') }}"></script>
+            {% endif %} 
+
+            <script>
+
+                // Correción del fallo en input-files de bootstrap 4
+
+                $('.custom-file-input').on('change', function(event) {
+                var inputFile = event.currentTarget;
+                $(inputFile).parent()
+                    .find('.custom-file-label')
+                    .html(inputFile.files[0].name);
+
+                $('.collapse').collapse();
+
+                });
+
+            </script>
+
+        {% else %}
+
+             <script src="{{ asset('build/app.js') }}"></script>
+
+        {% endif %}
+
+
+        {% endblock %}
+
     </body>
+
 </html>
+

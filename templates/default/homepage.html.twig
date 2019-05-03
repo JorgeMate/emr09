@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <br/>
+    <br/>
+    <br/>
+    
+    <br/>
+    <br/>
+    
+    <div class="page-hero d-flex align-items-center justify-content-center">
+        <a href=""><img src="{{ asset('assets/images/logKS400x200.png') }}"></a>
+    </div>
+
+    <br/>
+    
+    <div class="row align-items-center">
+        <div class="col-sm-2">
+        </div>    
+        <div class="col-sm-8 text-center">
+            {{ include('default/_flash_messages.html.twig') }}
+        </div>
+        <div class="col-sm-2">
+        </div>    
+    </div>
+
+{% endblock %}
