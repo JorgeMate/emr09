@@ -13,7 +13,19 @@ class DefaultController extends AbstractController
     public function index()
     {
         return $this->render('default/homepage.html.twig', [
-            'controller_name' => 'DefaultController',
+            
         ]);
     }
+
+    /**
+     * @Route("/target", name="target")
+     */
+    public function target()
+    {
+        return $this->render('default/target.html.twig', [
+            
+        ]);
+    }
+
+
 }

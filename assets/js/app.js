@@ -1,4 +1,4 @@
-import 'bootstrap-sass/assets/javascripts/bootstrap/dropdown.js';
+
 
 import 'jquery'
 
