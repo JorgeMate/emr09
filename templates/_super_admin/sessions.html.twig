@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h3>{{ 'title.sessions'|trans }}</h3>
+<br>
+
+<table class="table table-striped table-hover table-responsive js-sessions-table">
+
+    <thead>
+        <tr>
+            <th>Center</th>
+            <th>{{ 'label.users'|trans }}</th>
+            <th>Login</th>
+            <th>Activity</th>
+            <th>Last Access</th>
+            <th>Iddle</th>
+            <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+    {% for session in sessions %}
+    <tr>
+        <td><a href="{% if session.center_id %}{{ path('users_index', {slug: centerSlug}) }}{% endif %}">{{ session.center }}</a></td>
+        <td>{{ session.user}}</td>
+        <td>{{ session.login|date("d/m/y H:i:s") }}</td>
+        <td>{{ session.activity }}</td>
+        <td>{{ session.updated }}</td>
+        <td>{{ session.iddle }}</td>
+        <td>
+            <a href="" 
+                class="js-delete-session" data-url="{{ path('session_delete', {id: session.id}) }}"
+            >
+                <span class="fas fa-skull-crossbones"></span>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/session_delete.js') }}"></script>
+    
+{% endblock %}
+

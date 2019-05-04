@@ -23,7 +23,7 @@
                 <p>
                     <i class="fas fa-users"></i> {{ 'label.users'|trans }}
                     <ul>
-                        <li><a href="">{{ 'label.find_user'|trans }}</a></li>
+                        <li><a href="{{ path('user_search') }}">{{ 'label.find_user'|trans }}</a></li>
                     </ul>
                 </p>    
         </div>
@@ -33,8 +33,8 @@
                 <p>
                     <i class="fas fa-desktop"></i> {{ 'title.access'|trans }}
                     <ul>
-                        <li><a href="">{{ 'title.sessions'|trans }}</a></li>
-                        <li><a href="">{{ 'title.logs'|trans }}</a></li>
+                        <li><a href="{{ path('sessions') }}">{{ 'title.sessions'|trans }}</a></li>
+                        <li><a href="{{ path('logs') }}">{{ 'title.logs'|trans }}</a></li>
                     </ul>
                 </p>    
         </div>

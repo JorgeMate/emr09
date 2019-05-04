@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h3>{{ 'Log de accesos al sistema' }}</h3>
+<br>
+
+<table class="table table-striped table-hover table-responsive js-logs-table">
+
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{ 'label.users'|trans }}</th>
+            <th>Login</th>
+            <th>IP</th>
+            <th>Agent</th>
+            <th>Logout</th>
+            <th>Type</th>
+            <th>Activity</th>
+        </tr>
+    </thead>
+
+    <tbody>
+       {% for log in logs %}
+
+        {#  {{ path('userX_edit', {id: log.user_id}) }}  #}
+
+        <tr>
+            <td>{{ log.id }}</td>
+            <td><a href="">{{ log.email }}</a></td>
+            <td>{{ log.login_time|date("d/m/y H:i:s") }}</td>
+            <td>{{ log.ip }}</td>
+            <td>{{ log.agent }}</td>
+            <td>{% if log.logout_time %}{{ log.logout_time|date("d/m/y H:i:s") }}{% endif %}</td>
+            <td class="text-center">
+                    
+                {% if log.logout_type is null %}
+                    <i class="fas fa-question"></i>
+                {% elseif log.logout_type == 1 %}
+                    <i class="far fa-thumbs-up"></i>
+                {% else %}  
+                    <i class="far fa-clock"></i>    
+                {% endif %}  
+                
+            </td>
+            <td class="text-right">{{ log.enabled }} min.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+</table>
+
+{% endblock %}

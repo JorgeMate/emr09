@@ -48,4 +48,8 @@ services:
             # If you get transaction issues (e.g. after login) uncomment the line below
             - { lock_mode: 1 }
 
+    App\EventListener\LoginListener:
+        tags: [{ name: kernel.event_listener, event: security.interactive_login }]
 
+    app.logout.listener:
+        class: App\EventListener\LogoutListener

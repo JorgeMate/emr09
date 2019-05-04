@@ -1,0 +1,44 @@
+{% extends 'base93.html.twig' %}
+
+
+    {% block body_id 'user_search' %}
+
+    {% block main %}
+
+        <form action="{{ path('user_search') }}" method="get">
+
+            <div class="form-group">
+
+                <input name="q"
+                    class="form-control js-search-field"
+                    placeholder="{{ 'search_for'|trans }}"
+                    autocomplete="off"
+                    autofocus
+                    data-no-results-message="{{ 'search_no_results'|trans }}"
+                >
+
+            </div>
+
+        </form>
+
+        <!-- /////////////////////////////7 -->
+        <div id="results">
+        </div>
+        <!-- /////////////////////////////7 -->
+
+    {% endblock %}
+
+    {% block sidebar %}
+        {{ parent() }}
+        {# show_source_code(_self) #}
+    {% endblock %}
+
+
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/search.js') }}"></script>
+{% endblock %}
+
