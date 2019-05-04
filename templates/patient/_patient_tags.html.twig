@@ -1,0 +1,14 @@
+{% if not patient.tags.empty %}
+    <p class="patient-tags">
+        {% for tag in patient.tags %}
+            <a href="{{ path( 'patient_index', {'tag': tag.name == app.request.query.get('tag') ? null : tag.name,
+            'slug':app.user.center.slug} ) }}"
+               class="label label-{{ tag.name == app.request.query.get('tag') ? 'success' : 'default' }}"
+            >
+                <i class="fa fa-tag"></i> {{ tag.name }}
+            </a>
+            
+        {% endfor %}
+    </p>
+{% endif %}
+

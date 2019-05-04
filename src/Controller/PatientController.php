@@ -40,6 +40,16 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class PatientController extends AbstractController
 {
+
+    /**
+     * @Route("/{slug}/consult/{id}", methods={"GET", "POST"}, name="consult_edit")
+     * 
+     */
+    public function editCon()
+    {
+
+    }
+
      /**
      * @Route("/{slug}/new/patient", methods={"GET", "POST"}, name="patient_new")
      * 
@@ -67,7 +77,7 @@ class PatientController extends AbstractController
             $em->persist($patient);
             $em->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('patient_show', ['id' => $patient->getId()]);
         }
@@ -184,9 +194,9 @@ class PatientController extends AbstractController
             $em->persist($consult);
             $em->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
     
-            return $this->redirectToRoute('patient_show', [  'id' => $patient->getId() ] );
+            return $this->redirectToRoute('patient_show', ['id' => $patient->getId() ] );
 
         }
 
@@ -200,10 +210,10 @@ class PatientController extends AbstractController
             $em->persist($storedImg);
             $em->flush();
                 
-            $this->addFlash('success', 'doc.up_suc');
+            $this->addFlash('info', 'doc.up_suc');
             $slug = $patient->getUser()->getCenter()->getSlug();
     
-            return $this->redirectToRoute('patient_show', ['slug' =>$slug , 'id' => $patient->getId() ] );
+            return $this->redirectToRoute('patient_show', ['id' => $patient->getId() ] );
             
         }
 
@@ -214,7 +224,7 @@ class PatientController extends AbstractController
             $em->persist($storedImg);
             $em->flush();
                 
-            $this->addFlash('success', 'img.up_suc');
+            $this->addFlash('info', 'img.up_suc');
             $slug = $patient->getUser()->getCenter()->getSlug();
     
             return $this->redirectToRoute('patient_show', ['slug' =>$slug ,'id' => $patient->getId() ] );
@@ -236,7 +246,179 @@ class PatientController extends AbstractController
             'formImg' => $formImg->createView(),
             
         ]);
-    }    
+    }
+    
+    /**
+     * @Route("{slug}/patient/{id}/edit", methods={"GET", "POST"}, name="patient_edit")
+     * 
+     * EDITAR el paciente id
+     */
+    public function editPat($slug, Request $request, Patient $patient): Response
+    {
+
+        $this->denyAccessUnlessGranted('PATIENT_EDIT', $patient);
+
+        $form = $this->createForm(PatientType::class, $patient);
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+            
+            $this->addFlash('info', 'record.updated_successfully');
+            
+            return $this->redirectToRoute('patient_show', 
+                ['id' => $patient->getId()] );
+        }
+
+        return $this->render('patient/edit.html.twig', [
+
+            'patient' => $patient,
+            'formPat' => $form->createView(),
+        ]);
+
+    }
+    
+
+
+
+
+
+        /**
+     * @Route("/{slug}/patient/{id}/new/medicat", methods={"GET", "POST"}, name="medicat_new")
+     * 
+     */
+    public function newMed(Request $request, $slug, Patient $patient): Response
+    {
+        $user = $this->getUser();
+        $center = $user->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
+
+        $medicat = new Medicat();
+        $medicat->setUser($user);
+        $medicat->setPatient($patient);
+
+        $form = $this->createForm(MedicatType::class, $medicat);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();            
+            $em->persist($medicat);
+            $em->flush();
+
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('patient_show', ['slug' => $slug,  'id' => $patient->getId()]);
+        } 
+
+        return $this->render('/patient/medicat/new.html.twig', [
+            'slug' => $slug,
+            'patient' => $patient,
+            'medicat' => $medicat,
+            'form' => $form->createView(),          
+        ]);
+
+    }
+
+    /**
+     * @Route("/medicat/{id}", methods={"POST"}, name="medicat_stop")
+     */
+    public function medicatStop(Medicat $medicat)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        $medicat->setStopAt(new \DateTime("now"));
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+
+        return new Response(null, 204);
+    }
+
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+    /**
+     * @Route("/{slug}/patient/{id}/new/consult", methods={"GET", "POST"}, name="consult_new")
+     * 
+     */
+    public function newCon(Request $request, $slug, Patient $patient): Response
+    {
+        $user = $this->getUser();
+        $center = $user->getCenter();
+       
+        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
+
+        $consult = new Consult();
+        $consult->setUser($user);
+        $consult->setPatient($patient);
+
+        $form = $this->createForm(ConsultType::class, $consult);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($consult);
+            $em->flush();
+
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('patient_show', ['slug'=>$slug, 'id' => $patient->getId()]);
+        } 
+        
+        return $this->render('/patient/consult/new.html.twig', [
+            'wtab' => 2,
+            'center' => $center,
+            'patient' => $patient,
+            'consult' => $consult,
+            'form' => $form->createView(),
+            
+        ]);
+
+    }
+
+    /**
+     * @Route("/{slug}/patient/{id}/new/historia", methods={"GET", "POST"}, name="historia_new")
+     * 
+     */
+    public function newHis(Request $request, $slug, Patient $patient): Response
+    {
+        $user = $this->getUser();
+        $center = $user->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
+
+        $historia = new Historia();
+        $historia->setUser($user);
+        $historia->setPatient($patient);
+
+        $form = $this->createForm(HistoriaType::class, $historia);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($historia);
+            $em->flush();
+
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('patient_show', [  'id' => $patient->getId()]);
+        } 
+
+        return $this->render('/patient/historia/new.html.twig', [
+            'center' => $center,
+            'patient' => $patient,
+            'historia' => $historia,
+            'form' => $form->createView(),          
+        ]);
+
+    }
+
+
 
 
 }

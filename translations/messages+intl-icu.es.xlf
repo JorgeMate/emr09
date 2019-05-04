@@ -519,6 +519,16 @@
                 <target>Elija una opción</target>
             </trans-unit>
 
+            <trans-unit id="label.medicine">
+                <source>label.medicine</source>
+                <target>Medicamento</target>
+            </trans-unit>
+            <trans-unit id="label.dosis">
+                <source>label.dosis</source>
+                <target>Dosis</target>
+            </trans-unit>
+
+
 
 
 

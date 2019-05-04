@@ -1,0 +1,109 @@
+<div role="tabpanel" class="tab-pane fade show active" id="nav-1">
+
+        <div class="row">
+            <div class="col-sm-12 text-right">
+            </div>  
+        </div>
+        
+        <div class="row">
+
+            <div class="col-sm-3">
+                
+                <h5 class="text-warning">{{ 'title.pat_info_basic'|trans }}</h5>
+                {{ 'label.firstname'|trans }}    
+                <br>
+                <h5 class="text-primary">{{ patient.firstname }}</h5>
+                        
+                {{ 'label.lastname'|trans }}
+                <br>
+                <h5 class="text-primary">{{ patient.lastname }}</h5>
+                
+                {{ 'label.birthdate'|trans }}
+                <br>
+                <h5 class="text-primary">{{ patient.dateOfBirth|date('d-m-y') }}</h5>
+    
+                {{ 'label.tel'|trans }}
+                <br>
+                <h5 class="text-primary"><a href="tel:{{ patient.tel }}">{{ patient.tel }}</a>
+                {% if patient.cel %}
+                    | <a href="tel:{{ patient.cel }}">{{ patient.cel }}</a>
+                {% endif %}
+                </h5>
+                {{ 'label.address'|trans }}
+                
+                <br>
+                <h5 class="text-primary">
+                    {{ patient.address }} {{ patient.houseNo }} {{ patient.houseTxt }}
+                    <br>
+                    {{ patient.postcode }}
+                    {% if patient.city %}
+                     - {{ patient.city }}
+                    {% endif %} 
+                </h5>
+                
+                {{ 'label.email'|trans }}
+                <br>
+                <h5 class="text-primary"><a href="mailto:{{ patient.email }}">{{ patient.email }}</a></h5>
+
+                
+            </div>
+    
+            <div class="col-sm-3">
+    
+                <h5 class="text-warning">{{ 'label.contact'|trans }}</h5>
+                {{ 'label.contact_person'|trans }}    
+                <br>
+                <h5 class="text-primary">{{ patient.contact }}</h5>                        
+                {{ 'label.tel'|trans }}
+                <br>
+                <h5 class="text-primary">{{ patient.telCon }}</h5>
+                <hr>
+                {{ 'label.doc'|trans }}    
+                <h5 class="text-primary">{{ patient.doctor }}</h5>                        
+                {{ 'label.tel'|trans }}
+                <br>
+                <h5 class="text-primary">{{ patient.telDoc }}</h5>
+                <br>
+    
+            </div>
+    
+        
+            <div class="col-sm-4">
+
+                {{ include('patient/_patient_tags.html.twig') }}
+                <h5 class="text-warning">{{ 'title.pat_info_other'|trans }}</h5>
+                {# TAGS #}
+                
+
+                {{ 'entity.title_ins'|trans }}
+                {% if patient.insurance.name is defined %}
+                    <h5 class="text-primary">{{ patient.insurance.name }}</h5>
+                {% else %}
+                    <br><br>
+                {% endif %}
+                {{ 'entity.title_sou'|trans }}
+                {% if patient.source.name is defined %}
+                    <h5 class="text-primary">{{ patient.source.name }}</h5> 
+                {% endif %}
+
+                {% if patient.notes %}    
+                <hr>
+                <h5>{{ 'label.notes'|trans }}</h5>
+                
+                <h6 class="text-primary">{{ patient.notes }}</h6>
+                {% endif %}
+    
+            </div>
+
+            <div class="col-sm-2 text-right">
+
+                <a href="{{ path('patient_edit', {slug:app.user.center.slug, id:patient.id} ) }}" class="btn btn-primary">
+                    <i class="fas fa-edit" aria-hidden="true"></i> {{ 'action.edit'|trans }}
+                </a>
+
+            </div>
+            
+    
+        </div>
+            
+    </div>

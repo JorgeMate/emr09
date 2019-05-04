@@ -47,8 +47,25 @@
     <div class="tab-content" id="nav-tabContent">
         
         {# TAB 1 datos paciente #}
+        {{ include('/patient/TABS/_TAB1.html.twig', {
+            patient: patient,
+        }, with_context = false) }}
+
 
         {# TAB 2 consultas #}
+        {{ include('/patient/TABS/_TAB2.html.twig', {
+            form: formConsult,
+        
+            id: patient.id,
+            consults: consults,
+            medicats: medicats,
+            historias: historias,
+            button_label_new: 'label.new_con'|trans,
+            button_label_cancel: 'label.cancel'|trans,
+            button_label_save: 'action.save'|trans
+
+        }, with_context = false) }}
+
 
         {# TAB 3 tratamientos #}
  
@@ -103,6 +120,11 @@ $(function() {
     }
 
 });
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
 
 </script>
 
