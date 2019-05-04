@@ -78,7 +78,7 @@
 
             <trans-unit id="title.center_cpanel">
                 <source>title.center_cpanel</source>
-                <target>Administrador.</target>
+                <target>Administrador</target>
             </trans-unit>
             <trans-unit id="title.centers">
                 <source>title.centers</source>

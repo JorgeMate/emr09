@@ -8,7 +8,7 @@ parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
     app_locales: en|fr|es|nl
     app.notifications.email_sender: kimberly.systems@gmail.com
-    session_max_idle_time: 300 // value in seconds        
+    session_max_idle_time: 900 // value in seconds        
 
 services:
     # default configuration for services in *this* file
@@ -53,3 +53,9 @@ services:
 
     app.logout.listener:
         class: App\EventListener\LogoutListener
+
+    App.Handler.SessionIdle:
+        class: App\Security\SessionIdleHandler
+        arguments: ['%session_max_idle_time%']
+        tags: [{ name: kernel.event_listener, event: kernel.request }]
+

@@ -1,0 +1,80 @@
+{% extends 'base93.html.twig' %}
+
+{% block main %}
+
+
+<div class="body">
+
+    <div class="row justify-content-between">
+
+        <div class="column">
+            <h4>
+                <a href="{{ path('center_cpanel', {slug:center.slug}) }}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ center.name }}
+                </a> 
+                | <i class="fas fa-user-md"></i> {{ 'label.medic.users'|trans }}
+            </h4>
+        </div>        
+
+        <div class="column">
+        </div>        
+
+    </div>
+
+</div>
+
+
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th></th>
+            <th>{{'label.medic.title'|trans}}</th>
+            <th>{{'label.firstname'|trans}}</th>
+            <th>{{'label.lastname'|trans}}</th>
+            <th class="text-center"><i class="fas fa-user-md"></i></th>
+            
+            <th>{{'label.medic.spec'|trans}}</th>
+            <th></th>
+            <th>{{'title.access'|trans}}</th>
+            
+            <th></th>
+            
+        </tr>
+        </thead>
+    <tbody>
+        {% for medic in medics %}
+        <tr>
+            <td>
+                <a href="{{ path('edit_user_medic',{slug:app.user.center.slug, id:medic.id}) }}" class="btn btn-sm btn-outline-success">
+                    <i class="fa fa-edit" aria-hidden="true"></i> 
+                </a>
+            </td>
+            <td>{{ medic.title }}</td>
+            <td>{{ medic.firstname }}</td>
+            <td>{{ medic.lastname }} </td>
+            <td>{{ medic.cod }}</td>
+            
+            <td>{{ medic.speciality }}</td>
+            <td>
+                {% if medic.internal %}
+                    <i class="fas fa-home"></i>
+                {% endif %}      
+            </td>
+            <td>{{ medic.email }} </td>
+            
+            <td class="text-center">
+                {% if medic.enabled %}
+                    <i class="fas fa-toggle-on"></i>
+                {% else %}  
+                    <i class="fas fa-toggle-off"></i>
+                {% endif %}  
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

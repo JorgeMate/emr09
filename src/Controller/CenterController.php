@@ -113,6 +113,29 @@ class CenterController extends AbstractController
     }
 
     /**
+     * @Route("/{slug}/medic-users", methods={"GET"}, name="medics_index")
+     * 
+     * LISTAR todos los usuarios medicos del centro id
+     */
+    public function indexMedUsers(Request $request, $slug): Response
+    {        
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Center::class);
+        $center = $repository->findOneBy(['slug' => $slug]);
+
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        $repository = $em->getRepository(User::class);
+        $medics = $repository->findBy(['center' => $center->getId(), 'medic' => '1']);
+
+        return $this->render('_admin_center/user/index-medic.html.twig', [
+            'center' => $center,
+            'medics' => $medics,
+             
+        ]);
+    }    
+
+    /**
      * @Route("/{slug}/new/user", methods={"GET", "POST"}, name="user_new")
      * 
      * NUEVO usuario del centro id
@@ -186,8 +209,39 @@ class CenterController extends AbstractController
             'user' => $user,
             'form' => $form->createView(),
         ]);
-    }    
+    }
+    
+    /**
+     * @Route("/{slug}/medic-user/{id}/edit", methods={"GET", "POST"}, name="edit_user_medic")
+     * 
+     * Editar los datos médicos de un usuario
+     */
+    public function editMedUser(Request $request, $slug, User $user): Response
+    {
 
+        $this->denyAccessUnlessGranted('USER_EDIT', $user);
+               
+        $form = $this->createForm(MedicType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('medics_index', ['slug' => $slug]);
+
+        }
+
+        return $this->render('_admin_center/user/edit-medic.html.twig', [
+             
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    
+    }
 
 
 }

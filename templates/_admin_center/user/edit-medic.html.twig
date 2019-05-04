@@ -1,0 +1,92 @@
+{% extends 'base93.html.twig' %}
+
+{% block main %}
+
+
+<div class="card border-success mb-3">
+        <h5><div class="card-header">{{ user.firstname }} {{ user.lastname }} <i class="fas fa-user-md"></i> {{user.email}} | {{user.tel}}</div></h5>
+
+    <div class="card-body">
+
+        <h5 class="card-title text-primary"> </h5>
+
+
+        {{ form_start(form) }}
+
+            <div class="form-row">
+
+                <div class="form-group col-md-1">
+                    {{ form_row(form.title) }}
+                </div>
+
+                <div class="form-group col-md-4">
+                    {{ form_row(form.speciality) }}
+                </div>
+
+                <div class="form-group col-md-1"></div>
+
+                <div class="form-group col-md-2 text-right"><i class="fas fa-home"></i></div>
+
+                <div class="form-group col-md-3">
+                     {{ form_row(form.internal) }}
+                </div>
+
+                <div class="form-group col-md-1">
+                    {{ form_row(form.cod) }}
+                </div>
+
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group col-md-3">
+                    {{ form_row(form.reg_code1) }}
+                </div>
+                <div class="form-group col-md-3">
+                    {{ form_row(form.reg_code2) }}
+                </div>
+                <div class="form-group col-md-3">
+                        {{ form_row(form.tax_code) }}
+                </div>
+            
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group col-sm-6">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+                    </button>
+                </div>
+
+                <div class="form-group col-sm-6 text-right">
+                    <a href="{{ path('medics_index', {slug:app.user.center.slug}) }}" class="btn btn btn-success">
+                        <i class="fas fa-undo-alt"></i> {{ 'label.cancel'|trans }}
+                    </a>
+                </div>                
+
+            </div>
+    
+        {{ form_end(form) }}
+
+
+        
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block sidebar  %}
+
+
+
+   
+
+    
+
+
+
+
+{% endblock %}
