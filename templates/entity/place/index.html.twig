@@ -6,7 +6,7 @@
 
         <div class="row justify-content-between">
 
-            <div class="column">
+            <div class="col-auto">
                 <h4>
                     <a href="{{ path('center_cpanel', {slug:slug}) }}">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i>{{ app.user.center.name }}
@@ -14,7 +14,7 @@
                 </h4>
             </div>        
 
-            <div class="column">
+            <div class="col text-right">
                 <a href="{{ path('source_new', {slug:slug}) }}" class="btn btn-primary">
                     <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
                 </a>
