@@ -1,0 +1,81 @@
+{% extends 'base_ad.html.twig' %}
+
+
+{% block main %}
+
+{{ form_start(form) }}
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+
+            <h4>
+                <a href="{{ path('center_cpanel', {slug:slug}) }}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ app.user.center.name }}
+                </a> 
+                | {{'label.places'|trans }} <i class="fas fa-hospital-alt"></i> {{ place.name }}
+            </h4>
+    
+        </div>
+        <div class="form-group col-md-2 text-right">
+                {{ form_row(form.enabled) }}
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-7">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="form-group col-md-5">
+                {{ form_row(form.contact) }}
+        </div>
+        
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-4">
+            {{ form_row(form.email) }}
+        </div>
+            <div class="form-group col-md-4">
+            {{ form_row(form.tel) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_row(form.fax) }}
+        </div>
+
+    </div>
+    
+    <div class="form-row">
+
+            <div class="form-group col-md-12">
+                {{ form_row(form.notes) }}
+            </div>
+        </div>
+    
+
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+            </button>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="form-group col-md-6 text-right">
+            
+            <a href="{{ path('places_index', {slug:slug}) }}" class="btn btn btn-success">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> {{'label.places'|trans}}
+            </a>                
+        </div>
+        {% endif %}
+            
+    </div>    
+
+
+
+
+{{ form_end(form) }}
+
+{% endblock %}

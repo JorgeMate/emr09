@@ -1,0 +1,80 @@
+{% extends 'base_ad.html.twig' %}
+
+
+{% block main %}
+
+    <div class="container">
+
+        <div class="row justify-content-between">
+
+            <div class="col-auto">
+                <h4>
+                    <a href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ app.user.center.name }}
+                    </a> 
+                    | <i class="fas fa-ambulance"></i> {{ 'entity.title_inss'|trans }}
+                </h4>
+            </div>        
+
+            <div class="col text-right">
+                <a href="{{ path('insurance_new', {slug:app.user.center.slug}) }}" class="btn btn-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
+                </a>
+            </div>        
+
+        </div>
+
+    
+
+    <br>
+
+    <table class="table table-striped table-hover table-responsive">
+    <thead>
+        <tr>
+            
+            <th></th>
+            <th></th>
+            <th>{{'entity.title_ins'|trans}}</th>
+            <th class="text-center">{{'label.enabled'|trans}}</th>
+            <th>{{'label.contact'|trans}}</th>
+            <th>{{'label.tel'|trans}}</th>
+            <th></th>
+            <th>{{'title.patients'|trans}}</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for insurance in insurances %}        
+        <tr>
+            
+            <td><a href="{{ path('insurance_edit', {slug:app.user.center.slug, id:insurance.id}) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+            <td></td>
+            <td>{{ insurance.name }}</td>
+            <td class="text-center">{% if insurance.enabled %} 
+                    <i class="fas fa-toggle-on"></i>
+                {% else %}
+                    <i class="fas fa-toggle-off"></i>
+                {% endif %}
+            </td>
+            <td>{{ insurance.contact }}</td>
+            <td>{{ insurance.tel }}</td>
+            <td></td>
+            <td class="text-center">{{insurance.patients|length}} <i class="fas fa-users"></i></td>
+            
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+
+    </table>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="section">   
+    </div>
+    
+{% endblock %}

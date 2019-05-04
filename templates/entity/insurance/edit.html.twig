@@ -1,0 +1,85 @@
+{% extends 'base_ad.html.twig' %}
+
+
+{% block main %}
+
+<div class="container">
+
+{{ form_start(form) }}
+
+    <div class="form-row">
+        <div class="form-group col-md-10">
+
+            <h4>
+                <a href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ app.user.center.name }}
+                </a> 
+                | {{'entity.title_ins'|trans }} <i class="fas fa-ambulance"></i> {{ insurance.name }}
+            </h4>
+    
+        </div>
+        <div class="form-group col-md-2 text-right">
+                {{ form_row(form.enabled) }}
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-5">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="form-group col-md-4">
+                {{ form_row(form.contact) }}
+            </div>
+            <div class="form-group col-md-3">
+            {{ form_row(form.code) }}
+        </div>
+    </div>
+
+    <div class="form-row">
+
+        <div class="form-group col-md-4">
+            {{ form_row(form.email) }}
+        </div>
+            <div class="form-group col-md-4">
+            {{ form_row(form.tel) }}
+        </div>
+        <div class="form-group col-md-4">
+            {{ form_row(form.fax) }}
+        </div>
+        
+    </div>
+
+    <div class="form-row">
+
+            <div class="form-group col-md-12">
+                {{ form_row(form.notes) }}
+            </div>
+        </div>
+    
+
+    <div class="form-row">
+
+        <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+            </button>
+        </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="form-group col-md-6 text-right">
+            
+            <a href="{{ path('insurances_index', {slug:app.user.center.slug}) }}" class="btn btn btn-success">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> {{'entity.title_inss'|trans}}
+            </a>                
+        </div>
+        {% endif %}
+            
+    </div>    
+    
+
+{{ form_end(form) }}
+
+</div>
+
+{% endblock %}

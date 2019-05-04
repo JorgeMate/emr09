@@ -35,10 +35,10 @@
             </div>
             <div class="card-body">
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><i class="fas fa-ambulance"></i> <a href=""> {{ 'entity.title_inss'|trans }}</a></li>
-                    <li class="list-group-item"><i class="far fa-question-circle"></i> <a href=""> {{ 'entity.title_sou'|trans }}</a></li>
-                    <li class="list-group-item"><i class="fas fa-briefcase-medical"></i> <a href=""> {{ 'label.treatments'|trans }}</a></li>
-                    <li class="list-group-item"><i class="fas fa-hospital-alt"></i> <a href=""> {{ 'label.places'|trans }}</a></li>
+                    <li class="list-group-item"><i class="fas fa-ambulance"></i> <a href="{{ path('insurances_index',{slug:center.slug}) }}"> {{ 'entity.title_inss'|trans }}</a></li>
+                    <li class="list-group-item"><i class="far fa-question-circle"></i> <a href="{{ path('sources_index',{slug:center.slug}) }}"> {{ 'entity.title_sou'|trans }}</a></li>
+                    <li class="list-group-item"><i class="fas fa-briefcase-medical"></i> <a href="{{ path('types_index',{slug:center.slug}) }}"> {{ 'label.treatments'|trans }}</a></li>
+                    <li class="list-group-item"><i class="fas fa-hospital-alt"></i> <a href="{{ path('places_index',{slug:center.slug}) }}"> {{ 'label.places'|trans }}</a></li>
                     
 
                 </ul>

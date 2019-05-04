@@ -1,0 +1,15 @@
+{% extends 'base93.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    
+    <link rel="stylesheet" href="{{ asset('/assets/css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap-tagsinput.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    <script src="{{ asset('assets/js/admin.js') }}"></script>
+    
+{% endblock %}

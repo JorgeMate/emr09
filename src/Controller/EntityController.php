@@ -40,7 +40,7 @@ class EntityController extends AbstractController
         $repository = $em->getRepository(Insurance::class);
         $insurances = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
         
-        return $this->render('_admin_center/insurance/index.html.twig', [
+        return $this->render('entity/insurance/index.html.twig', [
 
             'slug' => $slug,
             'insurances' => $insurances,
@@ -63,7 +63,7 @@ class EntityController extends AbstractController
         $repository = $em->getRepository(Source::class);
         $sources = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
                 
-        return $this->render('_admin_center/source/index.html.twig', [
+        return $this->render('entity/source/index.html.twig', [
              
             'slug' => $slug,
             'sources' => $sources,
@@ -85,7 +85,7 @@ class EntityController extends AbstractController
         $repository = $em->getRepository(Place::class);
         $places = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
 
-        return $this->render('_admin_center/place/index.html.twig', [
+        return $this->render('entity/place/index.html.twig', [
              
             'slug' => $slug,
             'places' => $places,
@@ -116,12 +116,12 @@ class EntityController extends AbstractController
             $em->persist($insurance);
             $em->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('insurances_index', ['slug' => $slug]);
         }
 
-        return $this->render('_admin_center/insurance/edit.html.twig', [
+        return $this->render('entity/insurance/edit.html.twig', [
              
             'insurance' => $insurance,
             'form' => $form->createView(),
@@ -147,12 +147,12 @@ class EntityController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('insurances_index', ['slug' => $slug] );
         }
 
-        return $this->render('_admin_center/insurance/edit.html.twig', [
+        return $this->render('entity/insurance/edit.html.twig', [
              
             'insurance' => $insurance,
             'form' => $form->createView(),
@@ -182,12 +182,12 @@ class EntityController extends AbstractController
             $em->persist($source);
             $em->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('sources_index', ['slug' => $slug]);
         }
 
-        return $this->render('_admin_center/source/edit.html.twig', [
+        return $this->render('entity/source/edit.html.twig', [
             'center' => $center,
             'source' => $source,
             'form' => $form->createView(), 
@@ -211,12 +211,12 @@ class EntityController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('sources_index', ['slug' => $slug] );
         }
 
-        return $this->render('_admin_center/source/edit.html.twig', [
+        return $this->render('entity/source/edit.html.twig', [
             'center' => $center,
             'source' => $source,
             'form' => $form->createView(),
@@ -246,12 +246,12 @@ class EntityController extends AbstractController
             $em->persist($place);
             $em->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('places_index', ['slug' => $slug]);
         }
 
-        return $this->render('_admin_center/place/edit.html.twig', [
+        return $this->render('entity/place/edit.html.twig', [
             'slug' => $slug,
             'place' => $place,
             'form' => $form->createView(), 
@@ -275,12 +275,12 @@ class EntityController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
             $em->flush();
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('places_index', ['slug' => $slug] );
         }
 
-        return $this->render('_admin_center/place/edit.html.twig', [
+        return $this->render('entity/place/edit.html.twig', [
             'slug' => $slug,
             'place' => $place,
             'form' => $form->createView(),
