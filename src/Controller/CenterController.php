@@ -17,6 +17,7 @@ use App\Entity\User;
 
 use App\Form\CenterType;
 use App\Form\UserType;
+use App\Form\NewUserType;
 
 use App\Form\MedicType;
 
@@ -74,12 +75,13 @@ class CenterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->flush();
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('users_index', ['slug' => $center->getSlug()] );
         }
 
         return $this->render('_admin_center/edit.html.twig', [
+            'slug' => $slug,
             'center' => $center,
             'form' => $form->createView(),
         ]);
@@ -104,7 +106,7 @@ class CenterController extends AbstractController
         
         return $this->render('_admin_center/user/index.html.twig', [
              
-            
+            'slug' => $slug,
             'users' => $users,
             'center' => $center 
         ]);
@@ -172,7 +174,7 @@ class CenterController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
+            $this->addFlash('info', 'record.updated_successfully');
 
             return $this->redirectToRoute('users_index', ['slug' => $slug]);
         }

@@ -1,18 +1,38 @@
 {% extends 'base93.html.twig' %}
 
-{% block body_id 'center_new' %}
+{% block body_id 'center_edit' %}
 
 {% block main %}
 
-    <div class="row">
-        <div class="col">
-            <h4 class="text-info">{{ 'title.center_new'|trans }}</h4>
-        </div>
-    </div>
-
     {{ form_start(form) }}
 
+        <div class="form-row justify-content-between">
+
+            <div class="col">
+                <h4 class="text-info">{{ center.name }}</h4>
+            </div>
+
+            {% if is_granted('ROLE_SUPER_ADMIN') and center.id != app.user.center.id and center.id %}
+            {# Solo para el superusuario que no edita su mismo centro y no para centros nuevos #}
+            <div class="col">
+                <div class="form-group col-md-auto">
+                    {{ form_row(form.enabled) }}
+                </div>        
+            </div>
+            {% endif %}
+    
+
+            {% if is_granted('ROLE_SUPER_ADMIN') %}
+            <div class="col text-right">
+                <h5>{{ 'label.recorded'|trans }}: {{center.createdAt|date("d/m/Y") }} </h5>
+            </div>
+            {% endif %}
+
+        </div>
+
+        
         <div class="form-row">
+
             <div class="form-group col-md-6">
                 {{ form_row(form.name) }}
             </div>
@@ -29,9 +49,8 @@
                 {{ form_row(form.tel) }}
             </div>
         </div>
-
+        
         <div class="form-row">
-
             <div class="form-group col-md-6">
                 {{ form_row(form.address) }}
             </div>
@@ -41,43 +60,40 @@
             <div class="form-group col-md-4">
                 {{ form_row(form.city) }}
             </div>
-
         </div>           
             
 
-        <div class="form-group row justify-content">
-            <div class="col">
+        <div class="form-row">
+
+            <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
                 </button>
             </div>
 
-            <div class="col text-right">
-                <a href="{{ path('centers_index') }}" class="btn btn-success">
-                    <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ 'title.centers_list'|trans }}
-                </a>
+            {% if is_granted('ROLE_ADMIN') %}
+            <div class="form-group col-md-6 text-right">
+                
+                <a href="{{ path('users_index', {slug:slug}) }}" class="btn btn-success">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ 'title.users_list'|trans }}
+                </a>                
             </div>
+            {% endif %}
+            
 
         </div>
 
     {{ form_end(form) }}
-
-    <br>
 
 {% endblock %}
 
 
 {% block sidebar %}
 
-    <div class="section">
-      
-    </div>
+
 
 {% endblock %}
 
 {% block javascripts %}
-
     {{ parent() }}
-
-
 {% endblock %}

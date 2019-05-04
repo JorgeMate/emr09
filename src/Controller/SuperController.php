@@ -13,6 +13,17 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Center;
 use App\Entity\Sessions;
 
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+
+use App\Form\CenterType;
+
+use App\Repository\UserRepository;
+
+
+//use FOS\ElasticaBundle\Manager\RepositoryManager;
+
+
 /**
  * Controller used to manage ALL !!!
  *

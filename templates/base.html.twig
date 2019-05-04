@@ -34,13 +34,16 @@
         {% block navbar %}
             {{ include('default/_navbar.html.twig') }}
         {% endblock %} 
-        
+
+        <br>
+
         <div class="container body-container">
 
-            {% block header %}{% endblock %}
+            {% block header %}
+            {% endblock %}
 
             {{ include('default/_flash_messages.html.twig') }}
-
+        
             {% block body %}
             {% endblock %}
 
