@@ -328,6 +328,12 @@
                 <source>label.patient</source>
                 <target>Patient</target>
             </trans-unit>
+            <trans-unit id="label.patient.new">
+                <source>label.patient.new</source>
+                <target>Nouveau dossier patient</target>
+            </trans-unit>
+
+
             <trans-unit id="label.doc">
                 <source>label.doc</source>
                 <target>Médecin de famille</target>

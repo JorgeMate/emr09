@@ -1,0 +1,76 @@
+{% extends 'base93.html.twig' %}
+
+{% block body_id 'patient_new' %}
+
+{% block title %}{{ 'action.new'|trans }} {{ 'label.patient'|trans }}{% endblock %}
+
+{% block main %}
+
+<div class="card border-success mb-3">
+    <h5><div class="card-header">  <i class="far fa-clipboard"></i> {{ 'label.patient.new'|trans }}</div></h5>
+
+    <div class="card-body">
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            <div class="form-row">
+
+                <div class="form-group col-md-6">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form_row(form.lastname) }}
+                </div>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group col-md-2">
+                    {{ form_row(form.sex) }}
+                </div>
+                <div class="form-group col-md-3">
+                    {{ form_row(form.dateOfBirth) }}
+                </div>
+                <div class="form-group col-md-7">
+                    {{ form_row(form.source) }}
+                </div>
+            </div>
+            
+            <div class="form-row">
+
+                <div class="form-group col-md-6">
+                    {{ form_row(form.insurance) }}
+                </div>
+
+            </div>
+
+            <div class="form-row text-align-justify">
+
+                <div class="form-group col">
+                    <a href="{{ path('user_cpanel', {slug:app.user.center.slug}) }}" class="btn btn btn-success">
+                        <i class="fas fa-undo-alt"></i> {{ 'label.cancel'|trans }}
+                    </a>            
+                </div>
+
+                <div class="form-group text-right">
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+                    </button>
+                
+                </div>
+                
+            </div>
+            
+        {{ form_widget(form) }}
+
+    {{ form_end(form) }}
+
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+

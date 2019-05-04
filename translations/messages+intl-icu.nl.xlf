@@ -334,6 +334,11 @@
                 <source>label.patient</source>
                 <target>Patiënt</target>
             </trans-unit>
+            <trans-unit id="label.patient.new">
+                <source>label.patient.new</source>
+                <target>Nieuw patiëntendossier</target>
+            </trans-unit>
+
             <trans-unit id="label.doc">
                 <source>label.doc</source>
                 <target>Huisarts</target>

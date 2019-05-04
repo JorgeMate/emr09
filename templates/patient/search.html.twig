@@ -1,0 +1,89 @@
+{% extends 'base93.html.twig' %}
+
+{% block body_id 'patient_search' %}
+
+{% block title %}{{ 'title.patients'|trans }}{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+
+        <div class="row justify-content-between">
+
+            <div class="column">
+                <h4>
+                    <a href="{{ path('user_cpanel', {slug:center.slug}) }}">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ center.name }}
+                    </a> 
+                    | <i class="fas fa-users"></i> {{ 'title.patients'|trans }}
+                </h4>
+            </div>        
+
+            <div class="column">
+                <a href="{{ path('patient_new', {slug: center.slug}) }}" class="btn btn-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
+                </a>
+            </div>        
+
+        </div>
+
+    </div>  
+
+    <br>
+
+    <form action="{{ path('patient_search', {slug:center.slug} ) }}" method="get">
+        <div class="form-group">
+
+            <input name="q"
+                class="form-control js-search-field"
+                placeholder="{{ 'search_for'|trans }}"
+                autocomplete="off"
+                autofocus
+                data-no-results-message="{{ 'search_no_results'|trans }}"
+            >
+
+            <!-- value="" -->
+
+        </div>
+    </form>
+
+    <div class="container">
+
+        <!-- /////////////////////////////7 -->
+       
+        <div id="results">
+        </div>
+       
+        <!-- /////////////////////////////7 -->
+
+    </div>
+  
+   
+      
+
+{% endblock %}
+
+{% block sidebar %}
+
+
+
+    <div class="card">
+        <div class="card-header">
+        <i class="fas fa-users" aria-hidden="true"></i>  {{ 'title.patient_search_info'|trans }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ 'title2.patient_search_info'|trans }}</h5>
+            <p class="card-text">{{ 'text.resetting_help'|trans }}</p>
+        </div>
+    </div>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/js/search_p.js') }}"></script>
+{% endblock %}
+
+

@@ -20,11 +20,9 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            {% if app.user.center.id == center.id %}
-                            <li class="list-group-item"><i class="fas fa-notes-medical"></i> <a href="">{{ 'action.new'|trans }} {{ 'label.patient'|trans }}</a></li>
-                            {% endif %}
+                            <li class="list-group-item"><i class="fas fa-notes-medical"></i> <a href="{{ path('patient_new',{slug:app.user.center.slug} ) }}">{{ 'action.new'|trans }} {{ 'label.patient'|trans }}</a></li>
                             <li class="list-group-item"><i class="fas fa-list-ol"></i> <a href="">{{ 'label.last.records'|trans }}</a></li>
-                            <li class="list-group-item"><i class="fas fa-search"></i> <a href="">{{ 'search_for'|trans }}</a></li>
+                            <li class="list-group-item"><i class="fas fa-search"></i> <a href="{{ path('patient_search', {slug:center.slug} ) }}">{{ 'search_for'|trans }}</a></li>
                         </ul>
                     </div>
                 </div>

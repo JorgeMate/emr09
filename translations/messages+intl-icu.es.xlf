@@ -342,6 +342,12 @@
                 <source>label.patient</source>
                 <target>Paciente</target>
             </trans-unit>
+            <trans-unit id="label.patient.new">
+                <source>label.patient.new</source>
+                <target>Nuevo registro de paciente</target>
+            </trans-unit>
+
+
             <trans-unit id="label.doc">
                 <source>label.doc</source>
                 <target>Médico de Cabecera</target>

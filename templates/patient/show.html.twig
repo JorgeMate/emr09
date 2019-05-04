@@ -1,0 +1,111 @@
+{% extends 'base_full.html.twig' %}
+
+{% block body_id 'patient_show' %}
+
+{% block body %}
+
+    {{ include('default/_flash_messages.html.twig') }}
+
+    {# TÍTULO del paciente #}
+    <div class="row justify-content-between">
+
+            <div class="col-auto">
+
+                <h4>
+                    <i class="far fa-id-card"></i>
+                    {{ patient.firstname }} {{ patient.lastname }} &nbsp;
+                    {% if patient.sex %}
+                        <i class="fas fa-venus text-danger"></i>
+                    {% else %}
+                        <i class="fas fa-mars text-info"></i>
+                    {% endif %}
+                    {{ patient.dateOfBirth | age }}    
+                </h4>
+                                    
+            </div>        
+    
+            <div class="col-auto text-right">
+                {{ 'label.recorded'|trans }}: {{ patient.createdAt|date('d-m-y') }}
+            </div>   
+    </div>
+
+    {# TABS MENU #}
+
+    <h5>
+        <!-- Nav tabs -->
+        <div class="nav nav-tabs" role="tablist" id="myTab">
+            <a class="nav-item nav-link active" href="#nav-1" aria-controls="nav-1" role="tab" data-toggle="tab">{{ 'title.pat_info'|trans }}</a>
+            <a class="nav-item nav-link" href="#nav-2" aria-controls="nav-2" role="tab" data-toggle="tab"><i class="fas fa-key"></i> {{ 'title.med_info'|trans }}</a>
+            <a class="nav-item nav-link" href="#nav-3" aria-controls="nav-3" role="tab" data-toggle="tab">{{ 'label.treatments'|trans }}</a>
+            <a class="nav-item nav-link" href="#nav-4" aria-controls="nav-4" role="tab" data-toggle="tab">DOCS</a>
+            <a class="nav-item nav-link" href="#nav-5" aria-controls="nav-5" role="tab" data-toggle="tab">IMGS</a>
+            <a class="nav-item nav-link" href="#nav-6" aria-controls="nav-6" role="tab" data-toggle="tab">{{ 'title.eco_info'|trans }}</a>
+        </div>
+    </h5>
+        
+    {# interior de los tabls #}
+    <div class="tab-content" id="nav-tabContent">
+        
+        {# TAB 1 datos paciente #}
+
+        {# TAB 2 consultas #}
+
+        {# TAB 3 tratamientos #}
+ 
+        {# TAB 4 documentos #}
+
+        {# TAB 5 imágenes #}
+
+        {# TAB 6 ECO #}
+    
+
+    </div>
+    
+    <br>
+
+{% endblock %}
+
+
+{% block sidebar %}
+
+    {% if patient.id %}
+
+    <div class="section">      
+    </div>
+    <div class="section">
+    </div>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('assets/js/medicat_stop.js') }}"></script>
+
+<script>
+    
+$(function() {
+
+    // Persistencia del último TAB seleccionado
+
+    $('a[data-toggle="tab"]').on('click', function(e) {
+        window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+
+    var activeTab = window.localStorage.getItem('activeTab');
+
+    if (activeTab) {
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+        window.localStorage.removeItem("activeTab");
+    }
+
+});
+
+</script>
+
+
+
+{% endblock %}
