@@ -1,0 +1,182 @@
+{% extends 'base93.html.twig' %}
+
+{% block main %}
+
+    <nav aria-label="breadcrumb">
+
+        <ol class="breadcrumb">
+
+            {% if is_granted('ROLE_SUPER_ADMIN') %} 
+
+                <li class="breadcrumb-item"><a href="{{ path('super_cpanel') }}">{{ 'title.super_cpanel'|trans }}</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('centers_index') }}">{{ 'title.centers_list'|trans }}</a></li>
+
+            {% else %}
+
+                {% if is_granted('ROLE_ADMIN') %} 
+                    <li class="breadcrumb-item"><a href="{{ path('center_cpanel', {slug: center.slug}) }}">{{ 'title.center_cpanel'|trans }}</a></li>
+                    <li class="breadcrumb-item enabled aria-current=page">{{ center.name }}</li>
+                {% endif %}
+
+            {% endif %}
+
+        </ol>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="row justify-content-between">
+
+            <div class="column">
+                <h4><span class="text-info">{{ center.name }}</span> <i class="far fa-list-alt"></i> {{ 'title.users_list'|trans }}</h4>
+            </div>        
+
+            <div class="column">
+                <a href="{{ path('user_new', {slug:app.user.center.slug}) }}" class="btn btn-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
+                </a>
+            </div>        
+
+        </div>
+
+    </div>
+
+    <table class="table table-striped table-hover table-responsive">
+
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ 'label.name'|trans }}</th>
+                <th>{{ 'label.email'|trans }}</th>
+                <th>Tel</th>
+                <th>{{ 'title.patients'|trans }}</th>
+                <th class="text-center"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for user in users %}
+            <tr>
+                <td> 
+                {% if not is_granted('ROLE_PREVIOUS_ADMIN') %}
+                    <a href="{{ path('user_cpanel', {slug:app.user.center.slug, _switch_user:user.email} ) }}">
+                        <i class="fas fa-user-shield text-danger"></i>
+                    </a>
+                {% endif %}
+                </td>
+                <td class="text-center">
+
+                    {# solo podemos editar el registro de ese usuario si
+                    El demandante es el super
+                    o
+                    es el registro del mismo usuario
+                    o
+                    el demandante es el propietario del sistema
+                    o
+                    el registro es no es un administrador ni un super 
+                    #}
+
+                    {% if       is_granted('ROLE_SUPER_ADMIN')      
+                                or app.user.id == user.id
+                                or app.user.centerUser == app.user.center.id
+                                or (not('ROLE_ADMIN' in user.roles) and not('ROLE_SUPER_ADMIN' in user.roles))
+                    %}
+
+                    
+
+                    <div class="item-actions">
+                        <a href="{{ path('user_edit', {slug:user.center.slug, id: user.id}) }}" class="btn btn-sm btn-outline-primary">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    
+                    {% else %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if user.centerUser == user.id %}
+                    <i class="fas fa-key text-warning"></i>
+                    {% endif %}
+
+                    {% if 'ROLE_ADMIN' in user.roles or 'ROLE_SUPER_ADMIN' in user.roles %}
+                    <i class="fas fa-key text-info"></i>
+                    {% endif %}
+                </td>
+                <td>{% if user.medic %}<i class="fas fa-user-md"></i>{% endif %}</td>
+                <td>
+                    {{ user.firstname }} {{ user.lastname }}
+                </td>
+                <td>
+                    {{ user.email }} 
+                </td>    
+                <td>
+                    {{ user.tel }}
+                </td>
+                <td class="text-center">
+                    {{ user.patients|length }}
+                </td>
+
+                <td class="text-center">
+                    {% if user.enabled %}
+                        <i class="fas fa-toggle-on text-success"></i>
+                    {% else %}  
+                        <i class="fas fa-toggle-off text-danger"></i>
+                    {% endif %}  
+                </td>
+                
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+    
+{% endblock %}
+
+
+{% block sidebar %}
+
+    {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+        <a href="{{ path('users_index', {slug:center.slug,'_switch_user': '_exit'}) }}" class="btn btn-block btn-danger">
+            <i class="fas fa-user-shield"></i> Exit impersonation
+        </a>
+    {% endif %}
+
+    <div class="card">
+
+        <div class="card-header">
+            <h4>{{ 'company.data'|trans }}</h4>
+        </div>
+
+        <div class="card-body">
+
+            <h5 class="card-title text-info">{{ center.name }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{ center.contactPerson }}</h6>
+
+            <p class="card-text"></p>
+            <p class="card-text">
+                {{ center.address }}<br>
+                {{ center.postcode }} {{ center.city }}
+            </p>
+            <p class="card-text"></p>
+            <p class="card-text">
+                {{ center.tel }}<br>
+                {{ center.email }}
+            </p>
+
+            <p class="card-text"></p>
+
+            <a href="{{ path('center_edit', {slug: center.slug}) }}" class="btn btn-lg btn-block btn btn-primary">
+                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.edit'|trans }}
+            </a>        
+
+        </div>
+
+    </div>
+   
+{% endblock %}

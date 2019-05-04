@@ -1,0 +1,92 @@
+{% extends 'base93.html.twig' %}
+
+{% block body %}
+
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item" aria-current="page"><a href="{{ path('super_cpanel') }}">{{ 'title.super_cpanel'|trans }}</a></li>
+            <li class="breadcrumb-item enabled" aria-current="page">{{ 'title.centers_list'|trans }}</li>
+        </ol>
+    </nav>
+
+
+
+    <div class="container">
+
+        <div class="row justify-content-between">
+            <div class="column">
+                <h3>{{ 'title.centers_list'|trans }}</h3>
+            </div>        
+            <div class="column">
+                <a href="{{ path('center_new') }}" class="btn btn-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
+                </a>
+            </div>        
+        </div>
+        
+    </div>
+
+
+    <table class="table table-striped table-hover table-responsive">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>{{ 'label.name'|trans }}</th>
+                <th>{{ 'label.contact'|trans }}</th>
+                <th>Tel.</th>
+                <th>{{ 'label.email'|trans }}</th>
+                <th>{{ 'label.users'|trans }}</th>
+                <th>{{ 'title.patients'|trans }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for center in centers %}
+            <tr>
+                <td class="text-left">
+                    <div class="item-actions">
+                        <a href="{{ path('users_index', {slug: center.slug}) }}" class="btn btn-outline-primary">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    {% if center.user %}
+                        <i class="fas fa-key text-warning"></i>
+                    {% endif %}
+                </td>
+
+                <td>
+                    {{ center.name }}
+                </td>
+                <td>
+                    {{ center.contactperson }}
+                </td>
+                <td>
+                    {{ center.tel }}
+                </td>
+                <td>
+                    {{ center.email }}
+                </td>
+                <td class="text-center">
+                    {{ center.users|length }}
+                </td>    
+                <td class="text-center">
+                    {{ center.patientsNo }}
+                </td>    
+                <td class="text-center">
+                    {% if center.enabled %}
+                        <i class="fas fa-toggle-on text-success"></i>
+                    {% else %}  
+                        <i class="fas fa-toggle-off text-danger"></i>
+                    {% endif %}  
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

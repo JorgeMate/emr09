@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block pag_name %}{{ 'title.center_cpanel'|trans }}{% endblock %}
+
+{% block header %}
+    {{ include('default/_header.html.twig') }}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+    
+    <div class="col-sm-3">
+
+        <div class="card">
+            <div class="card-header"> 
+                <h5><i class="fas fa-users"></i> {{ 'label.users'|trans }}</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="far fa-list-alt"></i> <a href=""> {{ 'title.users_list'|trans }}</a></li>
+                    <li class="list-group-item"><i class="fas fa-user-md"></i> <a href=""> {{ 'label.medic.users'|trans }}</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="col-sm-3">
+
+        <div class="card">
+            <div class="card-header"> 
+                <h5><i class="fas fa-sitemap"></i> {{ 'entity.title'|trans }}</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-ambulance"></i> <a href=""> {{ 'entity.title_inss'|trans }}</a></li>
+                    <li class="list-group-item"><i class="far fa-question-circle"></i> <a href=""> {{ 'entity.title_sou'|trans }}</a></li>
+                    <li class="list-group-item"><i class="fas fa-briefcase-medical"></i> <a href=""> {{ 'label.treatments'|trans }}</a></li>
+                    <li class="list-group-item"><i class="fas fa-hospital-alt"></i> <a href=""> {{ 'label.places'|trans }}</a></li>
+                    
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-sm-3">
+
+        <div class="card">
+            <div class="card-header"> 
+                <h5><i class="fas fa-cog"></i> Program Settings</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fas fa-toggle-on"></i> <a href=""> Program Options</a></li>
+                    <li class="list-group-item"><i class="fas fa-lock-open"></i> <a href=""> Premissions</a></li>
+                    
+                    <li class="list-group-item"></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+{% endblock %} 

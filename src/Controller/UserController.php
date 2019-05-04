@@ -47,12 +47,12 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}/profile/edit", methods={"GET", "POST"}, name="user_edit")
+     * @Route("/profile/edit", methods={"GET", "POST"}, name="profile_edit")
      */
-    public function userEdit(Request $request, $slug): Response
+    public function profileEdit(Request $request): Response
     {
         $user = $this->getUser();
-        $center = $user->getCenter();
+        $slug = $user->getCenter()->getSlug();
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -61,13 +61,12 @@ class UserController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success', 'record.updated_successfully');
-            return $this->redirectToRoute('user_edit');
+            $this->addFlash('info', 'record.updated_successfully');
+            return $this->redirectToRoute('user_cpanel', ['slug' => $slug]);
         }
 
         return $this->render('user/edit.html.twig', [
             'user' => $user,
-             
             'form' => $form->createView(),
         ]);
     }

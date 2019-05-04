@@ -20,6 +20,8 @@ security:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
 
+            switch_user: true
+
             # activate different ways to authenticate
 
             # http_basic: true

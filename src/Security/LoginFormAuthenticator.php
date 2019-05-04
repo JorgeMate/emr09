@@ -70,15 +70,14 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
 
-        //////////////////////////////////////////////////
-        $this->centerSlug = $user->getCenter()->getSlug();
-
         if (!$user) {
 
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
             // TODO i18n en EXCEPTIONS !        }
         }
         
+        //////////////////////////////////////////////////
+        $this->centerSlug = $user->getCenter()->getSlug();
         return $user;
     }
 
@@ -93,6 +92,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        
         $slug = $this->centerSlug;
 
         return new RedirectResponse(
