@@ -37,15 +37,14 @@
         
         <div class="container body-container">
 
-            {% block header %}<br>{% endblock %}
+            {% block header %}{% endblock %}
             {% block body %}{% endblock %}
 
         </div> 
         
         {% block footer %}
-            
+            {{ include('default/_footer.html.twig') }}
         {% endblock %}
-     
         
         {% block javascripts %}
 

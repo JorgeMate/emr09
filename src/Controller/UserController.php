@@ -46,6 +46,57 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{slug}/profile/edit", methods={"GET", "POST"}, name="user_edit")
+     */
+    public function userEdit(Request $request, $slug): Response
+    {
+        $user = $this->getUser();
+        $center = $user->getCenter();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'record.updated_successfully');
+            return $this->redirectToRoute('user_edit');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+             
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/profile/change-password", methods={"GET", "POST"}, name="user_change_password")
+     */
+    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm(ChangePasswordType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword($encoder->encodePassword($user, $form->get('newPassword')->getData()));
+
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('logout');
+        }
+
+
+        return $this->render('user/change_password.html.twig', [
+            'user' => $user,
+            'form' => $form->createView(),
+        ]);
+    }    
+
 
     
 

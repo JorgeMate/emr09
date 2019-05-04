@@ -28,6 +28,12 @@ security:
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
 
+            logout:
+                # The route name the user can go to in order to logout
+                path: logout
+                #handlers: [app.logout.listener]
+                # The name of the route to redirect to after logging out
+                target: homepage
                 
 
     # Easy way to control access for large sections of your site
