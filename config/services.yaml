@@ -59,3 +59,8 @@ services:
         arguments: ['%session_max_idle_time%']
         tags: [{ name: kernel.event_listener, event: kernel.request }]
 
+    twig.extension.date:
+        class: Guzzlefry\Twig\AgeExtension
+        tags:
+            - { name: twig.extension }        
+
