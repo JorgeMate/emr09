@@ -418,6 +418,53 @@ class PatientController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{slug}/patient/{id}/new/treatment", methods={"GET", "POST"}, name="opera_new")
+     * 
+     */
+    public function newOpera(Request $request, $slug, Patient $patient): Response
+    {
+        $user = $this->getUser();
+        $center = $user->getCenter();
+        
+        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
+
+        $opera = new Opera();
+        $opera->setUser($user);
+        $opera->setPatient($patient);
+
+        $form = $this->createForm(OperaType::class, $opera);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+
+            var_dump($opera);die;
+
+            $em->persist($opera);
+            $em->flush();
+
+            $this->addFlash('success', 'record.updated_successfully');
+
+            return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patient->getId()]);        
+
+        }
+
+        return $this->render('/patient/opera/new.html.twig', [
+            
+            'patient' => $patient,
+            'opera' => $opera,
+            'form' => $form->createView(),          
+        ]);
+
+
+
+
+
+    }
+
+
 
 
 

@@ -31,7 +31,7 @@ $(document).ready(function(){
                     var id = response[i]['id'];
                     var name = response[i]['name'];
                     
-                    $("#opera_treatment").append("<option value='"+id+"'>"+name+"</option>");
+                    $("#opera_treatment").append('<option value="'+id+'">'+name+'</option>');
                 }
             }
         });

@@ -66,8 +66,15 @@
 
         }, with_context = false) }}
 
-
         {# TAB 3 tratamientos #}
+        {{ include('/patient/TABS/_TAB3.html.twig', {
+                        
+            id: patient.id,
+            button_label_new: 'action.new'|trans,
+            operas: operas
+
+        }, with_context = false) }}
+
  
         {# TAB 4 documentos #}
 

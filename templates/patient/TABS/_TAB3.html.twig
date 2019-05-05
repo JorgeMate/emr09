@@ -1,0 +1,44 @@
+<div role="tabpanel" class="tab-pane fade" id="nav-3">
+
+
+    <br>
+
+    <div class="container">
+
+        <div class="row justify-content-between">
+
+            <div class="col-auto">
+                <h4><i class="fas fa-procedures"></i> {{ 'label.treatments'|trans }}</h4>  
+            </div>        
+        
+            <div class="col-auto">
+
+                <a href="{{ path('opera_new', {slug:app.user.center.slug, id:id}) }}" class="btn btn-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ button_label_new }}
+                </a>
+
+                {% if false %}
+
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewTra" aria-expanded="false" aria-controls="collapseExample">
+                    {# Button with data-target #}
+                    <i class="fas fa-edit" aria-hidden="true"></i> {{ button_label_new }}
+                </button>
+
+                {% endif %}
+
+            </div>   
+            
+        </div>
+
+        
+        <div class="row">            
+
+            {% for opera in operas %}
+            {{ opera.createdAt|date('d/m/y') }} | {{ opera.treatment.name }}<br>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>

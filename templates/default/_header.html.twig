@@ -6,7 +6,7 @@
             <h3>{% block pag_name %}
                 
                 {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-                    <a href="{{ path('users_index', {slug:center.slug,'_switch_user': '_exit'}) }}" class="btn btn-danger">
+                    <a href="{{ path('users_index', {slug:app.user.center.slug,'_switch_user': '_exit'}) }}" class="btn btn-danger">
                         <i class="fas fa-user-shield"></i> Exit impersonation
                     </a>
                 {% endif %}

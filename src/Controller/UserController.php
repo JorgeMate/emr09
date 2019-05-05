@@ -99,6 +99,36 @@ class UserController extends AbstractController
 
     
 
+        /**
+     * @Route("/treatments", methods={"POST"}, name="treatments_get")
+     */
+    public function getTreatmentsFromTypeApi(Request $request, EntityManagerInterface $em)
+    {
+
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        $typeId = $request->query->get('query');
+
+        //$typeId = $type->getId();
+        $results = [];
+        
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(Treatment::class);
+        $foundTreatments = $repository->findBy(['type' => $typeId], ['name' => 'ASC']);
+
+        foreach ($foundTreatments as $treatment){
+
+            $results[] = [
+                'id' => $treatment->getId(),
+                'name' => $treatment->getName(),
+            ];
+
+        };
+
+        return $this->json($results);
+    }
+
+
 
 
 }
