@@ -118,7 +118,11 @@
 
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/selectTreatment.js') }}"></script>
+    {% if false %}
+        <script src="{{ asset('assets/js/selectTreatment.js') }}"></script>
+    {% endif %}
+
+    
   
 {% endblock %}
 

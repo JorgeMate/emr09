@@ -68,7 +68,8 @@
 
         {# TAB 3 tratamientos #}
         {{ include('/patient/TABS/_TAB3.html.twig', {
-                        
+            form: formType,
+            
             id: patient.id,
             button_label_new: 'action.new'|trans,
             operas: operas

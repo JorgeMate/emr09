@@ -19,6 +19,23 @@ class TypeRepository extends ServiceEntityRepository
         parent::__construct($registry, Type::class);
     }
 
+    /**
+     * @return Type[] Returns an array of Treatment objects
+    */
+    public function findByCenter($value)
+    {
+
+        return $this->createQueryBuilder('ty')
+            ->andWhere('ty.center = :val')
+            ->setParameter('val', $value)
+            ->orderBy('ty.name', 'ASC')
+            
+            
+            
+        ;
+    }
+
+
     // /**
     //  * @return Type[] Returns an array of Type objects
     //  */

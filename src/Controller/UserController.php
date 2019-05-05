@@ -99,7 +99,7 @@ class UserController extends AbstractController
 
     
 
-        /**
+    /**
      * @Route("/treatments", methods={"POST"}, name="treatments_get")
      */
     public function getTreatmentsFromTypeApi(Request $request, EntityManagerInterface $em)

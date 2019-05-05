@@ -14,13 +14,15 @@ use App\Entity\Patient;
 use App\Form\PatientType;
 use App\Repository\PatientRepository;
 
-use App\Form\NewPatientType;
+
 use App\Form\ConsultType;
 use App\Form\HistoriaType;
 use App\Form\MedicatType;
 use App\Form\StoredImgType;
 use App\Form\StoredDocType;
 use App\Form\OperaType;
+
+use App\Form\SelectType;
 
 use App\Entity\Center;
 use App\Entity\Consult;
@@ -29,8 +31,14 @@ use App\Entity\Medicat;
 use App\Entity\Opera;
 use App\Entity\StoredImg;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Type as TypeT;
 
+
+
+
+
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PropertyInfo\Type;
 
 /**
  * Controller used to manage current user.
@@ -181,7 +189,14 @@ class PatientController extends AbstractController
         $imgs = $repository->findBy(['patient' => $patId, 'mime_type' => 'image/jpeg'], ['updated_at' => 'DESC']);
         $docs = $repository->findBy(['patient' => $patId, 'mime_type' => 'application/pdf'], ['updated_at' => 'DESC']);
 
+        $repository = $em->getRepository(TypeT::class);
+        $types = $repository->findBy(['center' => $center->getId(), 'name' => 'ÁSC']);
+
         //var_dump($operas);die;
+
+        $type =new TypeT();
+        $formType = $this->createForm(SelectType::class, $type);
+        $formType->handleRequest($request);
 
         $consult = new Consult();
         $formConsult = $this->createForm(ConsultType::class, $consult);
@@ -241,9 +256,12 @@ class PatientController extends AbstractController
             'operas' => $operas,
             'imgs' => $imgs,
             'docs' => $docs,
+            'types' => $types,
             'formConsult' => $formConsult->createView(),
             'formDoc' => $formDoc->createView(),
             'formImg' => $formImg->createView(),
+            'formType' => $formType->createView(),
+
             
         ]);
     }

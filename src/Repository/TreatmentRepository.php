@@ -19,6 +19,24 @@ class TreatmentRepository extends ServiceEntityRepository
         parent::__construct($registry, Treatment::class);
     }
 
+    /**
+     * @return Treatment[] Returns an array of Treatment objects
+    */
+    public function findByType($value)
+    {
+
+        return $this->createQueryBuilder('t')
+            ->innerJoin('t.type', 'ty')
+            ->andWhere('ty.id = :val')
+
+            ->setParameter('val', $value)
+            ->orderBy('t.name', 'ASC')
+            
+            ->getQuery()
+            ->execute()
+        ;
+    }    
+
     // /**
     //  * @return Treatment[] Returns an array of Treatment objects
     //  */
