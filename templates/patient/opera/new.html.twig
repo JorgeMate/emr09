@@ -1,8 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base93.html.twig' %}
 
 {% block body_id 'opera_new' %}
 
-{% block body %}
+{% block main %}
+
+<form>
 
 <div class="container">
 
@@ -12,8 +14,8 @@
 
             <h4>
                 
-                {{ 'label.treatments'|trans }} <i class="fas fa-procedures"></i>
-                 {{ 'label.new_entry'|trans }} | <i class="fas fa-user-injured"></i>
+                {{ 'label.treatments'|trans }} <i class="fas fa-file-medical-alt"></i>
+                {{ 'label.new_entry'|trans }} | <i class="fas fa-user-injured"></i>
                 {{ patient.firstname }} {{ patient.lastname }} &nbsp;
                 {% if patient.sex %}
                     <i class="fas fa-venus text-danger"></i>
@@ -34,17 +36,38 @@
 
 <div class="container">
 
-    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-
     <div class="form-row">
 
         <div class="form-group col-md-3">
-            {{ form_row(form.type) }}
+
+            <label for="js-select-types">{{'label.type'|trans}}</label>
+            <select class="form-control" id="js-select-types" data-url="{{ path('treatments_get') }}">
+            <option value="">{{ 'label.option'|trans }}</option>               
+            {% for type in types %}
+                <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+           </select>
+
         </div>
+
         <div class="form-group col-md-5">
-            {{ form_row(form.treatment) }}
+
+            <label for="js-select-tratments">{{'label.treatment'|trans}}</label>
+            <select class="form-control" id="js-select-treatments">
+
+            </select>
+
         </div>
+
         <div class="form-group col-md-4">
+
+            <label for="js-select-medics">Dr. </label>
+            <select class="form-control" id="js-select-medics">
+
+            {% for medic in medics %}
+                <option value="{{ medic.id }}">{{ medic.firstname }} {{ medic.lastname }}</option>
+            {% endfor %}
+            </select>            
       
         </div>
 
@@ -53,73 +76,110 @@
     <div class="form-row">
 
         <div class="form-group col-md-3">
-            {{ form_row(form.user) }}
+
+            <label for="js-select-places">{{'label.place'|trans}}</label>
+            <select class="form-control" id="js-select-places">
+            <option value="">{{ 'label.option'|trans }}</option>               
+            {% for place in places %}
+                <option value="{{ place.id }}">{{ place.name }}</option>
+            {% endfor %}
+            </select>
+
         </div>
-        <div class="form-group col-md-5">
-            {{ form_row(form.place) }}      
-        </div>
+
         <div class="form-group col-md-3">
-            {{ form_row(form.made_at) }}
+
+            <label for="js-datepicker">Planned for date</label>
+            <input type="text" value="{{ "now"|date("m/d/Y") }}" id="js-datepicker" class="form-control js-datepicker">
+
         </div>
-        <div class="form-group col-md-1"></div>
-    
 
-    </div>
-    
-    <div class="form-row">
-
-        <div class="form-group col-md-6">
-            <h5><i class="fas fa-user-md"></i> <span class="text-warning" id="js-selected-doctor"></span></h5>
+        <div class="form-group col-md-3">
+            
         </div>
        
     </div>
-
+    
     <div class="form-row">
 
-        <div class="form-group col-md-6">
-            <h5><i class="fas fa-procedures"></i> <span class="text-warning" id="js-selected-treatment"></span></h5>
-        </div>
+        <div class="form-group col-md-6"></div>
 
-    </div>
+        <div class="form-group col-md-3">
 
-    <div class="form-row">
-
-        <div class="form-group col-md-6">
-            <h5><i class="fas fa-hospital-alt"></i> <span class="text-warning" id="js-selected-place"></span></h5>
-        </div>
-
-    </div>
-
-    <div class="form-row">
-
-        <div class="form-group col">
-            <a href="{{ path('user_cpanel', {slug:app.user.center.slug}) }}" class="btn btn btn-success">
+            <a href="{{ path('patient_show', {slug:app.user.center.slug, id:patient.id}) }}" class="btn btn-block btn-success">
                 <i class="fas fa-undo-alt"></i> {{ 'label.cancel'|trans }}
-            </a>         
+            </a>           
+
         </div>
-        <div class="form-group col text-right">
-            <button type="submit" class="btn btn-primary">
+
+        <div class="form-group col-md-3">
+
+            
+            <button type="submit" class="btn btn-block btn-primary">
                 <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
             </button>
+        
+
         </div>
 
     </div>
 
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
-        
 </div>
 
+</form>
 
 {% endblock %}
+
+{% block sidebar %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-auto">
+                <h5><i class="fas fa-user-md"></i> <span class="text-warning" id="js-selected-doctor"></span></h5>
+            </div>
+        
+        </div>
+
+        <div class="row">
+
+            <div class="col-auto">
+                <h5><i class="fas fa-file-medical-alt"></i> <span class="text-warning" id="js-selected-treatment"></span></h5>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-auto">
+                <h5><i class="fas fa-hospital-alt"></i> <span class="text-warning" id="js-selected-place"></span></h5>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-auto">
+                <h5><i class="far fa-calendar-alt"></i></i> <span class="text-warning" id="js-selected-date"></span></h5>
+            </div>
+
+        </div>
+
+    </div>
+
+  
+
+{% endblock %}
+
 
 
 {% block javascripts %}
 
     {{ parent() }}
 
-    {% if false %}
-        <script src="{{ asset('assets/js/selectTreatment.js') }}"></script>
+    {% if true %}
+        <script src="{{ asset('assets/js/selectTreatment2.js') }}"></script>
     {% endif %}
 
     

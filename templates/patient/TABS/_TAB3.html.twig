@@ -15,25 +15,9 @@
 
             <div class="col-auto text-right">
 
-                {{ form_start(form, {'attr': {} }) }}
-
-                    {{ form_widget(form) }}
-
-                    <button type="submit" class="btn btn-block btn-primary">
-                        <i class="fa fa-edit" aria-hidden="true"></i> {{ button_label_new }}
-                    </button>
-
-                {{ form_end(form) }}
-
-
-                {% if false %}
-
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewTra" aria-expanded="false" aria-controls="collapseExample">
-                    {# Button with data-target #}
+                <a href="{{ path('opera_new', {slug:app.user.center.slug, id:id} ) }}" class="btn btn-primary">
                     <i class="fas fa-edit" aria-hidden="true"></i> {{ button_label_new }}
-                </button>
-
-                {% endif %}
+                </a>
 
             </div>   
             

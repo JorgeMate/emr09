@@ -14,31 +14,25 @@ use App\Entity\Patient;
 use App\Form\PatientType;
 use App\Repository\PatientRepository;
 
-
 use App\Form\ConsultType;
 use App\Form\HistoriaType;
 use App\Form\MedicatType;
 use App\Form\StoredImgType;
 use App\Form\StoredDocType;
-use App\Form\OperaType;
+//use App\Form\OperaType;
 
-use App\Form\SelectType;
-
-use App\Entity\Center;
 use App\Entity\Consult;
 use App\Entity\Historia;
 use App\Entity\Medicat;
 use App\Entity\Opera;
 use App\Entity\StoredImg;
 
-use App\Entity\Type as TypeT;
-
-
-
-
+use App\Entity\User;
+use App\Entity\Type;
+use App\Entity\Place;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\PropertyInfo\Type;
+//use Symfony\Component\PropertyInfo\Type;
 
 /**
  * Controller used to manage current user.
@@ -167,11 +161,9 @@ class PatientController extends AbstractController
     {
         $this->denyAccessUnlessGranted('PATIENT_VIEW', $patient);
 
-        $center = $this->getUser()->getCenter();
-
-        $repository = $em->getRepository(Center::class);
-        
         $patId = $patient->getId();
+        
+        $center = $this->getUser()->getCenter();
                 
         $repository = $em->getRepository(Consult::class);
         $consults = $repository->findBy(['patient' => $patId], ['created_at' => 'DESC']);
@@ -189,15 +181,8 @@ class PatientController extends AbstractController
         $imgs = $repository->findBy(['patient' => $patId, 'mime_type' => 'image/jpeg'], ['updated_at' => 'DESC']);
         $docs = $repository->findBy(['patient' => $patId, 'mime_type' => 'application/pdf'], ['updated_at' => 'DESC']);
 
-        $repository = $em->getRepository(TypeT::class);
-        $types = $repository->findBy(['center' => $center->getId(), 'name' => 'ÁSC']);
-
         //var_dump($operas);die;
-
-        $type =new TypeT();
-        $formType = $this->createForm(SelectType::class, $type);
-        $formType->handleRequest($request);
-
+    
         $consult = new Consult();
         $formConsult = $this->createForm(ConsultType::class, $consult);
         $formConsult->handleRequest($request);
@@ -256,12 +241,10 @@ class PatientController extends AbstractController
             'operas' => $operas,
             'imgs' => $imgs,
             'docs' => $docs,
-            'types' => $types,
+
             'formConsult' => $formConsult->createView(),
             'formDoc' => $formDoc->createView(),
             'formImg' => $formImg->createView(),
-            'formType' => $formType->createView(),
-
             
         ]);
     }
@@ -440,21 +423,34 @@ class PatientController extends AbstractController
      * @Route("/{slug}/patient/{id}/new/treatment", methods={"GET", "POST"}, name="opera_new")
      * 
      */
-    public function newOpera(Request $request, $slug, Patient $patient): Response
+    public function newOpera(Request $request, $slug, Patient $patient,
+         EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
-        $center = $user->getCenter();
+
+        $centerId = $this->getUser()->getCenter()->getId();
         
-        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
+        //var_dump($centerId);die;
+
+        $this->denyAccessUnlessGranted('PATIENT_EDIT', $patient);
+
+        $repository = $em->getRepository(Type::class);
+        $types = $repository->findBy(['center' => $centerId], ['name' => 'ASC']);
+
+        $repository = $em->getRepository(User::class);
+        $medics = $repository->findBy(['center' => $centerId, 'medic' => true], ['lastname' => 'ASC']);
+
+        $repository = $em->getRepository(Place::class);
+        $places = $repository->findBy(['center' => $centerId], ['name' => 'ASC']);
+
+
+        //var_dump($types);die;
 
         $opera = new Opera();
         $opera->setUser($user);
         $opera->setPatient($patient);
 
-        $form = $this->createForm(OperaType::class, $opera);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        if (false) {
 
             $em = $this->getDoctrine()->getManager();
 
@@ -470,10 +466,14 @@ class PatientController extends AbstractController
         }
 
         return $this->render('/patient/opera/new.html.twig', [
-            
+        
+            'types' => $types,
+            'medics' => $medics,
+            'places' => $places,
+
             'patient' => $patient,
             'opera' => $opera,
-            'form' => $form->createView(),          
+        
         ]);
 
 

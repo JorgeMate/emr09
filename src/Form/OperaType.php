@@ -66,7 +66,8 @@ class OperaType extends AbstractType
                 'choices' => $this->typeRepository->findBy(['center' => $this->centerId], ['name' => 'ASC']),
                 'choice_label' => 'name',
                 'placeholder' => 'label.option',
-                'mapped' => false,   
+                'mapped' => false,  
+                
             ])
 
             ->add('treatment', EntityType::class,[
@@ -116,10 +117,10 @@ class OperaType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Opera::class,
-
             'attr' => [
                 'data-autocomplete-url' => $this->router->generate('treatments_get')
             ]
+         
         ]);
     }
 }

@@ -1,11 +1,14 @@
-// Recuperación de los tratamientos de un tipo
+
 
 $(document).ready(function(){
+
+    // Selección del 1er dr. dixponible
 
     var selector = document.getElementById('opera_user');
     var value = selector[selector.selectedIndex].text;
     document.getElementById("js-selected-doctor").innerHTML = value;
 
+    // Recuperación de los tratamientos de un tipo
 
     $("#opera_type").change(function(){
         var typeid = $(this).val();
