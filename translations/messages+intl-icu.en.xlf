@@ -472,6 +472,12 @@
                 <source>label.treatments</source>
                 <target>Treatments</target>
             </trans-unit>
+            <trans-unit id="label.treatment.new">
+                <source>label.treatment.new</source>
+                <target>New treatment</target>
+            </trans-unit>
+
+
             <trans-unit id="label.type">
                 <source>label.type</source>
                 <target>Treatment type</target>

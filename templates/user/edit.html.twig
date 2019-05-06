@@ -104,7 +104,7 @@
                     </a>
                 </div>
                 {% else %} 
-                    <a href="{{ path('user_cpanel', {slug:app.user.center.slug} ) }}" class="btn-block btn-success">
+                    <a href="{{ path('user_cpanel', {slug:app.user.center.slug} ) }}" class="btn btn-block btn-success">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ 'label.cancel'|trans }}
                     </a>                
                 {% endif %} 
@@ -146,7 +146,6 @@
 
     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
     
-
     <div class="row">
 
         <div class="col-sm">

@@ -4,7 +4,7 @@
 
 {% block main %}
 
-<form>
+<form action="{{ path('opera_save', {slug:slug}) }}" method="post">
 
     <div class="row justify-content-between">
 
@@ -46,8 +46,8 @@
 
         <div class="form-group col-md-5">
 
-            <label for="js-select-tratments">{{'label.treatment'|trans}}</label>
-            <select class="form-control" id="js-select-treatments">
+            <label class="text-danger" for="js-select-tratments">{{'label.treatment'|trans}}</label>
+            <select class="form-control" name="treatmentId" id="js-select-treatments">
 
             </select>
 
@@ -56,7 +56,7 @@
         <div class="form-group col-md-4">
 
             <label for="js-select-medics">Dr. </label>
-            <select class="form-control" id="js-select-medics">
+            <select class="form-control" name ="userId" id="js-select-medics">
 
             {% for medic in medics %}
                 <option value="{{ medic.id }}">{{ medic.firstname }} {{ medic.lastname }}</option>
@@ -71,8 +71,8 @@
 
         <div class="form-group col-md-3">
 
-            <label for="js-select-places">{{'label.place'|trans}}</label>
-            <select class="form-control" id="js-select-places">
+            <label class="text-danger" for="js-select-places">{{'label.place'|trans}}</label>
+            <select class="form-control" name="placeId" id="js-select-places">
             <option value="">{{ 'label.option'|trans }}</option>               
             {% for place in places %}
                 <option value="{{ place.id }}">{{ place.name }}</option>
@@ -84,12 +84,14 @@
         <div class="form-group col-md-3">
 
             <label for="js-datepicker">Planned for date</label>
-            <input type="text" value="{{ "now"|date("m/d/Y") }}" id="js-datepicker" class="form-control js-datepicker">
+            <input type="text" value="{{ "now"|date("m/d/Y") }}" name="madeAt" id="js-datepicker" class="form-control js-datepicker">
 
         </div>
 
         <div class="form-group col-md-3">
             
+            <input type="hidden" value="{{ patient.id }}" name="patientId" id="patientId">
+
         </div>
        
     </div>
@@ -117,7 +119,7 @@
 {% block sidebar %}
 
 <div class="card border-success mb-3">
-    <h5><div class="card-header">  <i class="far fa-clipboard"></i> {{ 'label.patient.new'|trans }}</div></h5>
+    <h5><div class="card-header">  <i class="far fa-clipboard"></i> {{ 'label.treatment.new'|trans }}</div></h5>
 
     <div class="card-body">
 

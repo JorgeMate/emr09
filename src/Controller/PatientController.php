@@ -30,8 +30,15 @@ use App\Entity\StoredImg;
 use App\Entity\User;
 use App\Entity\Type;
 use App\Entity\Place;
+use App\Entity\Treatment;
+
 
 use Doctrine\ORM\EntityManagerInterface;
+
+
+use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
+use Symfony\Component\Serializer\Serializer;
+
 //use Symfony\Component\PropertyInfo\Type;
 
 /**
@@ -443,36 +450,22 @@ class PatientController extends AbstractController
         $repository = $em->getRepository(Place::class);
         $places = $repository->findBy(['center' => $centerId], ['name' => 'ASC']);
 
-
+        
         //var_dump($types);die;
 
-        $opera = new Opera();
-        $opera->setUser($user);
-        $opera->setPatient($patient);
+        //$opera = new Opera();
+        //$opera->setUser($user);
+        //$opera->setPatient($patient);
 
-        if (false) {
-
-            $em = $this->getDoctrine()->getManager();
-
-            var_dump($opera);die;
-
-            $em->persist($opera);
-            $em->flush();
-
-            $this->addFlash('success', 'record.updated_successfully');
-
-            return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patient->getId()]);        
-
-        }
 
         return $this->render('/patient/opera/new.html.twig', [
+
+            'slug' => $slug,
         
             'types' => $types,
             'medics' => $medics,
             'places' => $places,
-
             'patient' => $patient,
-            'opera' => $opera,
         
         ]);
 
@@ -482,6 +475,59 @@ class PatientController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{slug}/save/treatment-of-patient", methods={"POST"}, name="opera_save")
+     * 
+     */
+    public function saveOpera(Request $request, EntityManagerInterface $em, $slug): Response
+    {
+
+        $patientId = $request->request->get('patientId');
+        $treatmentId = $request->request->get('treatmentId');
+        $userId = $request->request->get('userId');
+        $placeId = $request->request->get('placeId');
+
+        $madeAt = $request->request->get('madeAt');
+
+        $repository = $em->getRepository(User::class);
+        $user = $repository->find($userId);
+
+        $repository = $em->getRepository(Patient::class);
+        $patient = $repository->find($patientId);        
+
+        $repository = $em->getRepository(Place::class);
+        $place = $repository->find($placeId);
+
+        $repository = $em->getRepository(Treatment::class);
+        $treatment = $repository->find($treatmentId);
+
+
+        $dateMod = substr($madeAt,6,4) . '/' . substr($madeAt,3,2) . '/' . substr($madeAt,0,2);
+
+        //var_dump($dateMod);die;
+
+
+        
+        $mod = new \DateTime($dateMod);
+
+        
+
+        
+        $opera = new Opera();
+
+        $opera->setUser($user);
+        $opera->setPatient($patient);
+        $opera->setPlace($place);
+        $opera->setTreatment($treatment);
+
+        $opera->setMadeAt($mod);
+
+        $em->persist($opera);
+        $em->flush();
+
+        return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patientId]);        
+
+    }
 
 
 

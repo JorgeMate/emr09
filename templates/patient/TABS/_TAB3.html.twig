@@ -18,11 +18,36 @@
         
     </div>
         
-    <div class="row">            
+    <div class="row">
 
-        {% for opera in operas %}
-        {{ opera.createdAt|date('d/m/y') }} | {{ opera.treatment.name }}<br>
-        {% endfor %}
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Registered</th>
+                <th>{{ 'label.treatments'|trans }}</th>
+                <th>Dr.</th>
+                <th>{{ 'label.place'|trans }}</th>
+                <th>PLANNED</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for opera in operas %}
+            <tr>
+                <td>{{ opera.createdAt|date('d/m/y') }}</td>
+                <td>{{ opera.treatment.name }}</td>
+                <td>{{ opera.user.firstname }} {{ opera.user.lastname }}</td>
+                <td>{{ opera.place.name }}</td>
+                <td>{{ opera.madeAt|date('d/m/y') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+          
+
+        
+         | <br>
+        
 
     </div>
 
