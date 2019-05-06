@@ -4,7 +4,7 @@
 
 {% block main %}
 
-    {% if app.user.id != user.id %} 
+    {% if app.user.id != user.id and is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %} 
 
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -24,7 +24,7 @@
         </nav>
 
     {% endif %}
-    
+
     <div class="row justify-content-between">
 
         <div class="col">
@@ -94,64 +94,63 @@
             </div>
         </div>
 
-        <div class="form-row justify-content-between">            
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
-                </button>
-            </div>
+        <div class="form-row justify-content-between">  
 
-            <div class="form-group text-right">
+            <div class="form-group col-sm-3">
                 {% if app.user != user or is_granted('ROLE_SUPER_ADMIN') %}
                 <div class="form-group text-right">
-                    <a href="{{ path('users_index', {slug:slug}) }}" class="btn btn btn-success">
+                    <a href="{{ path('users_index', {slug:app.user.center.slug}) }}" class="btn btn-block btn-success">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ 'title.users_list'|trans }}
                     </a>
                 </div>
                 {% else %} 
-                    <a href="{{ path('user_cpanel', {slug:app.user.center.slug} ) }}" class="btn btn-success">
+                    <a href="{{ path('user_cpanel', {slug:app.user.center.slug} ) }}" class="btn-block btn-success">
                         <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ 'label.cancel'|trans }}
                     </a>                
                 {% endif %} 
-            </div>
+            </div>            
 
+            <div class="form-group col-sm-3">
+                <button type="submit" class="btn btn-block btn-primary">
+                    <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+                </button>
+            </div>
 
         </div>
 
     {{ form_end(form) }}
-
-    </br>
 
 {% endblock %}
 
 
 {% block sidebar %}
 
-<div class="container">
-
     {% if app.user.id == user.id %}
     {# Cambiamos SOLO la contraseña propia #} 
 
-    <div class="section">
-
         <div class="row">
 
-            <a href="{{ path('user_change_password') }}" class="btn btn-lg btn-block btn-danger">
-                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.change_password'|trans }}
-            </a>
+            <div class="col-sm">
+
+                <a href="{{ path('user_change_password') }}" class="btn btn-lg btn-block btn-danger">
+                    <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.change_password'|trans }}
+                </a>
+
+            </div>
 
         </div>
 
-    </div>
+        <br>
 
     {% endif %}
 
     {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
-    <div class="section">
+    
 
-        <div class="row">
+    <div class="row">
+
+        <div class="col-sm">
                 
-
             <div class="card">
 
                 <div class="card-header">
@@ -163,35 +162,22 @@
                     <h6 class="card-text text-primary">
                         <i class="fas fa-key text-warning"></i> {{ 'title.center_owner'|trans }}<br>{{ 'security.owner_1'|trans }}
                     </h6>
+
                     <br>
+
                     <h6 class="card-text text-primary">
                         <i class="fas fa-key text-info"></i> {{ 'title.center_cpanel'|trans }}<br>{{ 'security.admin_1'|trans }}
                     </h6>
                     <br>
-
-                    {% if false %}
-
-                    <h6 class="card-text text-primary">
-                        <i class="fas fa-key text-secondary"></i> USUARIO AUTORIZADO<br>Puede eliminar sus propios registros y acceder a la información médica de los pacientes.
-                    </h6>
-                    <br>
-                    <h6 class="card-text text-secondary">
-                        OTROS USUARIOS <i class="fa fa-lock text-secondary"></i><br>Acceso básico al sistema sin acceso a datos médicos de los pacientes.
-                    </h6>    
-
-                    {% endif %}
 
                 </div>
 
             </div>
 
         </div>
-        
-        <br>
-        
-    </div>
-    {% endif %}
 
-</div>
+    </div>
+                
+    {% endif %}
     
 {% endblock %}

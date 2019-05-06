@@ -36,22 +36,23 @@
 
 
     <div class="form-row">
+        
+        <div class="form-group col-sm-3">
+            
+            <a href="{{ path('treats_index', {slug:app.user.center.slug, id: treatment.type.id}) }}" class="btn btn-block btn-success">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ treatment.type.name }}
+            </a>                
+        </div>
 
-        <div class="form-group col-md-6">
-            <button type="submit" class="btn btn-primary">
+        <div class="form-group col-sm-6"></div>
+
+        <div class="form-group col-sm-3">
+            <button type="submit" class="btn btn-block btn-primary">
                 <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
             </button>
         </div>
     
-        {% if is_granted('ROLE_ADMIN') %}
-        <div class="form-group col-md-6 text-right">
-            
-            <a href="{{ path('treats_index', {slug:app.user.center.slug, id: treatment.type.id}) }}" class="btn btn btn-success">
-                <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ treatment.type.name }}
-            </a>                
-        </div>
-        {% endif %}
-            
+                    
     </div>    
         
 

@@ -349,14 +349,13 @@
             </trans-unit>
             <trans-unit id="label.patient.new">
                 <source>label.patient.new</source>
-                <target>Nuevo registro de paciente</target>
+                <target>New patient record</target>
             </trans-unit>
 
             <trans-unit id="label.doc">
                 <source>label.doc</source>
                 <target>G.P. / Previous doctor</target>
             </trans-unit>
-
 
             <trans-unit id="security.title">
                 <source>security.title</source>

@@ -81,7 +81,7 @@ class PatientController extends AbstractController
 
             $this->addFlash('info', 'record.updated_successfully');
 
-            return $this->redirectToRoute('patient_show', ['id' => $patient->getId()]);
+            return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patient->getId()]);
         }
 
         return $this->render('/patient/new.html.twig', [

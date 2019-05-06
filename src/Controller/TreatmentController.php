@@ -145,7 +145,7 @@ class TreatmentController extends AbstractController
             $em->flush();
             $this->addFlash('info', 'record.updated_successfully');
 
-            return $this->redirectToRoute('treats_index', [  'id' => $treatment->getType()->getId()] );
+            return $this->redirectToRoute('treats_index', ['slug' => $slug, 'id' => $treatment->getType()->getId()] );
         }
 
         return $this->render('entity/type_trat/trat_edit.html.twig', [

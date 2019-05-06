@@ -1,36 +1,28 @@
 <div role="tabpanel" class="tab-pane fade" id="nav-3">
 
-
     <br>
 
-    <div class="container">
+    <div class="row justify-content-between">
 
-        <div class="row justify-content-between">
+        <div class="col-auto">
+            <h4><i class="fas fa-procedures"></i> {{ 'label.treatments'|trans }}</h4>  
+        </div>        
+    
+        <div class="col-auto text-right">
 
-            <div class="col-auto">
-                <h4><i class="fas fa-procedures"></i> {{ 'label.treatments'|trans }}</h4>  
-            </div>        
+            <a href="{{ path('opera_new', {slug:app.user.center.slug, id:id} ) }}" class="btn btn-primary">
+                <i class="fas fa-edit" aria-hidden="true"></i> {{ button_label_new }}
+            </a>
+
+        </div>   
         
-            
-
-            <div class="col-auto text-right">
-
-                <a href="{{ path('opera_new', {slug:app.user.center.slug, id:id} ) }}" class="btn btn-primary">
-                    <i class="fas fa-edit" aria-hidden="true"></i> {{ button_label_new }}
-                </a>
-
-            </div>   
-            
-        </div>
-
+    </div>
         
-        <div class="row">            
+    <div class="row">            
 
-            {% for opera in operas %}
-            {{ opera.createdAt|date('d/m/y') }} | {{ opera.treatment.name }}<br>
-            {% endfor %}
-
-        </div>
+        {% for opera in operas %}
+        {{ opera.createdAt|date('d/m/y') }} | {{ opera.treatment.name }}<br>
+        {% endfor %}
 
     </div>
 

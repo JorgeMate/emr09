@@ -2,11 +2,18 @@
 
 $(document).ready(function(){
 
-    // Selección del 1er dr. dixponible
+    // Selección del 1er dr. dixponible y día actual para el tratamiento
 
     var selector = document.getElementById('js-select-medics');
     var value = selector[selector.selectedIndex].text;
     document.getElementById("js-selected-doctor").innerHTML = value;
+
+    document.getElementById("js-selected-treatment").innerHTML = '';
+    document.getElementById("js-selected-place").innerHTML = '';
+
+    let inputValue = document.getElementById("js-datepicker").value;
+    document.getElementById("js-selected-date").innerHTML = inputValue;
+
 
     // Recuperación de los tratamientos de un tipo
 
@@ -37,8 +44,6 @@ $(document).ready(function(){
                     var value = selector[selector.selectedIndex].text;
                     document.getElementById("js-selected-treatment").innerHTML = value;
             
-
-
                 }
             }
         });
@@ -48,6 +53,13 @@ $(document).ready(function(){
         var selector = document.getElementById('js-select-treatments');
         var value = selector[selector.selectedIndex].text;
         document.getElementById("js-selected-treatment").innerHTML = value;
+
+        if((document.getElementById("js-selected-treatment").innerHTML).length
+            && (document.getElementById("js-selected-place").innerHTML).length)
+        {
+            $("#collapseNewTrat").collapse({'show':true});
+        }
+
     });
 
     $("#js-select-medics").change(function(){
@@ -60,6 +72,13 @@ $(document).ready(function(){
         var selector = document.getElementById('js-select-places');
         var value = selector[selector.selectedIndex].text;
         document.getElementById("js-selected-place").innerHTML = value;
+
+        if((document.getElementById("js-selected-treatment").innerHTML).length
+            && (document.getElementById("js-selected-place").innerHTML).length)
+        {
+            $("#collapseNewTrat").collapse({'show':true});
+        }
+        
     });
 
     $("#js-datepicker").change(function(){
@@ -67,8 +86,7 @@ $(document).ready(function(){
         document.getElementById("js-selected-date").innerHTML = inputValue;
     });
 
-
-
+    
 });
     
     
