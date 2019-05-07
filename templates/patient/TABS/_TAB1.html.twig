@@ -70,11 +70,12 @@
         
             <div class="col-sm-4">
 
-                {{ include('patient/_patient_tags.html.twig') }}
-                <h5 class="text-warning">{{ 'title.pat_info_other'|trans }}</h5>
                 {# TAGS #}
-                
+                    {{ include('patient/_patient_tags.html.twig') }}
+                {# TAGS #}
 
+                <h5 class="text-warning">{{ 'title.pat_info_other'|trans }}</h5>
+                
                 {{ 'entity.title_ins'|trans }}
                 {% if patient.insurance.name is defined %}
                     <h5 class="text-primary">{{ patient.insurance.name }}</h5>

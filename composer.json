@@ -34,7 +34,8 @@
         "thadafinser/user-agent-parser": "^2.0",
         "twig/extensions": "^1.5",
         "vich/uploader-bundle": "^1.9",
-        "whichbrowser/parser": "^2.0"
+        "whichbrowser/parser": "^2.0",
+        "white-october/pagerfanta-bundle": "^1.2"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.1",

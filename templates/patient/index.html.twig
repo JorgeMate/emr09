@@ -1,0 +1,103 @@
+{% extends 'base_ad.html.twig' %}
+
+{% block body_id 'patient_index' %}
+
+{% block title %}{{ 'title.patients'|trans }}{% endblock %}
+
+{% block main %}
+
+    
+    <div class="container">
+
+        <div class="row justify-content-between">
+
+            <div class="column">
+                <h4>
+                    <a href="{{ path('user_cpanel', {slug:center.slug}) }}">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ center.name }}
+                    </a> 
+                    | <i class="fas fa-users"></i> {{ 'title.patients'|trans }}
+                </h4>
+            </div>        
+
+            <div class="column">
+                <a href="{{ path('patient_new', {slug: center.slug}) }}" class="btn btn-primary">
+                    <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
+                </a>
+            </div>        
+
+        </div>
+
+    </div>
+
+    <div class="pagerfanta">
+
+        <table class="table table-striped table-hover table-responsive">
+
+            <thead>
+            <tr>
+                
+                <th class="text-left">{{ 'label.firstname'|trans }}</th>
+                <th class="text-left">{{ 'label.lastname'|trans }}</th>
+                <th>{{ 'label.age'|trans }}</th>  
+                <th class="text-left">{{ 'label.cel'|trans }}</th>
+                <th class="text-left">{{ 'label.city'|trans }}</th>
+                <th></th>  
+                <th class="text-center">Id.</th> 
+                <th></th>
+                
+            </tr>    
+            </thead>
+
+            <tbody>
+
+                {% for item in my_pager.currentPageResults %}
+                <tr>
+                    
+                    
+                    <td class="text-left">{{ item.firstname }}</td>
+                    <td class="text-left"><a href="{{ path('patient_show', {slug: center.slug, id: item.id}) }}" >{{ item.lastname }}</a></td>
+                    <td class="text-center">
+                            {{ item.dateOfBirth | age }} 
+                        {% if item.sex %}
+                            <i class="fas fa-venus text-danger"></i>
+                        {% else %}
+                            <i class="fas fa-mars text-info"></i>
+                        {% endif %}                    
+                    </td> 
+                    <td class="text-left">{{ item.cel }}</td>
+                    <td class="text-left">{{ item.city }}</td>
+                    <td></td>  
+                    <td class="text-center">{{ item.id }}</td>
+                    
+                    <td class="text-center"><a href="{{ path('patient_show', {slug: center.slug, id: item.id}) }}" ><i class="fas fa-search"></i></a></td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+
+        </table>
+
+        {{ pagerfanta(my_pager, 'twitter_bootstrap4', { 'proximity': 1}) }}
+
+    </div>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="card">
+
+        <div class="card-header">
+            <i class="fas fa-users" aria-hidden="true"></i>  {{ 'title.patient_search_info'|trans }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ 'title2.patient_search_info'|trans }}</h5>
+            <p class="card-text">{{ 'text.resetting_help'|trans }}</p>
+        </div>
+        
+    </div>
+
+{% endblock %}
+

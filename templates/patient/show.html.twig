@@ -48,9 +48,10 @@
         
         {# TAB 1 datos paciente #}
         {{ include('/patient/TABS/_TAB1.html.twig', {
-            patient: patient,
-        }, with_context = false) }}
 
+            patient: patient,
+
+        }, with_context = false) }}
 
         {# TAB 2 consultas #}
         {{ include('/patient/TABS/_TAB2.html.twig', {
@@ -127,11 +128,6 @@ $(function() {
     }
 
 });
-
-$(function () {
-  $('[data-toggle="popover"]').popover()
-})
-
 
 </script>
 

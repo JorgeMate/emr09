@@ -4,5 +4,5 @@ import 'jquery'
 
 
 
-import '../css/app.scss';
+import '../scss/app.scss';
 

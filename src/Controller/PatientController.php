@@ -10,16 +10,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-use App\Entity\Patient;
-use App\Form\PatientType;
 use App\Repository\PatientRepository;
+
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Pagerfanta;
+
+use App\Form\PatientType;
 
 use App\Form\ConsultType;
 use App\Form\HistoriaType;
 use App\Form\MedicatType;
 use App\Form\StoredImgType;
 use App\Form\StoredDocType;
-//use App\Form\OperaType;
+
+
+use App\Entity\Patient;
 
 use App\Entity\Consult;
 use App\Entity\Historia;
@@ -32,12 +37,8 @@ use App\Entity\Type;
 use App\Entity\Place;
 use App\Entity\Treatment;
 
-
 use Doctrine\ORM\EntityManagerInterface;
 
-
-use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 //use Symfony\Component\PropertyInfo\Type;
 
@@ -261,13 +262,12 @@ class PatientController extends AbstractController
      * 
      * EDITAR el paciente id
      */
-    public function editPat($slug, Request $request, Patient $patient): Response
+    public function editPat($slug, Request $request, Patient $patient, EntityManagerInterface $em): Response
     {
 
         $this->denyAccessUnlessGranted('PATIENT_EDIT', $patient);
 
         $form = $this->createForm(PatientType::class, $patient);
-        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -276,11 +276,12 @@ class PatientController extends AbstractController
             $this->addFlash('info', 'record.updated_successfully');
             
             return $this->redirectToRoute('patient_show', 
-                ['id' => $patient->getId()] );
+                ['slug' => $slug, 'id' => $patient->getId()] );
         }
 
         return $this->render('patient/edit.html.twig', [
 
+           
             'patient' => $patient,
             'formPat' => $form->createView(),
         ]);
@@ -288,7 +289,64 @@ class PatientController extends AbstractController
     }
     
 
+    /**
+     * @Route("/{slug}/patients", methods={"GET"}, name="patient_index")
+     */
+    public function indexPat($slug)
+    {
 
+        //$lastIdPat = $this->getDoctrine()->getRepository(Patient::class)->lastInsertedId();
+        //$lastIdPat = $lastIdPat['lastIdPat'];
+
+        //var_dump($lastIdPat);die;
+
+        $center = $this->getUser()->getCenter();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $queryBuilder = $em->createQueryBuilder($center->getId())
+            ->select('p')
+            ->from('App\Entity\Patient', 'p')
+            ->innerJoin('p.user','u')
+            ->innerJoin('u.center','c')
+            ->orderBy('p.id', 'DESC');
+            
+            // ->setParameter('last', $lastIdPat);
+            // ->andWhere('p.id + 100 > :last')
+
+        if($center->getId()){
+            $queryBuilder
+                ->andWhere('c.id = :val')
+                ->setParameter('val', $center->getId());
+        };
+
+        $queryBuilder->setMaxResults('100');
+            
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+
+        $pagerfanta = new Pagerfanta($adapter);
+
+        $pagerfanta->setMaxPerPage(10); // 10 by default
+        $maxPerPage = $pagerfanta->getMaxPerPage();
+
+        $pagerfanta->getCurrentPageOffsetStart(3);
+        $pagerfanta->getCurrentPageOffsetEnd(3);
+
+        if (isset($_GET["page"])) {
+            //  $t = $pagerfanta->getNbPages();
+            //  var_dump($t); die;
+            $page = min($_GET["page"], $pagerfanta->getNbPages());
+            $pagerfanta->setCurrentPage($page);
+        }
+
+        return $this->render('patient/index.html.twig', [
+             
+            'center' => $center,
+            'my_pager' => $pagerfanta,
+            'order' => 'íd',
+        ]);
+
+    }
 
 
 
@@ -505,14 +563,9 @@ class PatientController extends AbstractController
         $dateMod = substr($madeAt,6,4) . '/' . substr($madeAt,3,2) . '/' . substr($madeAt,0,2);
 
         //var_dump($dateMod);die;
-
-
         
         $mod = new \DateTime($dateMod);
 
-        
-
-        
         $opera = new Opera();
 
         $opera->setUser($user);
