@@ -7,6 +7,8 @@
         "ext-iconv": "*",
         "fzaninotto/faker": "^1.8",
         "guzzlefry/twig-age-extension": "@dev",
+        "knplabs/knp-gaufrette-bundle": "^0.5.3",
+        "knplabs/knp-snappy-bundle": "^1.6",
         "liip/imagine-bundle": "^2.1",
         "sensio/framework-extra-bundle": "^5.3",
         "sensiolabs/security-checker": "^5.0",

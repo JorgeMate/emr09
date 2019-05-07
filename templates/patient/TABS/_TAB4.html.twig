@@ -1,0 +1,59 @@
+<div role="tabpanel" class="tab-pane fade" id="nav-4">
+
+    <div class="row"> 
+
+        <div class="col-sm-6">
+    
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewImg" aria-expanded="false" aria-controls="collapseNewImg">
+                {# Button with data-target #}
+                <i class="fas fa-camera"></i> {{button_label_new}}
+            </button>
+
+            <div class="collapse" id="collapseNewImg">
+                {{ form_start(form) }}
+            
+                    <div class="row"> 
+            
+                        <div class="form-group col">   
+                            
+                            {{ form_row(form.imageFile, {
+                                    attr: {
+                                        'placeholder': 'Seleccione una imagen',
+                                    }
+                                }) 
+                            }}
+
+                            <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseNewImg" aria-expanded="false" aria-controls="collapseNewImg">
+                                    <i class="fas fa-undo-alt"></i> {{ button_label_cancel }} 
+                            </button>
+                            <button type="submit" class="btn btn-outline-danger collapse"><i class="fas fa-file-upload"></i> {{ button_label_upload }} </button>           
+                        </div>
+            
+                    </div>
+            
+                {{ form_end(form)}}
+            </div>
+        
+        </div>
+
+        <div class="col-sm-6">
+
+            <table class="table table-responsive table-striped">
+    
+                    <tbody>
+                        {% for img in imgs %}
+                        <tr>
+                            <td>{{img.updatedAt|date('d/m/y') }}</td>
+                            <td>{{ img.imageName }}</td>
+                            <td><a href="{{ vich_uploader_asset(img, 'imageFile') }}"><img src="{{ vich_uploader_asset(img, 'imageFile')|imagine_filter('squared_thumbnail_small') }}" alt="{{ img.imageName }}" /></a></td>                 
+                        </tr>
+                        {% endfor %}    
+                    </tbody>
+            
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

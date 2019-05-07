@@ -221,7 +221,7 @@ class PatientController extends AbstractController
             $this->addFlash('info', 'doc.up_suc');
             $slug = $patient->getUser()->getCenter()->getSlug();
     
-            return $this->redirectToRoute('patient_show', ['id' => $patient->getId() ] );
+            return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patient->getId() ] );
             
         }
 
