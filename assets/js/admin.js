@@ -1,7 +1,12 @@
 
+import 'jquery'
+
+//import '../scss/admin.scss';
+//import '../scss/boostrap-tagsinput.scss';
+
 import 'typeahead.js';
 import Bloodhound from "bloodhound-js";
-import 'bootstrap-tagsinput';
+//import 'bootstrap-tagsinput';
 
 $(function() {
 

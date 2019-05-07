@@ -23,7 +23,7 @@
 
         {% else %}
 
-            <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
             
 
         {% endif %}
@@ -63,11 +63,9 @@
             <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>        
             <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
             
-    
              {% if app.request.locale == 'en' %}
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.en.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
                 <script src="{{ asset('assets/js/datepicker.en.js') }}"></script>
             {% elseif app.request.locale == 'es' %}
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/locales/bootstrap-datepicker.es.min.js"></script>
@@ -98,7 +96,7 @@
 
         {% else %}
 
-             <script src="{{ asset('build/app.js') }}"></script>
+             <script src="{{ asset('build/js/app.js') }}"></script>
 
         {% endif %}
 
