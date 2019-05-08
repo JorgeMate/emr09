@@ -6,6 +6,8 @@
 
     {{ include('default/_flash_messages.html.twig') }}
 
+    
+
     {# TÍTULO del paciente #}
     <div class="row justify-content-between">
 
@@ -117,7 +119,6 @@
 {% block sidebar %}
 
     {% if patient.id %}
-
     <div class="section">      
     </div>
     <div class="section">
@@ -133,34 +134,24 @@
 
     <script src="{{ asset('assets/js/medicat_stop.js') }}"></script>
 
-<script>
-    
-$(function() {
+    <script src="{{ asset('assets/js/record_delete.js') }}"></script>
 
-    // Persistencia del último TAB seleccionado
-
-    $('a[data-toggle="tab"]').on('click', function(e) {
-        window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+    <script>
+        
+    $(function() {
+        // Persistencia del último TAB seleccionado
+        $('a[data-toggle="tab"]').on('click', function(e) {
+            window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = window.localStorage.getItem('activeTab');
+        if (activeTab) {
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
+            window.localStorage.removeItem("activeTab");
+        }
     });
 
-    var activeTab = window.localStorage.getItem('activeTab');
+    </script>
 
-    if (activeTab) {
-        $('#myTab a[href="' + activeTab + '"]').tab('show');
-        window.localStorage.removeItem("activeTab");
-    }
-
-});
-
-</script>
-
-<script>
-
-$(function () {
-    $('[data-toggle="popover"]').popover()
-})
-  
-</script>
 
 
 {% endblock %}

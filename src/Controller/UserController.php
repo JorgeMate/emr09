@@ -18,6 +18,7 @@ use App\Form\Type\ChangePasswordType;
 use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Treatment;
+use App\Entity\Opera;
 
 
 
@@ -127,6 +128,18 @@ class UserController extends AbstractController
 
         return $this->json($results);
     }
+
+    /**
+     * @Route("/opera/{id}", methods={"DELETE"}, name="opera_delete")
+     */
+    public function deleteOpera(Opera $opera)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($opera);
+        $em->flush();
+        return new Response(null, 204);
+    }    
 
 
 

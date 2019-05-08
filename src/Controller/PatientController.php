@@ -253,6 +253,8 @@ class PatientController extends AbstractController
             'formConsult' => $formConsult->createView(),
             'formDoc' => $formDoc->createView(),
             'formImg' => $formImg->createView(),
+
+            'show_confirmation' => true,
             
         ]);
     }

@@ -2,7 +2,7 @@
 
     <div class="row"> 
 
-        <div class="col-sm-6">
+        <div class="col-sm-4">
     
             <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewImg" aria-expanded="false" aria-controls="collapseNewImg">
                 {# Button with data-target #}
@@ -39,7 +39,7 @@
     
         </div>
 
-        <div class="col-sm-6">
+        <div class="col-sm-8">
 
             <table class="table table-responsive table-striped">
 
@@ -48,7 +48,12 @@
                     <tr>
                         <td>{{doc.updatedAt|date('d/m/y') }}</td>
                         <td>{{ doc.imageName }}</td>
-                        <td><a href="{{ vich_uploader_asset(doc, 'imageFile') }}"><i class="far fa-file-pdf"></i></a></td>                 
+                        <td>
+                            <h3>
+                            <a href="{{ vich_uploader_asset(doc, 'imageFile') }}"><i class="far fa-file-pdf"></i>
+                            </a>
+                        </h3>
+                        </td>                 
                     </tr>
                     {% endfor %}    
                 </tbody>

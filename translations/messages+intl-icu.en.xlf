@@ -536,6 +536,22 @@
                 <target>Dosis</target>
             </trans-unit>
 
+            <trans-unit id="delete_record_modal.title">
+                <source>delete_record_modal.title</source>
+                <target>Are you sure you want to delete this record?</target>
+            </trans-unit>
+            <trans-unit id="delete_record_modal.body">
+                <source>delete_record_modal.body</source>
+                <target>This action cannot be undone.</target>
+            </trans-unit>
+            <trans-unit id="action.delete_record">
+                <source>label.delete_record</source>
+                <target>Delete record</target>
+            </trans-unit>
+
+
+
+
 
 
 
