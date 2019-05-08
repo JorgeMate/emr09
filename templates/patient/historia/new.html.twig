@@ -54,18 +54,21 @@
 
             <div class="form-row text-align-justify">
 
-                <div class="form-group col">
-                    <button type="submit" class="btn btn-primary">
+                <div class="form-group col-sm-4">    
+                    <a href="{{ path('patient_show', {slug: center.slug, id:patient.id}) }}" class="btn btn-block btn-success">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ patient.firstname }} {{ patient.lastname }}
+                    </a>
+                </div>
+        
+                <div class="form-group col-sm-5"></div>
+
+
+                <div class="form-group col-sm-3">
+                    <button type="submit" class="btn btn-block btn-primary">
                         <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
                     </button>
                 </div>
     
-                <div class="form-group col text-right">
-                    
-                    <a href="{{ path('patient_show', {slug: center.slug, id:patient.id}) }}" class="btn btn-success">
-                        <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ patient.firstname }} {{ patient.lastname }}
-                    </a>
-                </div>
 
             </div>
 

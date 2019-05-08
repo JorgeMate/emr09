@@ -19,6 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Treatment;
 use App\Entity\Opera;
+use App\Entity\StoredImg;
 
 
 
@@ -137,6 +138,18 @@ class UserController extends AbstractController
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
         $em = $this->getDoctrine()->getManager();
         $em->remove($opera);
+        $em->flush();
+        return new Response(null, 204);
+    }    
+
+    /**
+     * @Route("/img/{id}", methods={"DELETE"}, name="img_delete")
+     */
+    public function deleteImg(StoredImg $storedImg)
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($storedImg);
         $em->flush();
         return new Response(null, 204);
     }    

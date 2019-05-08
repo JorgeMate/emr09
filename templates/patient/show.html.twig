@@ -132,10 +132,6 @@
 
     {{ parent() }}
 
-    <script src="{{ asset('assets/js/medicat_stop.js') }}"></script>
-
-    <script src="{{ asset('assets/js/record_delete.js') }}"></script>
-
     <script>
         
     $(function() {
@@ -152,6 +148,19 @@
 
     </script>
 
+
+    <script src="{{ asset('assets/js/medicat_stop.js') }}"></script>
+
+    <script src="{{ asset('assets/js/delete_record.js') }}"></script>
+
+    <script>
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                trigger: 'focus'
+            })
+        })
+
+    </script>
 
 
 {% endblock %}

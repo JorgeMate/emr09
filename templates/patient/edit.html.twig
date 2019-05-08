@@ -54,6 +54,7 @@
 
 
 {% block sidebar %}
+    {{ include('/patient/_delete_record_confirmation.html.twig') }}
 {% endblock %}
 
 
@@ -61,7 +62,5 @@
 {% block javascripts %}
 
     {{ parent() }}
-
-
 
 {% endblock %}

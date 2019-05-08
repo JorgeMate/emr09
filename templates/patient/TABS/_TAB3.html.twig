@@ -29,10 +29,11 @@
         
     <div class="row">
 
-        <table class="table table-responsive js-records-table">
+        <table class="table table-responsive js-operas-table">
             <thead>
                 <tr>
                     
+
                     <th>Registered</th>
                     <th>{{ 'label.treatments'|trans }}</th>
                     <th>Dr.</th>
@@ -46,6 +47,7 @@
                 {% for opera in operas %}
                 <tr>
                     
+                    
                     <td>{{ opera.createdAt|date('d/m/y') }}</td>
                     <td>{{ opera.treatment.name }}</td>
                     <td>{{ opera.user.firstname }} {{ opera.user.lastname }}</td>
@@ -55,10 +57,9 @@
                         <a href="" 
                             class="js-delete-record" data-url="{{ path('opera_delete', {id: opera.id}) }}"
                         >
-                            <span class="fas fa-skull-crossbones"></span>
+                            <span class="fa fa-trash"></span>
                         </a>
-                    </td>
-            
+                    </td>            
                 </tr>
                 {% endfor %}
             </tbody>

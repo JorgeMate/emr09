@@ -38,20 +38,36 @@
 
         <div class="col-sm-8">
 
-            <table class="table table-responsive table-striped">
+            <table class="table table-responsive table-striped js-imgs-table">
+
+                    <thead>
+                        <th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </th>
+                    </thead>
     
                     <tbody>
                         {% for img in imgs %}
                         <tr>
+                            <td>
+                                <a href="" 
+                                    class="js-delete-record" data-url="{{ path('img_delete', {id: img.id}) }}"
+                                >
+                                    <span class="fa fa-trash"></span>
+                                </a>        
+                            </td>                
                             <td>{{img.updatedAt|date('d/m/y') }}</td>
                             <td>{{ img.imageName }}</td>
                             <td>
-                                
+                            
                                 <a href="{{ vich_uploader_asset(img, 'imageFile') }}">
                                     <img src="{{ vich_uploader_asset(img, 'imageFile')|imagine_filter('squared_thumbnail_small') }}" alt="{{ img.imageName }}" />
                                 </a>
                                 
-                            </td>                 
+                            </td> 
                         </tr>
                         {% endfor %}    
                     </tbody>

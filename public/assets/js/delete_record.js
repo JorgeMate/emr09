@@ -5,6 +5,7 @@ var Record = {
         this.$wrapper.find('.js-delete-record').on(
             'click',
             this.handleRecordDelete
+            
         );
     },
 
@@ -13,8 +14,8 @@ var Record = {
 
         $(this).addClass('text-danger');
 
-        $(this).find('.fas')
-        .removeClass('fa-skull-crossbones')
+        $(this).find('.fa')
+        .removeClass('fa-trash')
             .addClass('fa-spinner')
             .addClass('fa-spin');
 
@@ -32,13 +33,16 @@ var Record = {
 
 };
 
-
 $(document).ready(function() {
+    var $tableOperas = $('.js-operas-table');
+    Record.initialize($tableOperas);
 
-    var $table = $('.js-records-table');
-    Record.initialize($table);
+    var $tableImgs = $('.js-imgs-table');
+    Record.initialize($tableImgs);
 
 });   
+
+
 
 
 

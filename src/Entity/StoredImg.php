@@ -60,7 +60,7 @@ class StoredImg
     private $updated_at;
 
     /**
-     * @ORM\Column(type="string", length=127)
+     * @ORM\Column(type="string", length=127, nullable=true)
      */
     private $mime_type;
 
