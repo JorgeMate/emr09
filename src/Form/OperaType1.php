@@ -25,12 +25,12 @@ use App\Repository\PlaceRepository;
 use App\Repository\UserRepository;
 
 
+
 use Symfony\Component\Routing\RouterInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
-class OperaType extends AbstractType
+class OperaType1 extends AbstractType
 {
 
    private $typeRepository;
@@ -59,10 +59,23 @@ class OperaType extends AbstractType
             $form = $event->getForm();
 
             $form
-            
-            ->add('value', NumberType::class, [
-                'label' => 'label.value',
-                'required' => false,  
+
+            ->add('type', EntityType::class,[
+                'label' => 'label.type',
+                'class' =>  Type::class,
+                'choices' => $this->typeRepository->findBy(['center' => $this->centerId], ['name' => 'ASC']),
+                'choice_label' => 'name',
+                'placeholder' => 'label.option',
+                'mapped' => false,  
+                
+            ])
+
+            ->add('treatment', EntityType::class,[
+                'label' => 'label.treatment',
+                'class' =>  Treatment::class,
+                'choices' => [],
+                'choice_label' => 'name',
+                'placeholder' => 'label.option',
             ])
 
             ->add('place', EntityType::class,[
@@ -87,7 +100,6 @@ class OperaType extends AbstractType
             ])
 
             ->add('made_at', DateType::class, [
-                'label' => 'label.made_at',
                 'widget' => 'single_text',
                 //'input' => 'string',
                 'format' => 'dd/MM/yyyy',

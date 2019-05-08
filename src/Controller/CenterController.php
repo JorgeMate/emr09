@@ -244,4 +244,23 @@ class CenterController extends AbstractController
     }
 
 
+    /**
+     * @Route("/{slug}/program-options", methods={"GET", "POST"}, name="program_options")
+     * 
+     * 
+     */
+    public function programOptions(Request $request, $slug): Response
+    {
+
+        return $this->render('_admin_center/options.html.twig', [
+             
+        ]);
+
+
+    }
+
+
+
+
+
 }

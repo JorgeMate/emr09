@@ -1,8 +1,8 @@
-{% extends 'base_ad.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block body_id 'patient_edit' %}
 
-{% block main %}
+{% block body %}
 
     <div class="container">
 
@@ -53,6 +53,7 @@
 {% endblock %}
 
 
+
 {% block sidebar %}
     {{ include('/patient/_delete_record_confirmation.html.twig') }}
 {% endblock %}
@@ -63,4 +64,9 @@
 
     {{ parent() }}
 
+        
+        
+        </script>
+
+    
 {% endblock %}

@@ -5,15 +5,10 @@
     <div class="row justify-content-between">
 
         <div class="col-auto">
-            <h4><i class="fas fa-procedures"></i> {{ 'label.treatments'|trans }}</h4>  
+            <h4><i class="fas fa-file-medical-alt"></i> {{ 'label.treatments'|trans }}</h4>  
         </div>        
 
         <div class="col-auto">
-
-
-                        
-                    
-
 
         </div>
     
@@ -33,7 +28,7 @@
             <thead>
                 <tr>
                     
-
+                    <th></th>
                     <th>Registered</th>
                     <th>{{ 'label.treatments'|trans }}</th>
                     <th>Dr.</th>
@@ -45,14 +40,7 @@
             </thead>
             <tbody>
                 {% for opera in operas %}
-                <tr>
-                    
-                    
-                    <td>{{ opera.createdAt|date('d/m/y') }}</td>
-                    <td>{{ opera.treatment.name }}</td>
-                    <td>{{ opera.user.firstname }} {{ opera.user.lastname }}</td>
-                    <td>{{ opera.place.name }}</td>
-                    <td>{{ opera.madeAt|date('d/m/y') }}</td>
+                <tr>                    
                     <td>
                         <a href="" 
                             class="js-delete-record" data-url="{{ path('opera_delete', {id: opera.id}) }}"
@@ -60,6 +48,16 @@
                             <span class="fa fa-trash"></span>
                         </a>
                     </td>            
+                    <td>{{ opera.createdAt|date('d/m/y') }}</td>
+                    <td>{{ opera.treatment.name }}</td>
+                    <td>{{ opera.user.firstname }} {{ opera.user.lastname }}</td>
+                    <td>{{ opera.place.name }}</td>
+                    <td>{{ opera.madeAt|date('d/m/y') }}</td>
+                    <td>
+                        <a href="{{ path('opera_edit', {slug:app.user.center.slug,id:opera.id} ) }}">
+                            <span class="fas fa-search"></span>
+                        </a>
+                        </td>            
                 </tr>
                 {% endfor %}
             </tbody>

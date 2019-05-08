@@ -52,6 +52,16 @@ class Opera
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Note", inversedBy="operas")
+     */
+    private $note;
+
   
 
   
@@ -128,6 +138,30 @@ class Opera
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getValue(): ?float
+    {
+        return $this->value;
+    }
+
+    public function setValue(float $value): self
+    {
+        $this->value = $value;
+
+        return $this;
+    }
+
+    public function getNote(): ?Note
+    {
+        return $this->note;
+    }
+
+    public function setNote(?Note $note): self
+    {
+        $this->note = $note;
 
         return $this;
     }

@@ -60,7 +60,7 @@
                                 </a>        
                             </td>                
                             <td>{{img.updatedAt|date('d/m/y') }}</td>
-                            <td>{{ img.imageName }}</td>
+                            <td>{{ img.imageName|slice(14) }}</td>
                             <td>
                             
                                 <a href="{{ vich_uploader_asset(img, 'imageFile') }}">

@@ -1,0 +1,85 @@
+{% extends 'base93.html.twig' %}
+
+{% block body_id 'opera_new' %}
+
+{% block main %}
+
+<div class="container">
+
+    <div class="row justify-content-between">
+
+        <div class="col-sm-auto">
+
+            <h4>
+                
+                <i class="fas fa-file-medical-alt"></i> {{opera.treatment.name}} | <i class="fas fa-user-injured"></i> {{ opera.patient.firstname }} {{ opera.patient.lastname }} &nbsp;
+                {% if opera.patient.sex %}
+                    <i class="fas fa-venus text-danger"></i>
+                {% else %}
+                    <i class="fas fa-mars text-info"></i>
+                {% endif %}
+                {{ opera.patient.dateOfBirth | age }}
+
+            </h4>
+    
+        </div>
+
+        <div class="col"></div>
+
+    </div>
+
+</div>
+
+{{ form_start(form, {'attr': {} }) }}
+
+<div class="form-row">
+
+    <div class="form-group col-md-3">
+        {{ form_row(form.user) }}
+    </div>
+
+    <div class="form-group col-md-3">
+        {{ form_row(form.place) }}
+    </div>
+
+    <div class="form-group col-md-3">
+        {{ form_row(form.made_at) }}
+    </div>
+
+</div>
+
+<div class="form-row">
+
+    <div class="form-group col-md-3">
+        {{ form_row(form.value) }}
+    </div>
+    
+</div>
+
+<div class="form-row">
+
+        <div class="form-group col-md-3">
+
+            <a href="{{ path('patient_show', {slug:app.user.center.slug, id:opera.patient.id}) }}" class="btn btn-block btn-success">
+                <i class="fas fa-undo-alt"></i> {{ 'label.cancel'|trans }}
+            </a>    
+                    
+        </div>
+
+        <div class="form-group col-md-6"></div>
+
+        <div class="form-group col-md-3">
+
+            <button type="submit" class="btn btn-block btn-primary">
+                <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+            </button>
+
+        </div>
+
+    </div>
+
+{{ form_end(form) }}
+
+
+
+{% endblock %}

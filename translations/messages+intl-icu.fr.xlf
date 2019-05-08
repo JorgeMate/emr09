@@ -522,6 +522,25 @@
                 <target>Dosage</target>
             </trans-unit>
 
+            <trans-unit id="delete_record_modal.title">
+                <source>delete_record_modal.title</source>
+                <target>Êtes-vous sûr de vouloir supprimer cet enregistrement?</target>
+            </trans-unit>
+            <trans-unit id="delete_record_modal.body">
+                <source>delete_record_modal.body</source>
+                <target>Cette action ne peut pas être annulée</target>
+            </trans-unit>
+            <trans-unit id="action.delete_record">
+                <source>action.delete_record</source>
+                <target>Supprimer l'enregistrement</target>
+            </trans-unit>
+
+            <trans-unit id="label.made_at">
+                <source>label.made_at</source>
+                <target>Date de réalisation</target>
+            </trans-unit>
+
+
         
         </body>
     </file>

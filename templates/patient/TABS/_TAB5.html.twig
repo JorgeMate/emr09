@@ -47,7 +47,7 @@
                     {% for doc in docs %}
                     <tr>
                         <td>{{doc.updatedAt|date('d/m/y') }}</td>
-                        <td>{{ doc.imageName }}</td>
+                        <td>{{ doc.imageName|slice(14) }}</td>
                         <td>
                             <h3>
                             <a href="{{ vich_uploader_asset(doc, 'imageFile') }}"><i class="far fa-file-pdf"></i>

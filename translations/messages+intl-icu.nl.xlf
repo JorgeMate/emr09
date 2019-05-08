@@ -526,6 +526,25 @@
                 <source>label.dosis</source>
                 <target>Dosis</target>
             </trans-unit>
+
+            <trans-unit id="delete_record_modal.title">
+                <source>delete_record_modal.title</source>
+                <target>Weet je zeker dat je deze record wilt verwijderen?</target>
+            </trans-unit>
+            <trans-unit id="delete_record_modal.body">
+                <source>delete_record_modal.body</source>
+                <target>Deze actie kan niet ongedaan worden gemaakt</target>
+            </trans-unit>
+            <trans-unit id="action.delete_record">
+                <source>action.delete_record</source>
+                <target>Verwijder deze record</target>
+            </trans-unit>
+
+            <trans-unit id="label.made_at">
+                <source>label.made_at</source>
+                <target>Datum van voltooiing</target>
+            </trans-unit>
+
         
         </body>
     </file>

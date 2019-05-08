@@ -534,6 +534,25 @@
                 <target>Dosis</target>
             </trans-unit>
 
+            <trans-unit id="delete_record_modal.title">
+                <source>delete_record_modal.title</source>
+                <target>¿Seguro que quiere eliminar este registro?</target>
+            </trans-unit>
+            <trans-unit id="delete_record_modal.body">
+                <source>delete_record_modal.body</source>
+                <target>Esta acción no puede deshacerse</target>
+            </trans-unit>
+            <trans-unit id="action.delete_record">
+                <source>action.delete_record</source>
+                <target>Borrar registro</target>
+            </trans-unit>
+
+            <trans-unit id="label.made_at">
+                <source>label.made_at</source>
+                <target>Fecha de realización</target>
+            </trans-unit>
+
+
 
 
 

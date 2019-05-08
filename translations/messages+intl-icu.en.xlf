@@ -488,7 +488,7 @@
             </trans-unit>
             <trans-unit id="label.value">
                 <source>label.value</source>
-                <target>Amount</target>
+                <target>Value</target>
             </trans-unit>
 
             <trans-unit id="label.places">
@@ -545,11 +545,14 @@
                 <target>This action cannot be undone.</target>
             </trans-unit>
             <trans-unit id="action.delete_record">
-                <source>label.delete_record</source>
+                <source>action.delete_record</source>
                 <target>Delete record</target>
             </trans-unit>
 
-
+            <trans-unit id="label.made_at">
+                <source>label.made_at</source>
+                <target>Action date</target>
+            </trans-unit>
 
 
 

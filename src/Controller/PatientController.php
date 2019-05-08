@@ -23,6 +23,8 @@ use App\Form\MedicatType;
 use App\Form\StoredImgType;
 use App\Form\StoredDocType;
 
+use App\Form\OperaType;
+
 
 use App\Entity\Patient;
 
@@ -184,6 +186,9 @@ class PatientController extends AbstractController
 
         $repository = $em->getRepository(Opera::class);
         $operas = $repository->findBy(['patient' => $patId], ['created_at' => 'DESC']);
+
+        $pending = $repository->findBy(['patient' => $patId, 
+    ], ['created_at' => 'DESC']); 
 
         $repository = $em->getRepository(StoredImg::class);
         $imgs = $repository->findBy(['patient' => $patId, 'mime_type' => 'image/jpeg'], ['updated_at' => 'DESC']);
@@ -575,6 +580,8 @@ class PatientController extends AbstractController
         $opera->setPlace($place);
         $opera->setTreatment($treatment);
 
+        $opera->setValue($treatment->getValue());
+
         $opera->setMadeAt($mod);
 
         $em->persist($opera);
@@ -583,6 +590,37 @@ class PatientController extends AbstractController
         return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patientId]);        
 
     }
+
+    /**
+     * @Route("/{slug}/treatment/{id}/edit", methods={"GET","POST"}, name="opera_edit")
+     * 
+     */
+
+    public function editOpera(Request $request, Opera $opera, EntityManagerInterface $em, $slug): Response
+    {
+
+        $patient = $opera->getPatient();
+
+        $this->denyAccessUnlessGranted('PATIENT_EDIT', $patient);
+
+        $formOpera = $this->createForm(OperaType::class, $opera);
+        $formOpera->handleRequest($request);
+
+        if ($formOpera->isSubmitted() && $formOpera->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('patient_show', ['slug' => $slug, 'id' => $patient->getId()] );
+        }
+
+        return $this->render('patient/opera/edit.html.twig', [
+             
+            'opera' => $opera,
+            'form' => $formOpera->createView(),
+        ]);
+    }        
 
 
 

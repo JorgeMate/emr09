@@ -37,14 +37,15 @@ $(document).ready(function(){
                 for( var i = 0; i<len; i++){
                     var id = response[i]['id'];
                     var name = response[i]['name'];
-                    
-                    $("#js-select-treatments").append('<option value="'+id+'">'+name+'</option>');
-
-                    var selector = document.getElementById('js-select-treatments');
-                    var value = selector[selector.selectedIndex].text;
-                    document.getElementById("js-selected-treatment").innerHTML = value;
             
+                    
+                    $("#js-select-treatments").append('<option value="'+id+'">'+name+'</option>');            
                 }
+
+                var selector = document.getElementById('js-select-treatments');
+                var value = selector[selector.selectedIndex].text;
+                document.getElementById("js-selected-treatment").innerHTML = value;
+
             }
         });
     });
