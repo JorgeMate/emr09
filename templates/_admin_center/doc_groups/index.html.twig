@@ -1,0 +1,59 @@
+{% extends 'base93.html.twig' %}
+
+{% block main %}
+
+<div class="container">
+
+    <div class="row justify-content-between">
+
+        <div class="col-auto">
+            <h4>
+                <a href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>{{ app.user.center.name }}
+                </a>
+                | <i class="far fa-folder-open"></i> {{'label.doc_groups'|trans}}
+                
+            </h4>
+        </div>        
+
+        <div class="col text-right">
+            <a href="{{ path('group_new', {slug: app.user.center.slug}) }}" class="btn btn-primary">
+                <i class="fa fa-edit" aria-hidden="true"></i> {{ 'action.new'|trans }}
+            </a>
+        </div>        
+
+    </div>
+
+</div>
+
+<br>
+
+<table class="table table-striped table-hover table-responsive">
+    <thead>
+        <tr>
+            
+            <th></th>
+            <th>{{ 'label.doc_group'|trans }}</th>
+            <th class="text-center">{{ 'label.docs'|trans }}</th>
+            <th class="text-center"></th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for group in groups %}        
+        <tr>
+            
+            
+            <td><a href="{{ path('group_edit', {slug:app.user.center.slug, id:group.id}) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+            <td>{{ group.name }}</td>
+            <td class="text-center">{{group.userdocs|length}}</td>
+            <td class="text-center"><a href=""><i class="fas fa-search"></i></a></td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base_ad.html.twig' %}
+
+{% block main %}
+
+
+
+<div class="form-row">
+    <div class="form-group col-md-10">
+        <h4>
+            <a href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
+                <i class="fas fa-arrow-left" aria-hidden="true"></i> {{ app.user.center.name }}
+            </a>     
+            | {{'label.doc_group'|trans}} <i class="far fa-folder-open"></i> {{ group.name }}
+        </h4>
+    </div>
+    <div class="form-group col-md-2">
+            
+    </div>
+</div>
+
+
+{{ form_start(form) }}
+
+<div class="form-row">
+
+    <div class="form-group col-md-8">
+        {{ form_row(form.name) }}
+    </div>
+    <div class="form-group col-md-4">
+    </div>
+
+</div>
+
+<div class="form-row">
+
+    <div class="form-group col-sm-4">
+        <a href="{{ path('doc_groups_index', {slug:app.user.center.slug}) }}" class="btn btn-block btn-success">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i> {{'label.doc_groups'|trans}}
+        </a>                
+    </div>
+
+    <div class="form-group col-sm-1"></div>
+        
+    <div class="form-group col-sm-3">
+        <button type="submit" class="btn btn-block btn-primary">
+            <i class="fa fa-save" aria-hidden="true"></i> {{ 'action.save'|trans }}
+        </button>
+    </div>
+
+        
+</div>        
+
+{{ form_end(form) }}
+
+
+{% endblock %}

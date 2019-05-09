@@ -40,10 +40,12 @@ class UserController extends AbstractController
     {
         $user = $this->getUser();
         $center = $this->getUser()->getCenter();
+        $groups = $center->getCenterDocGroups();
 
         return $this->render('user/cpanel.html.twig', [
             'user' => $user,
             'center' => $center,
+            'groups' => $groups,
              
         ]);
     }

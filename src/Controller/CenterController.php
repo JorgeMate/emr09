@@ -14,12 +14,16 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\Center;
 use App\Entity\User;
 
+use App\Entity\CenterDocGroup;
+
 
 use App\Form\CenterType;
 use App\Form\UserType;
 use App\Form\NewUserType;
 
 use App\Form\MedicType;
+
+use App\Form\CenterDocGroupType;
 
 
 /**
@@ -38,19 +42,19 @@ class CenterController extends AbstractController
     public function centerCpanel($slug): Response
     {
 
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository(Center::class);
-        $center = $repository->findOneBy(['slug' => $slug]);
+        $center = $this->getUser()->getCenter();
 
         $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
 
         $user = $this->getUser();
         //$center = $this->getUser()->getCenter();
+        $groups = $center->getCenterDocGroups();
 
         return $this->render('_admin_center/cpanel.html.twig', [
              
             'user' => $user,
             'center' => $center,
+            'groups' => $groups,
         ]);
     }
 
@@ -259,6 +263,101 @@ class CenterController extends AbstractController
 
     }
 
+    /**
+     * @Route("/{slug}/documents-groups", methods={"GET", "POST"}, name="doc_groups_index")
+     * 
+     * 
+     */
+    public function programDocGroupsIndex(Request $request, $slug): Response
+    {
+
+        $center = $this->getUser()->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(CenterDocGroup::class);
+        $groups = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
+
+        return $this->render('_admin_center/doc_groups/index.html.twig', [
+             
+            'slug' => $slug,
+            'groups' => $groups,
+        ]);     
+
+        
+    }
+
+
+    /**
+     * @Route("/{slug}/new/documents-group", methods={"GET", "POST"}, name="group_new")
+     * 
+     * 
+     */
+    public function newDocGroup(Request $request, $slug): Response
+    {
+        $center = $this->getUser()->getCenter();
+     
+        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
+
+        $group = new CenterDocGroup();
+        $group->setCenter($center);
+
+        $form = $this->createForm(CenterDocGroupType::class, $group);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($group);
+            $em->flush();
+
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('doc_groups_index', ['slug' => $slug]);
+
+
+        }
+
+        return $this->render('_admin_center/doc_groups/edit.html.twig', [
+            
+            'group' => $group,
+            'form' => $form->createView(), 
+        ]);
+
+
+
+
+    }
+
+      /**
+     * @Route("/{slug}/documents-group/{id}/edit", methods={"GET", "POST"}, name="group_edit")
+     * 
+     */
+    public function insuranceEdit(Request $request, $slug, CenterDocGroup $centerDocGroup)
+    {
+        $center = $this->getUser()->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_EDIT', $center);        
+
+        $form = $this->createForm(CenterDocGroupType::class, $centerDocGroup);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $this->addFlash('info', 'record.updated_successfully');
+
+            return $this->redirectToRoute('doc_groups_index', ['slug' => $slug] );
+        }
+
+        return $this->render('_admin_center/doc_groups/edit.html.twig', [
+             
+            'group' => $centerDocGroup,
+            'form' => $form->createView(),
+        ]);
+    }
 
 
 

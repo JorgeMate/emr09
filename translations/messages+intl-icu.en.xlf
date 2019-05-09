@@ -554,7 +554,18 @@
                 <target>Action date</target>
             </trans-unit>
 
-
+            <trans-unit id="label.doc_groups">
+                <source>label.doc_groups</source>
+                <target>Available documents groups</target>
+            </trans-unit>
+            <trans-unit id="label.doc_group">
+                <source>label.doc_group</source>
+                <target>Documents group</target>
+            </trans-unit>
+            <trans-unit id="label.docs">
+                <source>label.docs</source>
+                <target>Documents</target>
+            </trans-unit>
 
 
 
