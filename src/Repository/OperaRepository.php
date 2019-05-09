@@ -19,6 +19,33 @@ class OperaRepository extends ServiceEntityRepository
         parent::__construct($registry, Opera::class);
     }
 
+// Los tratamientos de las de las operaciones con value > 0 sin nota o las de aquellos que tengan nota pero no esté pagada.
+
+// tratamiento.name, opera.value, opera.made_at
+
+    /**
+     * @return Opera[] Returns an array of Opera objects
+     */
+    
+
+
+    public function findNotPaidOpera($value)
+    {
+
+        return $this->createQueryBuilder('o')
+            ->innerJoin('o.patient','p')
+            ->andWhere('p.id = :val')
+  
+            ->setParameter('val', $value)
+            
+            ->getQuery()
+            ->getResult()
+            
+        ;
+
+    }
+
+
     // /**
     //  * @return Opera[] Returns an array of Opera objects
     //  */
@@ -34,6 +61,16 @@ class OperaRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+
+          ->andWhere('o.value <> 0')    
+            ->leftJoin('o.note', 'n')
+            ->andWhere('n.id == null or n.paid_at <> null')
+
+
+->orderBy('o.id', 'DESC')
+
+
     */
 
     /*

@@ -33,7 +33,7 @@ class TreatmentRepository extends ServiceEntityRepository
             ->orderBy('t.name', 'ASC')
             
             ->getQuery()
-            ->execute()
+            ->getResult()
         ;
     }    
 

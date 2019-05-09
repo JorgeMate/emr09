@@ -107,6 +107,11 @@ class Center
      */
     private $places;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\CenterDocGroup", mappedBy="center")
+     */
+    private $centerDocGroups;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -115,6 +120,7 @@ class Center
         $this->tags = new ArrayCollection();
         $this->types = new ArrayCollection();
         $this->places = new ArrayCollection();
+        $this->centerDocGroups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -421,6 +427,37 @@ class Center
             // set the owning side to null (unless already changed)
             if ($place->getCenter() === $this) {
                 $place->setCenter(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CenterDocGroup[]
+     */
+    public function getCenterDocGroups(): Collection
+    {
+        return $this->centerDocGroups;
+    }
+
+    public function addCenterDocGroup(CenterDocGroup $centerDocGroup): self
+    {
+        if (!$this->centerDocGroups->contains($centerDocGroup)) {
+            $this->centerDocGroups[] = $centerDocGroup;
+            $centerDocGroup->setCenter($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCenterDocGroup(CenterDocGroup $centerDocGroup): self
+    {
+        if ($this->centerDocGroups->contains($centerDocGroup)) {
+            $this->centerDocGroups->removeElement($centerDocGroup);
+            // set the owning side to null (unless already changed)
+            if ($centerDocGroup->getCenter() === $this) {
+                $centerDocGroup->setCenter(null);
             }
         }
 

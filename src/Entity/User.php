@@ -168,6 +168,11 @@ class User implements UserInterface
      */
     private $operas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserDoc", mappedBy="user")
+     */
+    private $userDocs;
+
   
   
 
@@ -179,6 +184,7 @@ class User implements UserInterface
         $this->historias = new ArrayCollection();
         $this->medicats = new ArrayCollection();
         $this->operas = new ArrayCollection();
+        $this->userDocs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -705,6 +711,37 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($opera->getUser() === $this) {
                 $opera->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserDoc[]
+     */
+    public function getUserDocs(): Collection
+    {
+        return $this->userDocs;
+    }
+
+    public function addUserDoc(UserDoc $userDoc): self
+    {
+        if (!$this->userDocs->contains($userDoc)) {
+            $this->userDocs[] = $userDoc;
+            $userDoc->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserDoc(UserDoc $userDoc): self
+    {
+        if ($this->userDocs->contains($userDoc)) {
+            $this->userDocs->removeElement($userDoc);
+            // set the owning side to null (unless already changed)
+            if ($userDoc->getUser() === $this) {
+                $userDoc->setUser(null);
             }
         }
 

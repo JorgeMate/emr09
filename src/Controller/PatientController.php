@@ -187,8 +187,10 @@ class PatientController extends AbstractController
         $repository = $em->getRepository(Opera::class);
         $operas = $repository->findBy(['patient' => $patId], ['created_at' => 'DESC']);
 
-        $pending = $repository->findBy(['patient' => $patId, 
-    ], ['created_at' => 'DESC']); 
+        ///////////////////////////////////////////////
+        $debts = $repository->findNotPaidOpera($patId); 
+
+        //var_dump($debts);die;
 
         $repository = $em->getRepository(StoredImg::class);
         $imgs = $repository->findBy(['patient' => $patId, 'mime_type' => 'image/jpeg'], ['updated_at' => 'DESC']);
@@ -252,6 +254,9 @@ class PatientController extends AbstractController
             'historias' => $historias,
             'medicats' => $medicats,
             'operas' => $operas,
+
+            'debts' => $debts,
+
             'imgs' => $imgs,
             'docs' => $docs,
 

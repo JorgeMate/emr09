@@ -1,4 +1,41 @@
-<div role="tabpanel" class="tab-pane fade show active" id="nav-6">
+<div role="tabpanel" class="tab-pane fade" id="nav-6">
+
+<br>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Dr.</th>
+            <th>{{'label.treatment'|trans}}</th>
+            <th>{{'label.place'|trans}}</th>
+            <th>{{'label.made_at'|trans}}</th>
+            <th>{{'label.value'|trans}}</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for debt in debts %}
+        <tr>
+            <td>{{ debt.user.lastname }}</td>
+            <td>{{ debt.treatment.name }}</td>
+            <td>{{ debt.place.name }}</td>
+            <td>{{ debt.madeAt|date('d/m/y') }}</td>
+            <td class="text-right">{{ debt.value|number_format(2, ',', '.') }} EUR.</td>
+
+        </tr>
+        {% endfor %}    
+    
+    </tbody>
+</table>
+
+<br>
+
+<h4>New Invoice</h4>
+<hr>
+
+
+
+
 
 
 </div>

@@ -69,12 +69,7 @@ class StoredImg
         return $this->id;
     }
 
-
-
-
-
-
-
+    
     public function getPatient(): ?Patient
     {
         return $this->patient;
