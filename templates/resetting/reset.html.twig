@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+
+  <div class="container">
+
+            <div class="form-group row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-8">
+                    <h3>{{ 'action.change_password'|trans }}</h3>
+
+                    <div class="alert alert-info" role="alert">
+                        {{ 'info.change_password'|trans }}
+                    </div>
+                </div>
+            </div>
+
+        <br/>
+
+        {{ form_start(resetting) }}
+
+            {{ form_widget(resetting) }}
+
+            <div class="form-group row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-lg btn-primary">
+                        <i class="far fa-envelope-open" aria-hidden="true"></i> {{ 'action.save'|trans }}
+                    </button>
+                </div>
+            </div>
+            
+        {{ form_end(resetting) }}
+    
+    </div>
+
+
+{% endblock %}

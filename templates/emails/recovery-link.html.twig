@@ -1,0 +1,15 @@
+
+{% extends 'base.html.twig' %}
+
+{% block navbar %}
+{% endblock %} 
+
+
+{% block body %}
+
+    <br><br>
+
+    <a href="{{ absolute_url('resetting/reset/', {token:token} ) }}">Recupere su contrasena</a>
+
+
+{% endblock %}

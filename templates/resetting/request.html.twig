@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block navbar %}
+{% endblock %} 
+
+{% block body %}
+
+<br>
+<br>
+<br>
+
+<div class="row">
+
+    <div class="col-sm-3"></div>
+     
+    <div class="col-sm-6">
+
+        <h4><i class="fas fa-key"></i> {{'title.resetting_request'|trans }}</h4>
+        <hr>    
+
+        {{ form_start(resetting) }}
+
+            <div class="form-group">    
+                {{ form_row(resetting.email) }}
+            </div>
+            <div class="form-group">    
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="far fa-envelope-open" aria-hidden="true"></i> {{ 'action.send'|trans }}
+                        </button>                
+                    </div>
+
+                    <div class=" text-right">
+                        <div class="col text-right">
+                            <a href="{{ path('app_login') }}"><i class="fas fa-arrow-left" aria-hidden="true"></i> {{ 'title.login'|trans }}</a>
+                        </div>                                
+                    </div>
+            </div>
+        
+        {{ form_end(resetting) }}
+
+
+        <br>
+
+        <div class="card">
+            
+            <div class="card-body">
+                <h6 class="card-title">
+                    <i class="far fa-envelope-open" aria-hidden="true"></i> {{ 'title2.resetting_help'|trans }}
+                </h6>
+                <h6 class="card-text">{{ 'text.resetting_help'|trans }}</h6>
+            </div>
+
+        </div>
+
+        <br>
+
+        {{ include('default/_flash_messages.html.twig') }}
+    
+    </div>
+
+    <div class="col-sm-3"></div>
+
+</div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+<div class="container">
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LdaGaAUAAAAAKTJB_RqebG2myyYhwUBjSffCM4Q"></script>
+
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LdaGaAUAAAAAKTJB_RqebG2myyYhwUBjSffCM4Q', {action: 'homepage'}).then(function(token) {
+            
+        });
+    });
+</script>
+
+
+
+{% endblock %}

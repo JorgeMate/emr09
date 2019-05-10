@@ -73,7 +73,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         if (!$user) {
 
             throw new CustomUserMessageAuthenticationException('Email could not be found.');
-            // TODO i18n en EXCEPTIONS !        }
+            // TODO i18n en EXCEPTIONS !
         }
         
         //////////////////////////////////////////////////
