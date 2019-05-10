@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserDocRepository")
+ * @Vich\Uploadable
  */
 class UserDoc
 {
@@ -23,7 +24,7 @@ class UserDoc
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\CenterDocGroup", inversedBy="userDocs")
      */
-    private $centerdocgroup;
+    private $centerDocGroup;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="userDocs")
@@ -34,7 +35,7 @@ class UserDoc
 /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="user_files", mimeType="mime_type", fileNameProperty="docName", size="imageSize")
+     * @Vich\UploadableField(mapping="user_files", mimeType="mime_type", fileNameProperty="name", size="docSize")
      * 
      * @var File
      */
@@ -43,7 +44,7 @@ class UserDoc
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $docName;
+    private $name;
 
     /**
      * @ORM\Column(type="integer")
@@ -55,19 +56,24 @@ class UserDoc
      */
     private $updated_at;
 
+    /**
+     * @ORM\Column(type="string", length=127, nullable=true)
+     */
+    private $mime_type;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getCenterdocgroup(): ?CenterDocGroup
+    public function getCenterDocGroup(): ?CenterDocGroup
     {
-        return $this->centerdocgroup;
+        return $this->centerDocGroup;
     }
 
-    public function setCenterdocgroup(?CenterDocGroup $centerdocgroup): self
+    public function setCenterdocgroup(?CenterDocGroup $centerDocGroup): self
     {
-        $this->centerdocgroup = $centerdocgroup;
+        $this->centerDocGroup = $centerDocGroup;
 
         return $this;
     }
@@ -107,7 +113,7 @@ class UserDoc
 
     public function getDocFile(): ?File
     {
-        return $this->DocFile;
+        return $this->docFile;
     }
 
 
@@ -116,14 +122,14 @@ class UserDoc
 
 
 
-    public function getDocName(): ?string
+    public function getName(): ?string
     {
-        return $this->docName;
+        return $this->name;
     }
 
-    public function setDocName(string $docName): self
+    public function setname(string $name): self
     {
-        $this->docName = $docName;
+        $this->name = $name;
 
         return $this;
     }
@@ -148,6 +154,18 @@ class UserDoc
     public function setUpdatedAt(\DateTimeInterface $updated_at): self
     {
         $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
+    public function getMimeType(): ?string
+    {
+        return $this->mime_type;
+    }
+
+    public function setMimeType(?string $mime_type): self
+    {
+        $this->mime_type = $mime_type;
 
         return $this;
     }

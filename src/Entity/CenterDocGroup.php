@@ -29,7 +29,7 @@ class CenterDocGroup
     private $center;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserDoc", mappedBy="centerdocgroup")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserDoc", mappedBy="centerDocGroup")
      */
     private $userDocs;
 

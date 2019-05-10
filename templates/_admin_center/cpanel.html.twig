@@ -56,7 +56,7 @@
             <div class="card-body">
                 <ul class="list-group list-group-flush">
                     {% for group in groups %}
-                    <li class="list-group-item"><i class="far fa-file-alt"></i> <a href="">{{ group.name }}</a></li>
+                    <li class="list-group-item"><i class="far fa-file-alt"></i> <a href="{{ path('docs_index', {slug:center.slug, id:group.id} ) }}">{{ group.name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>

@@ -44,11 +44,10 @@
         {% for group in groups %}        
         <tr>
             
-            
             <td><a href="{{ path('group_edit', {slug:app.user.center.slug, id:group.id}) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
             <td>{{ group.name }}</td>
-            <td class="text-center">{{group.userdocs|length}}</td>
-            <td class="text-center"><a href=""><i class="fas fa-search"></i></a></td>
+            <td class="text-center">{{group.userDocs|length}}</td>
+            <td class="text-center"><a href="{{ path('docs_index', {slug:app.user.center.slug, id:group.id}) }}"><i class="fas fa-search"></i></a></td>
 
         </tr>
         {% endfor %}

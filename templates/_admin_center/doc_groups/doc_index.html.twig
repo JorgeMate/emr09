@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div class="row justify-content-between">
+
+        <div class="col-auto">
+            <h4>
+                <a href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>{{ app.user.center.name }}
+                </a>                
+                | 
+                
+                <a href="{{ path('doc_groups_index', {slug:app.user.center.slug}) }}">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>{{ 'label.doc_groups'|trans }}
+                </a>                
+                | 
+                <i class="far fa-file-alt"></i> {{ centerDocGroup.name }}
+                
+            </h4>
+        </div>        
+
+
+    </div>
+
+</div>
+
+<br>
+
+
+<div class="row"> 
+
+    <div class="col-sm-4">
+
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewImg" aria-expanded="false" aria-controls="collapseNewImg">
+            {# Button with data-target #}
+            <i class="far fa-file-alt"></i> {{ 'label.newdoc'|trans }}
+        </button>
+
+        <div class="collapse" id="collapseNewImg">
+            {{ form_start(form) }}
+        
+                <div class="row"> 
+        
+                    <div class="form-group col">   
+                        
+                        {{ form_row(form.docFile, {
+                                attr: {
+                                    'placeholder': 'Seleccione una imagen',
+                                }
+                            }) 
+                        }}
+
+                        <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseNewImg" aria-expanded="false" aria-controls="collapseNewImg">
+                                <i class="fas fa-undo-alt"></i> {{ 'label.cancel'|trans }} 
+                        </button>
+                        <button type="submit" class="btn btn-outline-danger collapse"><i class="fas fa-file-upload"></i> {{ 'label.upload'|trans }} </button>           
+                    </div>
+        
+                </div>
+        
+            {{ form_end(form)}}
+        </div>        
+
+    </div>
+
+    <div class="col-sm-8">
+
+        <table class="table table-responsive table-striped">
+
+            <tbody>
+                {% for doc in docs %}
+                <tr>
+                    <td>{{doc.updatedAt|date('d/m/y') }}</td>
+                    <td>{{ doc.name|slice(14) }}</td>
+                    <td>
+                        <h3>
+                        <a href="{{ vich_uploader_asset(doc, 'docFile') }}"><i class="far fa-file-pdf"></i>
+                        </a>
+                    </h3>
+                    </td>                 
+                </tr>
+                {% endfor %}    
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

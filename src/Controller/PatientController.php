@@ -218,6 +218,8 @@ class PatientController extends AbstractController
         $storedImg = new StoredImg();
         $storedImg->setPatient($patient);
 
+        // Entramos al mismo repositorio por los 2 lados
+
         $formDoc = $this->createForm(StoredDocType::class, $storedImg);
         $formDoc->handleRequest($request);
         if ($formDoc->isSubmitted() && $formDoc->isValid()) {

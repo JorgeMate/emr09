@@ -15,6 +15,7 @@ use App\Entity\Center;
 use App\Entity\User;
 
 use App\Entity\CenterDocGroup;
+use App\Entity\UserDoc;
 
 
 use App\Form\CenterType;
@@ -24,6 +25,10 @@ use App\Form\NewUserType;
 use App\Form\MedicType;
 
 use App\Form\CenterDocGroupType;
+use App\Form\UserDocType;
+
+;
+
 
 
 /**
@@ -330,11 +335,11 @@ class CenterController extends AbstractController
 
     }
 
-      /**
+    /**
      * @Route("/{slug}/documents-group/{id}/edit", methods={"GET", "POST"}, name="group_edit")
      * 
      */
-    public function insuranceEdit(Request $request, $slug, CenterDocGroup $centerDocGroup)
+    public function centerDocGroupEdit(Request $request, $slug, CenterDocGroup $centerDocGroup)
     {
         $center = $this->getUser()->getCenter();
 
@@ -359,6 +364,49 @@ class CenterController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/{slug}/documents-group/{id}/index", methods={"GET", "POST"}, name="docs_index")
+     * 
+     */ 
+    public function docsIndex(Request $request, $slug, CenterDocGroup $centerDocGroup)
+    {
+
+        $center = $this->getUser()->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(UserDoc::class);
+        $docs = $repository->findBy(['centerDocGroup' => $centerDocGroup->getId()], ['name' => 'ASC']);
+
+        $newDoc = new UserDoc();
+        $newDoc->setUser($this->getUser());
+        $newDoc->setCenterdocGroup($centerDocGroup);
+
+        $formDoc = $this->createForm(UserDocType::class, $newDoc);
+        $formDoc->handleRequest($request);
+        if ($formDoc->isSubmitted() && $formDoc->isValid()) {
+
+            $em->persist($newDoc);
+            $em->flush();
+                
+            $this->addFlash('info', 'doc.up_suc');
+            
+    
+            return $this->redirectToRoute('docs_index', ['slug' => $slug, 'id' => $centerDocGroup->getId() ] );
+            
+        }
+
+
+        return $this->render('_admin_center/doc_groups/doc_index.html.twig', [
+             
+            'centerDocGroup' => $centerDocGroup,
+            'docs' => $docs,
+            'form' => $formDoc->createView(),
+            
+        ]);     
+
+    }
 
 
 
