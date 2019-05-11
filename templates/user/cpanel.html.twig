@@ -37,9 +37,41 @@
                     </div>
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
-                            <li class="list-group-item"></li>
+                            {% for agenda in agendas %}
+                                <li class="list-group-item">
+
+                                    {% if false %}
+
+                                    <i class="far fa-calendar-minus"></i> 
+                                    <a target="_blank" href="{{ client.host }}/schedule/{{ app.user.center.ssaasAccountName }}/{{ agenda.name }}?lang={{ app.request.locale }}">{{ agenda.name }}</a> 
+
+                                    {% else %}
+
+                                    <form method="post" action="https://www.supersaas.com/api/users">
+                                        <input type="hidden" name="account" value="{{ app.user.center.ssaasAccountName }}"/>
+                                        <input type="hidden" name="id" value="{{ app.user.id }}fk"/> <!-- A unique key to identify the user. See below -->
+                                        <input type="hidden" name="user[name]" value="{{ app.user.email }}"/> <!-- Any string. Needs to be unique -->
+                                        <input type="hidden" name="user[phone]" value="{{ app.user.tel }}"/>
+                                          <!-- values for other fields, see the bottom of the page for a list -->
+                                          <input type="hidden" name="user[role]" value="4"/>  <!-- Supeuser 4, User 3 -->
+                                          <!-- you can add and remove fields in the "Access Control" screen -->
+                                        
+                                        <input type="hidden" name="checksum" value="{{ checksum }}"/> <!-- 32 digit MD5 Hash, see below -->
+                                        <input type="hidden" name="after" value="{{ client.host }}/schedule/{{ app.user.center.ssaasAccountName }}/{{ agenda.name }}?lang={{ app.request.locale }}"/> <!-- where you send your user after sign on -->
+                                        <button class="button btn-block" type="submit">
+                                                <i class="far fa-calendar-minus"></i> {{ agenda.name }}
+                                        </button> 
+                                    </form>
+
+
+                                    {% endif %}
+
+
+
+
+
+                                </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>

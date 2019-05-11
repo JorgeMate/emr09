@@ -259,6 +259,9 @@
             "config/packages/stof_doctrine_extensions.yaml"
         ]
     },
+    "supersaas/api-client": {
+        "version": "0.9.3"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.1"
     },

@@ -21,7 +21,8 @@ use App\Entity\Treatment;
 use App\Entity\Opera;
 use App\Entity\StoredImg;
 
-
+use App\SuperSaaS\Client;
+use function GuzzleHttp\json_decode;
 
 /**
  * Controller used to manage current user.
@@ -34,7 +35,7 @@ class UserController extends AbstractController
 {
  
     /**
-     * @Route("/{slug}/cpanel", methods={"GET"}, name="user_cpanel")
+     * @Route("/{slug}/cpanel", methods={"GET","POST"}, name="user_cpanel")
      */
     public function userCpanel($slug): Response
     {
@@ -42,10 +43,44 @@ class UserController extends AbstractController
         $center = $this->getUser()->getCenter();
         $groups = $center->getCenterDocGroups();
 
+        $client = null;
+        $agendas = null;
+
+        if($center->getSsaasAccountName() && $center->getSsaasApiKey()){
+
+            // Comprobamos si el usuario tiene uso autorizado a las agendas
+            // TODO, también moverlo a __consttruct para hacerlo una sola vez
+
+            if(true){
+
+                $client = new Client();  // SaasS
+                /////////////////////////////////
+                $client->account_name = $center->getSsaasAccountName();
+                $client->api_key = $center->getSsaasApiKey();
+
+            //    $usersSaas = $client->users->getList();
+            //    var_dump($usersSaas);die;
+
+                $agendas = $client->schedules->getList();
+                //var_dump($agendas);die;
+        
+            }
+
+        }
+
+        $checksum = md5($client->account_name . $client->api_key . $user->getEmail());
+        //var_dump($checksum);die;
+
         return $this->render('user/cpanel.html.twig', [
+
             'user' => $user,
             'center' => $center,
             'groups' => $groups,
+
+            'client' => $client,
+            'agendas' => $agendas,
+
+            'checksum' => $checksum,
              
         ]);
     }

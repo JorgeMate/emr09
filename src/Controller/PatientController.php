@@ -294,7 +294,6 @@ class PatientController extends AbstractController
         }
 
         return $this->render('patient/edit.html.twig', [
-
            
             'patient' => $patient,
             'formPat' => $form->createView(),

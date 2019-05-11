@@ -55,6 +55,15 @@ class CenterType extends AbstractType
                     'required' => false,
                 ]);
 
+                $form->add('ssaas_account_name', TextType::class, [
+                    'label' => 'Ssaas Account name',
+                    'required' => false,
+                ]);
+                $form->add('ssaas_api_key', TextType::class, [
+                    'label' => 'Ssaas API key',
+                    'required' => false,
+                ]);
+
             }
 
             $form->add('name', TextType::class, [

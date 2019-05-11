@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2133487fde7349db35b137f23ac4601d",
+    "content-hash": "0e4ab7c80a6b7417090306daec2ecc8c",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -3242,6 +3242,56 @@
                 "tree"
             ],
             "time": "2017-12-24T16:06:50+00:00"
+        },
+        {
+            "name": "supersaas/api-client",
+            "version": "0.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SuperSaaS/supersaas-php-api-client.git",
+                "reference": "f4970e5fd9a5778df2d6add29a7612fd4ceb1e97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SuperSaaS/supersaas-php-api-client/zipball/f4970e5fd9a5778df2d6add29a7612fd4ceb1e97",
+                "reference": "f4970e5fd9a5778df2d6add29a7612fd4ceb1e97",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^3.7 || ^4.8 || ^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Dunn",
+                    "email": "travis@supersaas.com"
+                }
+            ],
+            "description": "Online bookings/appointments/calendars using the SuperSaaS scheduling platform. The SuperSaaS API provides services that can be used to add online booking and scheduling functionality to an existing website or CRM software.",
+            "homepage": "https://www.supersaas.com",
+            "keywords": [
+                "appointment book",
+                "booking calendar",
+                "business calendar",
+                "online appointment schedule",
+                "online booking system",
+                "reservation system",
+                "scheduling software",
+                "scheduling system"
+            ],
+            "time": "2018-06-25T16:57:15+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

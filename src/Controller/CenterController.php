@@ -27,8 +27,6 @@ use App\Form\MedicType;
 use App\Form\CenterDocGroupType;
 use App\Form\UserDocType;
 
-;
-
 
 
 /**
@@ -52,7 +50,11 @@ class CenterController extends AbstractController
         $this->denyAccessUnlessGranted('CENTER_EDIT', $center);
 
         $user = $this->getUser();
-        //$center = $this->getUser()->getCenter();
+
+        
+
+
+
         $groups = $center->getCenterDocGroups();
 
         return $this->render('_admin_center/cpanel.html.twig', [
@@ -60,6 +62,7 @@ class CenterController extends AbstractController
             'user' => $user,
             'center' => $center,
             'groups' => $groups,
+
         ]);
     }
 
