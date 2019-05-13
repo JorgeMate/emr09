@@ -67,7 +67,7 @@ class CenterType extends AbstractType
             }
 
 
-            if (true || $this->isAdmin) // Solo los administradores entran !!!!
+            if ($this->isSuper) // Solo los SUPER entran !!!!
             {
                 $form->add('ssaas_account_name', TextType::class, [
                     'label' => 'Ssaas Account name',

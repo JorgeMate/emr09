@@ -52,16 +52,25 @@ class EntityController extends AbstractController
      * 
      * LISTAR todos las fuentes del centro id
      */
-    public function sourcesIndex($slug): Response
+    public function sourcesIndex(Request $request, $slug): Response
     {
        
         $center = $this->getUser()->getCenter();
 
         $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
 
+        $showDisabled = $request->get('show');
+
+        //var_dump($showDisabled);die;
+
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(Source::class);
-        $sources = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
+
+        if($showDisabled == 'disabled'){            
+            $sources = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
+        } else {
+            $sources = $repository->findBy(['center' => $center->getId(), 'enabled' => true], ['name' => 'ASC']);
+        }
                 
         return $this->render('entity/source/index.html.twig', [
              
@@ -75,7 +84,7 @@ class EntityController extends AbstractController
      * 
      * LISTAR todos los lugares del centro id
      */
-    public function placesIndex($slug): Response
+    public function placesIndex(Request $request, $slug): Response
     {
         $center = $this->getUser()->getCenter();
 
