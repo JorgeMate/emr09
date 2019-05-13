@@ -22,7 +22,13 @@ use App\Entity\Opera;
 use App\Entity\StoredImg;
 
 use App\SuperSaaS\Client;
-use function GuzzleHttp\json_decode;
+
+use App\Entity\CenterDocGroup;
+use App\Entity\UserDoc;
+
+use App\Form\UserDocType;
+
+
 
 /**
  * Controller used to manage current user.
@@ -45,13 +51,14 @@ class UserController extends AbstractController
 
         $client = null;
         $agendas = null;
+        $checksum = null;
 
         if($center->getSsaasAccountName() && $center->getSsaasApiKey()){
 
             // Comprobamos si el usuario tiene uso autorizado a las agendas
             // TODO, también moverlo a __consttruct para hacerlo una sola vez
 
-            if(true){
+            if(false){
 
                 $client = new Client();  // SaasS
                 /////////////////////////////////
@@ -63,13 +70,11 @@ class UserController extends AbstractController
 
                 $agendas = $client->schedules->getList();
                 //var_dump($agendas);die;
-        
+
+                $checksum = md5($client->account_name . $client->api_key . $user->getEmail());
+                //var_dump($checksum);die;
             }
-
         }
-
-        $checksum = md5($client->account_name . $client->api_key . $user->getEmail());
-        //var_dump($checksum);die;
 
         return $this->render('user/cpanel.html.twig', [
 
@@ -189,7 +194,80 @@ class UserController extends AbstractController
         $em->remove($storedImg);
         $em->flush();
         return new Response(null, 204);
-    }    
+    }   
+    
+    
+        /**
+     * @Route("/{slug}/documents-groups", methods={"GET", "POST"}, name="doc_groups_index")
+     * 
+     * 
+     */
+    public function programDocGroupsIndex(Request $request, $slug): Response
+    {
+
+        $center = $this->getUser()->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(CenterDocGroup::class);
+        $groups = $repository->findBy(['center' => $center->getId()], ['name' => 'ASC']);
+
+        return $this->render('_admin_center/doc_groups/index.html.twig', [
+             
+            'slug' => $slug,
+            'groups' => $groups,
+        ]);     
+
+        
+    }
+
+
+
+    /**
+     * @Route("/{slug}/documents-group/{id}/index", methods={"GET", "POST"}, name="docs_index")
+     * 
+     */ 
+    public function docsIndex(Request $request, $slug, CenterDocGroup $centerDocGroup)
+    {
+
+        $center = $this->getUser()->getCenter();
+
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository(UserDoc::class);
+        $docs = $repository->findBy(['centerDocGroup' => $centerDocGroup->getId()], ['name' => 'ASC']);
+
+        $newDoc = new UserDoc();
+        $newDoc->setUser($this->getUser());
+        $newDoc->setCenterdocGroup($centerDocGroup);
+
+        $formDoc = $this->createForm(UserDocType::class, $newDoc);
+        $formDoc->handleRequest($request);
+        if ($formDoc->isSubmitted() && $formDoc->isValid()) {
+
+            $em->persist($newDoc);
+            $em->flush();
+                
+            $this->addFlash('info', 'doc.up_suc');
+            
+    
+            return $this->redirectToRoute('docs_index', ['slug' => $slug, 'id' => $centerDocGroup->getId() ] );
+            
+        }
+
+
+        return $this->render('_admin_center/doc_groups/doc_index.html.twig', [
+             
+            'centerDocGroup' => $centerDocGroup,
+            'docs' => $docs,
+            'form' => $formDoc->createView(),
+            
+        ]);     
+
+    }
+
 
 
 

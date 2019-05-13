@@ -2,37 +2,37 @@
 
 {% block body %}
 
-<div class="container">
+<div class="row justify-content-between">
 
-    <div class="row justify-content-between">
+    <div class="col-auto">
+        <h4>
 
-        <div class="col-auto">
-            <h4>
+            {% if is_granted('ROLE_ADMIN') %}
                 <a href="{{ path('center_cpanel', {slug:app.user.center.slug}) }}">
                     <i class="fas fa-arrow-left" aria-hidden="true"></i>{{ app.user.center.name }}
                 </a>                
                 | 
-                
+            
                 <a href="{{ path('doc_groups_index', {slug:app.user.center.slug}) }}">
                     <i class="fas fa-arrow-left" aria-hidden="true"></i>{{ 'label.doc_groups'|trans }}
                 </a>                
                 | 
-                <i class="far fa-file-alt"></i> {{ centerDocGroup.name }}
-                
-            </h4>
-        </div>        
+            {% endif %}
 
-
-    </div>
+            <i class="far fa-file-alt"></i> {{ centerDocGroup.name }}
+            
+        </h4>
+    </div>        
 
 </div>
 
 <br>
 
-
 <div class="row"> 
 
     <div class="col-sm-4">
+
+    {% if is_granted('ROLE_ADMIN') %}
 
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNewImg" aria-expanded="false" aria-controls="collapseNewImg">
             {# Button with data-target #}
@@ -62,8 +62,9 @@
                 </div>
         
             {{ form_end(form)}}
-        </div>        
-
+        </div>
+        
+    {% endif %}    
     </div>
 
     <div class="col-sm-8">

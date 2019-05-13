@@ -21,6 +21,7 @@ use Symfony\Component\Form\FormEvents;
 class CenterType extends AbstractType
 {
 
+    private $isAdmin;
     private $isSuper;
     private $userRequestsCenterId;
 
@@ -29,9 +30,17 @@ class CenterType extends AbstractType
         $this->isSuper = false;
         $this->userRequestsCenterId = $security->getUser()->getCenter()->getId();
 
+        $this->isSuper = false;
         if (in_array('ROLE_SUPER_ADMIN', $security->getUser()->getRoles())) {
             $this->isSuper = true;
+            $this->isAdmin = true;
         }
+
+        $this->isAdmin = false;
+        if (in_array('ROLE_ADMIN', $security->getUser()->getRoles())) {
+            $this->isAdmin = true;
+        }
+
     }
 
    
@@ -55,6 +64,11 @@ class CenterType extends AbstractType
                     'required' => false,
                 ]);
 
+            }
+
+
+            if (true || $this->isAdmin) // Solo los administradores entran !!!!
+            {
                 $form->add('ssaas_account_name', TextType::class, [
                     'label' => 'Ssaas Account name',
                     'required' => false,
