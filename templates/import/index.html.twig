@@ -6,26 +6,38 @@
 
 <div class="row">
 
-    <div class="col sm-3">
+    <div class="col-sm-3">
         <a href="{{ path('import',{id:id, action:'insurances'}) }}">Importar seguros</a>
         <br>
         <a href="{{ path('import',{id:id, action:'sources'}) }}">Importar origen de los pacientes</a>
         <br>
+        <a href="{{ path('import',{id:id, action:'sources_internal'}) }}">Importar orígenes INTERNOS de los pacientes </a>
+        <br>
+
         <a href="{{ path('import',{id:id, action:'places'}) }}">Importar lugares de trabajo</a>
         <br>
         <br>
         <a href="{{ path('import',{id:id, action:'types'}) }}">Importar tipos de tratamiento</a>
         <br>
         <a href="{{ path('import',{id:id, action:'treatments'}) }}">Importar Tratamientos</a>
+        <br>
+        <br>
+        <br>
+        <a href="{{ path('import',{id:id, action:'patients'}) }}">Importar PACIENTES</a>
+        <br>
+        <a href="{{ path('import',{id:id, action:'consults'}) }}">Importar CONSULTAS</a>
+        <br>
+        <a href="{{ path('import',{id:id, action:'operas'}) }}">Importar TRATAMIENTOS (OPERACIONES)</a>
 
     </div>
-    <div class="col sm-3">
+    <div class="col-sm-1">
 
     </div>
-    <div class="col sm-6">
+    <div class="col-sm-8">
 
         {% for item in items %}
-        {{item.id}} {{item.cia}} <br>
+        {{item.id}} {{item.firstname}} {{item.lastname}} {{item.sex}} {{item.birthdate}}<br>
+        {{item.email}} {{item.address}} {{item.city}} {{item.postcode}}<br>
         {% else %}
         {% endfor %}
 

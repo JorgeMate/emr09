@@ -38,7 +38,7 @@
             <tr>
                 
                 <th></th>
-                <th></th>
+                
                 <th>{{'entity.title_sou'|trans}}</th>
                 <th class="text-center">{{'label.enabled'|trans}}</th>
                 <th>{{'label.contact'|trans}}</th>
@@ -53,7 +53,7 @@
             <tr>
                 
                 <td><a href="{{ path('source_edit', {slug:app.user.center.slug, id:source.id}) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
-                <td></td>
+                
                 <td>{{ source.name }}</td>
                 <td class="text-center">
                     {% if source.enabled %} 
@@ -66,7 +66,7 @@
                 <td>{{ source.contact }}</td>
                 <td>{{ source.tel }}</td>
                 <td></td>
-                <td class="text-center">{{source.patients|length}} <i class="fas fa-users"></i></td>
+                <td class="text-right">{{source.patients|length}} | <a href="{{ path('patient_index', {slug:app.user.center.slug, entity:'source', id:source.id }) }}"><i class="fas fa-users"></i></td></a> 
                 
             </tr>
             {% endfor %}

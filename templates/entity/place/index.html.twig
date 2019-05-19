@@ -31,7 +31,7 @@
             <tr>
                 
                 <th></th>
-                <th></th>
+                
                 <th>{{'label.place'|trans}}</th>
                 <th class="text-center">{{'label.enabled'|trans}}</th>
                 <th>{{'label.contact'|trans}}</th>
@@ -48,7 +48,7 @@
                 
                 <td><a href="{{ path('place_edit', {slug:slug, id:place.id}) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
                 
-                <td></td>
+                
                 <td>{{ place.name }}</td>
                 <td class="text-center">{% if place.enabled %} 
                         <i class="fas fa-toggle-on"></i>
@@ -59,7 +59,7 @@
                 <td>{{ place.contact }}</td>
                 <td>{{ place.tel }}</td>
                 <td></td>
-                <td class="text-center">{{place.operas|length}} <i class="fas fa-file-medical-alt"></i></td>
+                <td class="text-right">{{place.operas|length}} <a href="{{ path('operasPerPlace_index', {slug:app.user.center.slug, slug2:place.slug }) }}"><i class="fas fa-file-medical-alt"></i></a></td>
                 
                 
             </tr>

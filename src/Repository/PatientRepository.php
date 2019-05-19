@@ -40,6 +40,7 @@ class PatientRepository extends ServiceEntityRepository
                 ->setParameter('t_'.$key, '%'.$term.'%')
                 ->innerJoin('p.user','u')
                 ->innerJoin('u.center','c')
+
             ;
 
             if($center){

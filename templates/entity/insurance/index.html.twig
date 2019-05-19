@@ -59,7 +59,7 @@
             <td>{{ insurance.contact }}</td>
             <td>{{ insurance.tel }}</td>
             <td></td>
-            <td class="text-center">{{insurance.patients|length}} <i class="fas fa-users"></i></td>
+            <td class="text-right">{{insurance.patients|length}} | <a href="{{ path('patient_index', {slug:app.user.center.slug, entity:'ins', id:insurance.id }) }}"><i class="fas fa-users"></i></a></td>
             
             
         </tr>

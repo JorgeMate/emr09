@@ -305,7 +305,7 @@ class PatientController extends AbstractController
     /**
      * @Route("/{slug}/patients", methods={"GET"}, name="patient_index")
      */
-    public function indexPat($slug)
+    public function indexPat(Request $request)
     {
 
         //$lastIdPat = $this->getDoctrine()->getRepository(Patient::class)->lastInsertedId();
@@ -313,17 +313,27 @@ class PatientController extends AbstractController
 
         //var_dump($lastIdPat);die;
 
+        $group = '';
+
+        $entity = $request->get('entity');
+        $entity_id = $request->get('id');
+
         $center = $this->getUser()->getCenter();
 
         $em = $this->getDoctrine()->getManager();
 
         $queryBuilder = $em->createQueryBuilder($center->getId())
-            ->select('p')
+            ->select('p', 's', 'i') 
             ->from('App\Entity\Patient', 'p')
             ->innerJoin('p.user','u')
             ->innerJoin('u.center','c')
+            ->leftJoin('p.source', 's')
+            ->leftjoin('p.insurance', 'i')
+            
             ->orderBy('p.id', 'DESC');
             
+            // ->leftjoin('p.place', 'pl')
+
             // ->setParameter('last', $lastIdPat);
             // ->andWhere('p.id + 100 > :last')
 
@@ -331,6 +341,28 @@ class PatientController extends AbstractController
             $queryBuilder
                 ->andWhere('c.id = :val')
                 ->setParameter('val', $center->getId());
+        };
+
+        if($entity && $entity_id){
+            switch($entity){
+            case 'ins':
+                $queryBuilder
+                    ->andWhere('p.insurance = :insuranceId')
+                    ->setParameter('insuranceId', $entity_id);
+            break;    
+            case 'source':
+                $queryBuilder
+                    ->andWhere('p.source = :sourceId')
+                    ->setParameter('sourceId', $entity_id);
+            break;    
+            case 'place':
+                $queryBuilder
+                    ->andWhere('p.place = :placeId')
+                    ->setParameter('placeId', $entity_id);
+            break;    
+
+            }
+
         };
 
         $queryBuilder->setMaxResults('100');
@@ -354,6 +386,7 @@ class PatientController extends AbstractController
 
         return $this->render('patient/index.html.twig', [
              
+            'group' => $group,
             'center' => $center,
             'my_pager' => $pagerfanta,
             'order' => 'íd',

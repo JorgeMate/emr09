@@ -113,11 +113,11 @@ class TreatmentController extends AbstractController
     public function indexTreat($slug, Type $type): Response
     {
         $center = $this->getUser()->getCenter();
-
         $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
 
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository(Treatment::class);
+
         $treatments = $repository->findBy(['type' => $type->getId()], ['name' => 'ASC']);
 
         return $this->render('entity/type_trat/trat_index.html.twig', [
@@ -126,6 +126,8 @@ class TreatmentController extends AbstractController
             'treatments' => $treatments,
         ]);
     }
+
+
 
     /**
      * @Route("/{slug}/treatment/{id}/edit", methods={"GET", "POST"}, name="treatment_edit")

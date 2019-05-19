@@ -13,9 +13,13 @@ use App\Entity\Insurance;
 use App\Entity\Source;
 use App\Entity\Place;
 
+use App\Entity\Opera;
+
 use App\Form\InsuranceType;
 use App\Form\SourceType;
 use App\Form\PlaceType;
+
+
 /**
  * Controller used to manage current center.
  *
@@ -297,6 +301,43 @@ class EntityController extends AbstractController
 
         
     }
+
+
+
+    /**
+     * @Route("/{slug}/treatments/{slug2}", methods={"GET"}, name="operasPerPlace_index")
+     */
+    public function operasPlaceIndex(Request $request, $slug, $slug2)
+    {
+
+        $center = $this->getUser()->getCenter();
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        //$idPlace = $request->get('id');
+
+        $em = $this->getDoctrine()->getManager();
+
+        $repository = $em->getRepository(Place::class);
+        $place = $repository->findOneBy(['slug' => $slug2]);
+
+        //$placeName = $place->getName();
+        $placeId = $place->getId();
+
+
+        $repository = $em->getRepository(Opera::class);
+
+        $operas = $repository->findBy(['place' => $placeId], ['made_at' => 'DESC']);
+        
+        return $this->render('patient/opera/index_place.html.twig', [
+
+            'slug' => $slug,
+            'place' => $place,
+            'operas' => $operas,
+        ]);
+        
+
+    }
+    
 
 
 }

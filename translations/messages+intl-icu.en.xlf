@@ -413,7 +413,7 @@
 
             <trans-unit id="label.notes">
                 <source>label.notes</source>
-                <target>Comments</target>
+                <target>Notes</target>
             </trans-unit>
 
             <trans-unit id="label.age">

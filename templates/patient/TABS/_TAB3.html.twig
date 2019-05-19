@@ -29,6 +29,7 @@
                 <tr>
                     
                     <th></th>
+                    <th></th>
                     <th>Registered</th>
                     <th>{{ 'label.treatments'|trans }}</th>
                     <th>Dr.</th>
@@ -47,7 +48,8 @@
                         >
                             <span class="fa fa-trash"></span>
                         </a>
-                    </td>            
+                    </td>
+                    <td>{{ opera.id }}</td>        
                     <td>{{ opera.createdAt|date('d/m/y') }}</td>
                     <td>{{ opera.treatment.name }}</td>
                     <td>{{ opera.user.firstname }} {{ opera.user.lastname }}</td>
