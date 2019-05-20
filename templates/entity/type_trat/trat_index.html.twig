@@ -45,6 +45,7 @@
             <th class="text-right">{{ 'label.value'|trans }}</th>
             <th class="text-center">{{'label.enabled'|trans}}</th>
             <th>{{ 'label.notes'|trans }}</th>
+            <th></th>
 
             
         </tr>
@@ -67,6 +68,7 @@
                 {% endif %}
             </td>
             <td>{{ treatment.notes }}</td>
+            <td class="text-right">{{ treatment.operas|length }} | <a href="{{ path('operasPerTreatment_index', {slug:app.user.center.slug, id:treatment.id}) }}"><i class="fas fa-users"></i></a></td>
                             
         </tr>
         {% endfor %}

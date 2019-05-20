@@ -27,6 +27,7 @@ class TreatmentRepository extends ServiceEntityRepository
 
         return $this->createQueryBuilder('t')
             ->innerJoin('t.type', 'ty')
+
             ->andWhere('ty.id = :val')
 
             ->setParameter('val', $value)

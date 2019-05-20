@@ -14,6 +14,7 @@ use App\Entity\Source;
 use App\Entity\Place;
 
 use App\Entity\Opera;
+use App\Entity\Treatment;
 
 use App\Form\InsuranceType;
 use App\Form\SourceType;
@@ -307,7 +308,7 @@ class EntityController extends AbstractController
     /**
      * @Route("/{slug}/treatments/{slug2}", methods={"GET"}, name="operasPerPlace_index")
      */
-    public function operasPlaceIndex(Request $request, $slug, $slug2)
+    public function operasPerPlaceIndex($slug, $slug2)
     {
 
         $center = $this->getUser()->getCenter();
@@ -333,11 +334,40 @@ class EntityController extends AbstractController
             'slug' => $slug,
             'place' => $place,
             'operas' => $operas,
+
         ]);
-        
+    }
+
+    /**
+     * @Route("/{slug}/treatment/{id}/ops", methods={"GET"}, name="operasPerTreatment_index")
+     */
+    public function operasPerTreatmentIndex($slug, $id)
+    {
+
+        $center = $this->getUser()->getCenter();
+        $this->denyAccessUnlessGranted('CENTER_VIEW', $center);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $repository = $em->getRepository(Treatment::class);
+        $treatment = $repository->findOneBy(['id' => $id]);
+
+        //$treatment = $treatment->getName();
+
+        $repository = $em->getRepository(Opera::class);
+
+        $operas = $repository->findBy(['treatment' => $id], ['made_at' => 'DESC']);
+
+        return $this->render('patient/opera/index_treatment.html.twig', [
+
+            'slug' => $slug,
+            'treatment' => $treatment,
+            'operas' => $operas,
+
+        ]);
+
 
     }
-    
 
 
 }

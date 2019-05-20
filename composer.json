@@ -5,6 +5,7 @@
         "php": "^7.1.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "aws/aws-sdk-php": "^3.93",
         "fzaninotto/faker": "^1.8",
         "guzzlefry/twig-age-extension": "@dev",
         "knplabs/knp-gaufrette-bundle": "^0.5.3",
