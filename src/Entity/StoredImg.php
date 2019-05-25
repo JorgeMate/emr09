@@ -32,7 +32,7 @@ class StoredImg
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
-     * @Vich\UploadableField(mapping="patient_files", mimeType="mime_type", fileNameProperty="imageName", size="imageSize")
+     * @Vich\UploadableField(mapping="pat_imgs", mimeType="mime_type", fileNameProperty="imageName", size="imageSize")
      * 
      * @var File
      */

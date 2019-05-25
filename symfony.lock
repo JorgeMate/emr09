@@ -126,6 +126,9 @@
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
+    "gaufrette/aws-s3-adapter": {
+        "version": "v0.4.0"
+    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.37"
     },
@@ -171,6 +174,12 @@
             "config/packages/knp_snappy.yaml"
         ]
     },
+    "league/flysystem": {
+        "version": "1.0.52"
+    },
+    "league/flysystem-aws-s3-v3": {
+        "version": "1.0.22"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -195,6 +204,18 @@
     },
     "ocramius/proxy-manager": {
         "version": "2.1.1"
+    },
+    "oneup/flysystem-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0eb87bba411c227da027fe5f7c1dc7954b02f242"
+        },
+        "files": [
+            "config/packages/oneup_flysystem.yaml"
+        ]
     },
     "pagerfanta/pagerfanta": {
         "version": "v2.1.2"

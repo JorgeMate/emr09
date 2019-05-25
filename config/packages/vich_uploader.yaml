@@ -1,16 +1,47 @@
+# knp_gaufrette:
+#    stream_wrapper: ~
+
+#    adapters:
+#        pat_imgs_adapter:
+#            aws_s3:
+#                service_id: 'ct_file_store.s3'
+#                bucket_name: '%env(AWS_BUCKET_NAME)%'
+#                detect_content_type: true
+#                options:
+#                    create: true
+#                    directory: 'IMGS'
+                    
+#    filesystems:
+#        :
+#            adapter: pat_imgs_adapter
+
+
 vich_uploader:
     db_driver: orm
+    storage: flysystem
 
     mappings:
 
-        patient_files:
-            uri_prefix: /uploads/patient_files
-            upload_destination: '%kernel.project_dir%/public/uploads/patient_files'
+        #pat_imgs:
+        pat_private_imgs:
+            uri_prefix: "%env(AWS_BASE_URL)%/%env(AWS_BUCKET_NAME)%/IMGS"
+            upload_destination: pat_imgs_fs
             namer: Vich\UploaderBundle\Naming\OrignameNamer
 
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+
+        pat_imgs:
+        #pat_public_imgs:
+            uri_prefix: /patient_files/IMGS
+            upload_destination: public_imgs_fs
+            namer: Vich\UploaderBundle\Naming\OrignameNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+
 
 
         user_files:

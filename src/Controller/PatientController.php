@@ -42,6 +42,15 @@ use App\Entity\Treatment;
 use Doctrine\ORM\EntityManagerInterface;
 
 
+use Aws\S3\S3Client;
+//use Gaufrette\Adapter\AwsS3 as AwsS3Adapter;
+//use Gaufrette\Filesystem;
+
+
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Filesystem;
+
+
 //use Symfony\Component\PropertyInfo\Type;
 
 /**
@@ -52,6 +61,25 @@ use Doctrine\ORM\EntityManagerInterface;
  */
 class PatientController extends AbstractController
 {
+
+    private $s3client;
+    private $filesystem;
+
+    public function __construct()
+    {
+        $this->s3client = new S3Client([
+            'credentials' => [
+                'key'     => '%env(AWS_KEY)%',
+                'secret'  => '%env(AWS_SECRET_KEY)%',
+            ],
+            'version' => 'latest',
+            'region'  => 'eu-west-3',
+        ]);
+
+        $adapter = new AwsS3Adapter($this->s3client,'%env(AWS_BUCKET_NAME)%');
+        $this->filesystem = new Filesystem($adapter);
+
+    }
 
     /**
      * @Route("/{slug}/consult/{id}", methods={"GET", "POST"}, name="consult_edit")
@@ -662,6 +690,53 @@ class PatientController extends AbstractController
     }        
 
 
+    /**
+     * @param string $imgName
+     *
+     * @return \Aws\Result|bool
+     */
+    public function getDocumentFromPrivateBucket($ImgName)
+    {
+
+        //var_dump($ImgName);die;
+
+        try {
+
+            return $this->filesystem->get(
+                [
+                    'Bucket' => '%env(AWS_BUCKET_NAME)%',
+                    'Key'    => 'IMGS/'.$ImgName,
+                ]
+            );
+
+        } catch (S3Exception $e) {
+            // Handle your exception here
+        }
+    }
+
+    /**
+     * @param Document $document
+     * @Route("/{id}/show-document", name="show_document")
+     * @return RedirectResponse|Response
+     */
+    public function showDocumentAction(StoredImg $document)
+    {
+        //$awsS3Uploader  = $this->get('app.service.s3_uploader');
+
+        //$result = $awsS3Uploader->getDocumentFromPrivateBucket($document->getDocumentFileName());
+
+        $result = $this->getDocumentFromPrivateBucket($document->getImageName());
+
+        if ($result) {
+            // Display the object in the browser
+            header("Content-Type: {$result['ContentType']}");
+            echo $result['Body'];
+
+            return new Response();
+        }
+
+        return new Response('', 404);
+    }
 
 
 }

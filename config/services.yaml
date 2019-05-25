@@ -64,3 +64,16 @@ services:
         tags:
             - { name: twig.extension }        
 
+
+    #ct_file_store.s3:
+    #acme.s3_client:
+    Aws\S3\S3Client:
+        #class: 
+    #   factory: [Aws\S3\S3Client, 'factory']
+        arguments:
+            -
+                version: latest
+                region: 'eu-west-3'
+                credentials:
+                    key: '%env(AWS_KEY)%'
+                    secret: '%env(AWS_SECRET_KEY)%'

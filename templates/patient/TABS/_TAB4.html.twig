@@ -41,12 +41,14 @@
             <table class="table table-responsive table-striped js-imgs-table">
 
                     <thead>
-                        <th>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </th>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
                     </thead>
     
                     <tbody>
@@ -68,6 +70,7 @@
                                 </a>
                                 
                             </td> 
+                            <td><a href="{{ path('show_document', {'id': img.id}) }}">VIEW</a></td>
                         </tr>
                         {% endfor %}    
                     </tbody>
