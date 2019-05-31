@@ -35,6 +35,8 @@
     </div>
     <div class="col-sm-8">
 
+        {% if %}
+
         {% for item in items %}
         {{item.id}} {{item.firstname}} {{item.lastname}} {{item.sex}} {{item.birthdate}}<br>
         {{item.email}} {{item.address}} {{item.city}} {{item.postcode}}<br>

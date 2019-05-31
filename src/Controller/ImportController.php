@@ -440,6 +440,7 @@ class ImportController extends AbstractController
 
         return $this->render('import/index.html.twig', [
             'id' => $center->getId(),
+            'table' => $action,
             'items' => $items,
         ]);
     }

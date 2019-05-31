@@ -1,21 +1,3 @@
-# knp_gaufrette:
-#    stream_wrapper: ~
-
-#    adapters:
-#        pat_imgs_adapter:
-#            aws_s3:
-#                service_id: 'ct_file_store.s3'
-#                bucket_name: '%env(AWS_BUCKET_NAME)%'
-#                detect_content_type: true
-#                options:
-#                    create: true
-#                    directory: 'IMGS'
-                    
-#    filesystems:
-#        :
-#            adapter: pat_imgs_adapter
-
-
 vich_uploader:
     db_driver: orm
     storage: flysystem

@@ -2,6 +2,7 @@
 oneup_flysystem:
 
     adapters:
+    
         aws_flysystem_adapter:
             awss3v3:
                 client: Aws\S3\S3Client
@@ -12,11 +13,10 @@ oneup_flysystem:
             local:
                 directory: '%kernel.project_dir%/public/patient_files/IMGS'
         
-         
-
-
+        
 
     filesystems:
+
         pat_imgs_fs:
             adapter: aws_flysystem_adapter
             mount: pat_imgs_fs

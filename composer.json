@@ -7,7 +7,7 @@
         "ext-iconv": "*",
         "aws/aws-sdk-php": "^3.93",
         "fzaninotto/faker": "^1.8",
-        "gaufrette/aws-s3-adapter": "^0.4.0",
+       
         "guzzlefry/twig-age-extension": "@dev",
         "knplabs/knp-gaufrette-bundle": "^0.5.3",
         "knplabs/knp-snappy-bundle": "^1.6",
