@@ -6,6 +6,7 @@ vich_uploader:
 
         #pat_imgs:
         pat_private_imgs:
+
             uri_prefix: "%env(AWS_BASE_URL)%/%env(AWS_BUCKET_NAME)%/IMGS"
             upload_destination: pat_imgs_fs
             namer: Vich\UploaderBundle\Naming\OrignameNamer
@@ -16,7 +17,8 @@ vich_uploader:
 
         pat_imgs:
         #pat_public_imgs:
-            uri_prefix: /patient_files/IMGS
+
+            uri_prefix: /store/patient_files/IMGS
             upload_destination: public_imgs_fs
             namer: Vich\UploaderBundle\Naming\OrignameNamer
 
@@ -27,10 +29,11 @@ vich_uploader:
 
 
         user_files:
-            uri_prefix: /uploads/user_files
-            upload_destination: '%kernel.project_dir%/public/uploads/user_files'
+            uri_prefix: /store/user_files/DOCS
+            upload_destination: public_user_docs_fs
             namer: Vich\UploaderBundle\Naming\OrignameNamer
 
             inject_on_load: false
             delete_on_update: true
             delete_on_remove: true
+

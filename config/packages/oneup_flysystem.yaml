@@ -11,8 +11,11 @@ oneup_flysystem:
 
         public_uploads_adapter:
             local:
-                directory: '%kernel.project_dir%/public/patient_files/IMGS'
+                directory: '%kernel.project_dir%/public/store/patient_files/IMGS'
         
+        public_user_docs_uploads_adapter:
+            local:
+                directory: '%kernel.project_dir%/public/store/user_files/DOCS'
         
 
     filesystems:
@@ -25,3 +28,8 @@ oneup_flysystem:
             adapter: public_uploads_adapter
             mount: public_imgs_fs
             alias: League\Flysystem\Flysystem
+
+        public_user_docs_fs:
+            adapter: public_user_docs_uploads_adapter
+            mount: public_user_docs_fs
+            alias: League\Flysystem\FlysystemUserDocs

@@ -35,13 +35,19 @@
     </div>
     <div class="col-sm-8">
 
-        {% if %}
+        {% if table == 'insurances' or table == 'sources' %}
+            {% for item in items %}
+                {{item.id}} {{item.cia}}<br>
+            {% endfor %}
+        {% endif %}
 
-        {% for item in items %}
-        {{item.id}} {{item.firstname}} {{item.lastname}} {{item.sex}} {{item.birthdate}}<br>
-        {{item.email}} {{item.address}} {{item.city}} {{item.postcode}}<br>
-        {% else %}
-        {% endfor %}
+   
+        {% if table == 'patients'%}
+            {% for item in items %}
+            {{item.id}} {{item.firstname}} {{item.lastname}} {{item.sex}} {{item.birthdate}}<br>
+            {{item.email}} {{item.address}} {{item.city}} {{item.postcode}}<br>
+            {% endfor %}
+        {% endif %}
 
     </div>
 

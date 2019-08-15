@@ -123,7 +123,7 @@ class ImportController extends AbstractController
 
             }
 
-            if($action == 'sources_internal'){
+            if($action == 'source_internal'){
 
                     $conn = $this->getDoctrine()->getManager()->getConnection();
                     $sql = "
@@ -194,7 +194,7 @@ class ImportController extends AbstractController
 
                 $em->flush();                
             }
-
+            
             if($action == 'treatments'){
 
                 $sql = "
@@ -254,7 +254,7 @@ class ImportController extends AbstractController
                     AES_DECRYPT(paciente.notas, SHA1('Alumbre41')) AS notas,
                     AES_DECRYPT(paciente.bsn, SHA1('Alumbre41')) AS bsn
                     
-                    FROM paciente WHERE id > 15571 AND id <= 20000 ORDER BY id
+                    FROM paciente WHERE id > 00000 AND id <= 20000 ORDER BY id
                 ";
 
                 $stmt = $conn->prepare($sql);
@@ -318,7 +318,7 @@ class ImportController extends AbstractController
                     $stmt->bindValue(':address', $item['address']);
                     $stmt->bindValue(':house_no', $item['house_no']);
                     $stmt->bindValue(':house_txt', $item['house_ch']);
-
+                
                     $stmt->bindValue(':city', $item['city']);
                     $stmt->bindValue(':postcode', $item['postcode']);
                     $stmt->bindValue(':tel', $item['tel']);
@@ -343,7 +343,18 @@ class ImportController extends AbstractController
                 $sql = "
                 SELECT id, paciente_id, consult, treatment, 
                 AES_DECRYPT(notas, SHA1('Alumbre41')) AS notas, created_at 
-                FROM consulta WHERE id > 54054 AND id <= 100000
+                FROM consulta WHERE id > 00000 AND id <= 100000
+                AND id <> 52696
+                AND id <> 53958
+                AND id <> 53993
+                AND id <> 54054
+                AND id <> 54068
+                AND id <> 54088
+                AND id <> 54089
+                AND paciente_id 
+
+
+
                 ";
     
                 $stmt = $conn->prepare($sql);
@@ -355,24 +366,36 @@ class ImportController extends AbstractController
 
                 foreach($items as $key => $item) {
 
-                    $sql = "
-                    INSERT INTO consult 
-                    (id, patient_id, user_id, consult, treatment, notes, created_at) 
-                    VALUES 
-                    (:id, :patient_id, :user_id, :consult, :treatment, :notes, :created_at) 
-                    ";
+                    // Buscamos si existe el paciente asociado a la consulta
 
-                    $stmt = $conn2->prepare($sql);
-        
-                    $stmt->bindValue(':id', $item['id']);
-                    $stmt->bindValue(':patient_id', $item['paciente_id']);
-                    $stmt->bindValue(':user_id', 2);
-                    $stmt->bindValue(':consult', $item['consult']);
-                    $stmt->bindValue(':treatment', $item['treatment']);
-                    $stmt->bindValue(':notes', $item['notas']);
-                    $stmt->bindValue(':created_at', $item['created_at']);
-        
-                    $stmt->execute();
+                    $sqlSeek = "SELECT id from patient WHERE id = :id";
+                    $stmtSeek = $conn2->prepare($sqlSeek);
+                    $stmtSeek->bindValue(':id', $item['paciente_id']);
+                    $stmtSeek->execute();
+                    $PatId = $stmtSeek->fetchAll();
+
+                    if ($PatId) {
+
+                        $sql = "
+                        INSERT INTO consult 
+                        (id, patient_id, user_id, consult, treatment, notes, created_at) 
+                        VALUES 
+                        (:id, :patient_id, :user_id, :consult, :treatment, :notes, :created_at) 
+                        ";
+
+                        $stmt = $conn2->prepare($sql);
+            
+                        $stmt->bindValue(':id', $item['id']);
+                        $stmt->bindValue(':patient_id', $item['paciente_id']);
+                        $stmt->bindValue(':user_id', 2);
+                        $stmt->bindValue(':consult', $item['consult']);
+                        $stmt->bindValue(':treatment', $item['treatment']);
+                        $stmt->bindValue(':notes', $item['notas']);
+                        $stmt->bindValue(':created_at', $item['created_at']);
+            
+                        $stmt->execute();
+
+                    }
                 }
             
             }
@@ -381,8 +404,11 @@ class ImportController extends AbstractController
 
                 $sql = "
                     SELECT *
-                    FROM opera WHERE tratamiento_id > 0 AND tratamiento_id <> 145 AND id > 1112
+                    FROM opera WHERE tratamiento_id > 0 AND tratamiento_id <> 145
+                    AND id <> 1112
                 ";
+
+                  
     
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
@@ -430,10 +456,6 @@ class ImportController extends AbstractController
         
                 }
         
-
-
-
-
             }
 
         }
