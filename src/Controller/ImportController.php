@@ -344,17 +344,6 @@ class ImportController extends AbstractController
                 SELECT id, paciente_id, consult, treatment, 
                 AES_DECRYPT(notas, SHA1('Alumbre41')) AS notas, created_at 
                 FROM consulta WHERE id > 00000 AND id <= 100000
-                AND id <> 52696
-                AND id <> 53958
-                AND id <> 53993
-                AND id <> 54054
-                AND id <> 54068
-                AND id <> 54088
-                AND id <> 54089
-                AND paciente_id 
-
-
-
                 ";
     
                 $stmt = $conn->prepare($sql);
