@@ -25,7 +25,7 @@ yarn-error.log
 ###< symfony/webpack-encore-bundle ###
 
 ### 
-/src/DataFixtures/
+/DataFixtures/
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
