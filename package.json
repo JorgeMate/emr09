@@ -18,6 +18,7 @@
         "bloodhound-js": "^1.2.3",
         "bootstrap": "^4.3.1",
         "jquery": "^3.4.1",
+        "lodash": "^4.17.15",
         "popper.js": "^1.15.0",
         "typeahead.js": "^0.11.1"
     }
