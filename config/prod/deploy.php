@@ -12,7 +12,7 @@ return new class extends DefaultDeployer
             // the absolute path of the remote server directory where the project is deployed
             ->deployDir('/var/www/kimberly-systems.es/med')
             // the URL of the Git repository where the project code is hosted
-            ->repositoryUrl('git@github.com:JorgeMate/emr08b.git')
+            ->repositoryUrl('git@github.com:JorgeMate/emr09.git')
             // the repository branch to deploy
             ->repositoryBranch('master')
 

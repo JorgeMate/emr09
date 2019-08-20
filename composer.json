@@ -7,7 +7,6 @@
         "ext-iconv": "*",
         "aws/aws-sdk-php": "^3.93",
         "fzaninotto/faker": "^1.8",
-       
         "guzzlefry/twig-age-extension": "@dev",
         "knplabs/knp-gaufrette-bundle": "^0.5.3",
         "knplabs/knp-snappy-bundle": "^1.6",
@@ -22,7 +21,7 @@
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
         "symfony/expression-language": "4.2.*",
-        "symfony/flex": "^1.1",
+        "symfony/flex": "^1.4",
         "symfony/form": "4.2.*",
         "symfony/framework-bundle": "4.2.*",
         "symfony/monolog-bundle": "^3.1",
@@ -49,7 +48,7 @@
         "easycorp/easy-deploy-bundle": "^1.0",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
-        "symfony/profiler-pack": "*",
+        "symfony/profiler-pack": "^1.0",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "4.2.*"
     },
